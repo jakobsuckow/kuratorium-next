@@ -1,0 +1,89 @@
+.welcome {
+  margin-top: 40%;
+  vertical-align: middle;
+  max-width: 320px;
+  overflow: scroll;
+  text-align: justify;
+  cursor: default;
+
+  @media screen and (max-width: $break-small) {
+    padding: 0;
+    max-width: 100%;
+  }
+}
+
+.headline {
+  font-size: 1.1em;
+  font-weight: 200;
+  font-style: normal;
+  margin-bottom: 80px;
+  padding: 0 15px 0 0;
+  @media screen and (max-width: $break-small) {
+    top: 0;
+    display: block;
+    font-style: normal;
+    margin-top: 1em;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.welcome span {
+  animation: rotation 1s infinite linear;
+  text-align: center;
+}
+
+.email {
+  margin-top: 100px;
+}
+
+img.logo {
+  max-width: 320px;
+
+  @media screen and (max-width: $break-small) {
+    max-width: 85%;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+.disclaimer {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.toggler {
+  display: none;
+}
+
+.toggler + .toggler-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+.toggler:checked + .toggler-content {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.disclaimer-toggle {
+  cursor: pointer;
+
+  @media screen and (max-width: $break-small) {
+    position: relative;
+    top: 12px;
+    margin: 0 0 10px 0;
+    
+  }
+}
+
+.bottom {
+  position: absolute;
+  bottom: 10px;
+  width: 200px;
+  display: block;
+}

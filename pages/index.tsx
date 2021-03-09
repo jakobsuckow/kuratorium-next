@@ -5,6 +5,6 @@ interface Props {}
 
 const Index: NextPage<Props> = (props: Props) => {
   const {} = props;
-  return <></>;
+  return <h1>Hi</h1>;
 };
 export default Index;

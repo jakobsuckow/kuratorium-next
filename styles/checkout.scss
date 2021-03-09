@@ -1,0 +1,42 @@
+.summary {
+  max-width: 33.33333%;
+  margin: auto;
+  padding: 0 4px;
+  @media screen and (max-width: $break-small) {
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: $break-small) {
+    max-width: 100%;
+  }
+
+  img {
+    height: 60px;
+  }
+  img.logo {
+    max-width: 320px;
+    height: auto;
+  }
+}
+
+.paypal_button {
+  max-width: 200px;
+}
+
+.hidden {
+  display: none;
+}
+
+.StripeElement {
+  border: 1px solid #000;
+  padding: 2px;
+  font-size: 16px;
+}
+
+.StripeElement--invalid {
+  border: 1px solid red;
+}
+
+.suggestion:hover {
+  text-decoration: underline;
+}
