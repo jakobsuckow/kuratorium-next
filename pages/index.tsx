@@ -3,17 +3,21 @@ import React from "react";
 import About from "../components/about/about";
 import Intro from "../components/intro/intro";
 import Shop from "../components/shop/shop";
+import { useMeasure } from "react-use";
 
 interface Props {}
 
-const width: number = 479.984375;
-
 const Index: NextPage<Props> = (props: Props) => {
   const {} = props;
+
+  const [ref, { width }] = useMeasure();
   return (
     <>
       <div className="row">
-        <div className="intro">
+        <div
+          className="intro"
+          //@ts-ignore
+          ref={ref}>
           <Intro />
         </div>
         <div className="about">
