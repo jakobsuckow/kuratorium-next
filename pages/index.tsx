@@ -1,5 +1,8 @@
 import { NextPage } from "next";
 import React from "react";
+import About from "../components/about/about";
+import Intro from "../components/intro/intro";
+import Shop from "../components/shop/shop";
 
 interface Props {}
 
@@ -10,8 +13,12 @@ const Index: NextPage<Props> = (props: Props) => {
   return (
     <>
       <div className="row">
-        <div className="intro"></div>
-        <div className="about"></div>
+        <div className="intro">
+          <Intro />
+        </div>
+        <div className="about">
+          <About />
+        </div>
         <div className="projects"></div>
         <div className="feed"></div>
       </div>
@@ -22,7 +29,9 @@ const Index: NextPage<Props> = (props: Props) => {
           width: width,
           transform: `translateX(${width}px)`,
           marginRight: `-${width}px`,
-        }}></div>
+        }}>
+        <Shop />
+      </div>
     </>
   );
 };
