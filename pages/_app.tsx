@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+
 import "../styles/index.scss";
 
 export default function MyApp(props: any) {
