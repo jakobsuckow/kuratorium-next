@@ -1,9 +1,14 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
-interface Props {}
+interface Props {
+  setShifted: Dispatch<SetStateAction<boolean>>;
+}
 
 const Shop: React.FC<Props> = (props: Props) => {
-  const {} = props;
+  const { setShifted } = props;
+
+  const [cart, setCart] = React.useState<any[]>([]);
+
   return (
     <>
       <h1>Shop</h1>
@@ -14,6 +19,30 @@ const Shop: React.FC<Props> = (props: Props) => {
         <br />
         <a href="mailto:shop@kuratorium.net">shop@kuratorium.net</a>
       </p>
+      {cart.length > 0 ? (
+        <>
+          <div className="flex-2">
+            <div className="inner">
+              <span className="cursor underline" onClick={() => setShifted(false)}>
+                Continue Shopping
+              </span>
+            </div>
+            <div className="inner">
+              <span className="cursor tar" onClick={() => setCart([])}>
+                <p className="tar cursor">Clear Cart</p>
+              </span>
+            </div>
+          </div>
+        </>
+      ) : (
+        <p>
+          You did not add an item to the Cart.{" "}
+          <span className="cursor underline" onClick={() => setShifted(false)}>
+            Go Back
+          </span>
+          to Projects and add to add.
+        </p>
+      )}
     </>
   );
 };
