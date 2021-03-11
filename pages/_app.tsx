@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import "../styles/index.scss";
+import "../css/css.css";
 
 export default function MyApp(props: any) {
   const { Component, pageProps } = props;

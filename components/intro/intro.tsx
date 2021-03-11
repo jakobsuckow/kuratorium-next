@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import Disclaimer from "./disclaimer";
 
-interface Props {}
+interface Props {
+  setShifted: Dispatch<SetStateAction<boolean>>;
+}
 
 const Intro: React.FC<Props> = (props: Props) => {
-  const {} = props;
+  const { setShifted } = props;
   return (
     <>
       <div className="welcome">
@@ -12,7 +14,9 @@ const Intro: React.FC<Props> = (props: Props) => {
         <p className="headline">
           A project-based record label, initiated and operated by Lennart Wiehe and associates.
         </p>
-        <span className="cursor underline">Go to Shop</span>
+        <span className="cursor underline" onClick={() => setShifted(true)}>
+          Go to Shop
+        </span>
         <br />
         <br />
         <a className="email" href="mailto:hallo@kuratorium.net">

@@ -18,13 +18,14 @@ const Index: NextPage<Props> = (props: Props) => {
 
   return (
     <>
-      <div className="row">
+      <div
+        className="row"
+        style={{ transform: shifted ? `translateX(-${width}px)` : `translateX(-0px)` }}>
         <div
           className="intro"
           //@ts-ignore
-          ref={ref}
-          style={{ transform: shifted ? `translateX(-${width}px)` : "0px" }}>
-          <Intro />
+          ref={ref}>
+          <Intro setShifted={setShifted} />
         </div>
         <div className="about">
           <About />
@@ -40,6 +41,7 @@ const Index: NextPage<Props> = (props: Props) => {
       <div
         className="sideshop"
         style={{
+          width: width,
           transform: shifted ? `translateX(-${width}px)` : `translateX(${width}px)`,
           marginRight: `-${width}px`,
         }}>
