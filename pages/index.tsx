@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import React from "react";
+import React, { LegacyRef } from "react";
 import About from "../components/about/about";
 import Intro from "../components/intro/intro";
 import Shop from "../components/shop/shop";
@@ -23,8 +23,7 @@ const Index: NextPage<Props> = (props: Props) => {
         style={{ transform: shifted ? `translateX(-${width}px)` : `translateX(-0px)` }}>
         <div
           className="intro"
-          //@ts-ignore
-          ref={ref}>
+          ref={ref as LegacyRef<HTMLDivElement>}>
           <Intro setShifted={setShifted} />
         </div>
         <div className="about">
@@ -37,7 +36,6 @@ const Index: NextPage<Props> = (props: Props) => {
           <Feed />
         </div>
       </div>
-
       <div
         className="sideshop"
         style={{
