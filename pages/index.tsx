@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import React, { LegacyRef } from "react";
 import About from "../components/about/about";
 import Intro from "../components/intro/intro";
@@ -6,11 +6,19 @@ import Shop from "../components/shop/shop";
 import Projects from "../components/projects/projects";
 import Feed from "../components/feed/feed";
 import { useMeasure } from "react-use";
+import { getData } from "../services/airtable";
+import { Event } from "./api/event/all";
+import { News } from "./api/news/all";
+import { Album } from "../@types";
 
-interface Props {}
+interface Props {
+  events: Event[];
+  news: News[];
+  albums: Album[];
+}
 
 const Index: NextPage<Props> = (props: Props) => {
-  const {} = props;
+  const { events, news, albums } = props;
 
   const [ref, { width }] = useMeasure();
 
@@ -21,19 +29,17 @@ const Index: NextPage<Props> = (props: Props) => {
       <div
         className="row"
         style={{ transform: shifted ? `translateX(-${width}px)` : `translateX(-0px)` }}>
-        <div
-          className="intro"
-          ref={ref as LegacyRef<HTMLDivElement>}>
+        <div className="intro" ref={ref as LegacyRef<HTMLDivElement>}>
           <Intro setShifted={setShifted} />
         </div>
         <div className="about">
           <About />
         </div>
         <div className="projects">
-          <Projects />
+          <Projects albums={albums} />
         </div>
         <div className="feed">
-          <Feed />
+          <Feed events={events} news={news} />
         </div>
       </div>
       <div
@@ -49,3 +55,16 @@ const Index: NextPage<Props> = (props: Props) => {
   );
 };
 export default Index;
+
+export const getStaticProps: GetStaticProps = async context => {
+  const events = await getData("Events");
+  const news = await getData("Feed");
+  const albums = await getData("Albums");
+  return {
+    props: {
+      events,
+      news,
+      albums,
+    },
+  };
+};

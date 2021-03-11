@@ -1,49 +1,40 @@
 import React, { useState } from "react";
+import { Event } from "../../pages/api/event/all";
+import { News } from "../../pages/api/news/all";
 
-interface Props {}
+interface Props {
+  events: Event[];
+  news: News[];
+}
 
 const Dates: React.FC<Props> = (props: Props) => {
-  const {} = props;
-  const [dates, setDates] = useState<any[]>([]);
-  const [feed, setFeed] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const { events, news } = props;
   return (
     <>
       <h1>Feed</h1>
-      {isLoading ? (
-        <div className="loading">Loading Feed... &nbsp;</div>
-      ) : (
-        <>
-          {feed.map((f, index) => (
-            <a href={f.Link} key={index}>
-              <ul key={f.id} className="feed">
-                <li>{f.Date}</li>
-                <li className="underline">{f.Headline}</li>
-              </ul>
-            </a>
-          ))}
-        </>
-      )}
+      {news.map((n: News, index: number) => (
+        <a href={n.link} key={index}>
+          <ul key={n.id} className="feed">
+            <li>{n.date}</li>
+            <li className="underline">{n.headline}</li>
+          </ul>
+        </a>
+      ))}
       <br />
       <h1>Events</h1>
-      {isLoading ? (
-        <div className="loading">Loading Dates... &nbsp;</div>
-      ) : (
-        <>
-          {dates.map((date, index) => (
-            <a href={date.Link} key={index}>
-              <ul key={date.id} className="event">
-                <li className="date underline">{date.Date}</li>
-                <li>{date.Name}</li>
-                <li>{date.Venue}</li>
-                <li>{date.City}</li>
-                <li>{date.MusicBy}</li>
-              </ul>
-            </a>
-          ))}
-        </>
-      )}
+      <>
+        {events.map((event: Event, index: number) => (
+          <a href={event.link} key={index}>
+            <ul key={event.id} className="event">
+              <li className="date underline">{event.date}</li>
+              <li>{event.name}</li>
+              <li>{event.venue}</li>
+              <li>{event.city}</li>
+              <li>{event.musicBy}</li>
+            </ul>
+          </a>
+        ))}
+      </>
     </>
   );
 };

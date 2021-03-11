@@ -2,8 +2,9 @@ import React from "react";
 import Head from "next/head";
 
 import "../css/css.css";
+import { AppProps } from "next/dist/next-server/lib/router/router";
 
-export default function MyApp(props: any) {
+export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
 
   React.useEffect(() => {

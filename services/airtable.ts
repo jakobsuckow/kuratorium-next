@@ -1,10 +1,10 @@
 import Airtable from "airtable";
 
 const connection = new Airtable({
-  apiKey: process.env.AIRTABLE_API_KEY,
+  apiKey: "keycZExl0AEV9g3vb",
 });
 
-const base = connection.base(process.env.AIRTABLE_BASE as string);
+const base = connection.base("appZW9tUOm9GMi1Dz");
 
 // General Function:
 
