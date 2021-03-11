@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Event } from "../../pages/api/event/all";
-import { News } from "../../pages/api/news/all";
+import { Event, News } from "../../@types";
 
 interface Props {
   events: Event[];

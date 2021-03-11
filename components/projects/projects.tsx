@@ -17,9 +17,9 @@ const Releases: React.FC<Props> = (props: Props) => {
         read all about it here.
       </p>
       {albums.map((album: Album, i: number) => (
-        <>
+        <div key={i}>
           <p>{album.artist}</p>
-        </>
+        </div>
       ))}
     </>
   );

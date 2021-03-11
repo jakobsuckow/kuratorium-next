@@ -6,14 +6,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   res.status(200).json(response);
 }
 
-export interface Event {
-  id: string;
-  date: Date;
-  name: string;
-  link: string;
-  venue: string;
-  city: string;
-  musicBy: string;
-  artwork: any[];
-  artworkBy: string;
-}

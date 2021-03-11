@@ -1,10 +1,10 @@
 import Airtable from "airtable";
 
 const connection = new Airtable({
-  apiKey: "keycZExl0AEV9g3vb",
+  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY as string,
 });
 
-const base = connection.base("appZW9tUOm9GMi1Dz");
+const base = connection.base(process.env.NEXT_PUBLIC_AIRTABLE_BASE as string);
 
 // General Function:
 
@@ -69,15 +69,12 @@ export const addOrder = async (
   return base("Orders").create(data);
 };
 
-
-
 export class Album {
-    id: string;
-    createdTime: string;
-    test: string;
-    artwork: Array<any>;
-    artist: string;
-    trackids: Array<string>;
-    tracknames: Array<string>;
-  }
-  
+  id: string;
+  createdTime: string;
+  test: string;
+  artwork: Array<any>;
+  artist: string;
+  trackids: Array<string>;
+  tracknames: Array<string>;
+}

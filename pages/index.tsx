@@ -7,9 +7,7 @@ import Projects from "../components/projects/projects";
 import Feed from "../components/feed/feed";
 import { useMeasure } from "react-use";
 import { getData } from "../services/airtable";
-import { Event } from "./api/event/all";
-import { News } from "./api/news/all";
-import { Album } from "../@types";
+import { Album, News, Event } from "../@types";
 
 interface Props {
   events: Event[];
