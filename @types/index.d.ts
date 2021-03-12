@@ -25,7 +25,7 @@ export interface Event {
   venue: string;
   city: string;
   musicBy: string;
-  artwork: any[];
+  artwork: Artwork[];
   artworkBy: string;
 }
 
@@ -35,3 +35,47 @@ export interface News {
   link: string;
   id: string;
 }
+
+export interface Cart {
+  id: string;
+  name: string;
+  size?: string;
+  price: string;
+}
+
+export interface Order {
+  street: string;
+  postal: string;
+  city: string;
+  country: string;
+  subtotal: number;
+  shipping: number;
+  total: number;
+}
+
+export interface Artwork {
+  id: string;
+  url: string;
+  filename: string;
+  size: number;
+  type: string;
+  thumbnails: any;
+}
+
+// thumbnails: {
+//   small: {
+//   url: "https://dl.airtable.com/.attachmentThumbnails/fb66c6ed1645297f29fc5419242524cc/530c4211",
+//   width: 36,
+//   height: 36
+//   },
+//   large: {
+//   url: "https://dl.airtable.com/.attachmentThumbnails/4e9bd188f826b1184b138a0fbcc441b2/2ee26e1c",
+//   width: 512,
+//   height: 512
+//   },
+//   full: {
+//   url: "https://dl.airtable.com/.attachmentThumbnails/1d8a8a24e3a508a4fe9dcd10c1e544a6/a480ce2b",
+//   width: 3000,
+//   height: 3000
+//   }
+//   }

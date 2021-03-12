@@ -30,6 +30,20 @@ const Dates: React.FC<Props> = (props: Props) => {
               <li>{event.venue}</li>
               <li>{event.city}</li>
               <li>{event.musicBy}</li>
+              {event.artwork && (
+                <div
+                  className={
+                    event.artwork[0].thumbnails.large.height >
+                    event.artwork[0].thumbnails.large.width
+                      ? `hoverImage portrait`
+                      : `hoverImage landscape`
+                  }>
+                  <figure>
+                    <img key={index} alt={event.name} src={event.artwork[0].thumbnails.large.url} />
+                    <figcaption>{event.artworkBy}</figcaption>
+                  </figure>
+                </div>
+              )}
             </ul>
           </a>
         ))}
