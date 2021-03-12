@@ -43,6 +43,14 @@ export interface Cart {
   price: string;
 }
 
+export interface Merch {
+  name: string;
+  description: string;
+  images: Artwork[];
+  price: number;
+  sizes: string[];
+}
+
 export interface Order {
   street: string;
   postal: string;
