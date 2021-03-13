@@ -12,9 +12,10 @@ const Shop: React.FC<Props> = (props: Props) => {
   const [cart, setCart] = React.useState<any | null>([]);
 
   React.useEffect(() => {
+    console.log(`hi`);
     const localItems = localStorage.getItem("cart");
     setCart(JSON.parse(localItems as string));
-  }, [setShifted, clearCart, removeFromCart]);
+  }, [setShifted, clearCart, removeFromCart, cart]);
 
   return (
     <>
@@ -44,7 +45,7 @@ const Shop: React.FC<Props> = (props: Props) => {
             </div>
             <div className="inner">
               <span className="cursor tar">
-                <p className="tar cursor" onClick={() => clearCart()}>
+                <p className="tar cursor" onClick={clearCart}>
                   Clear Cart
                 </p>
               </span>
