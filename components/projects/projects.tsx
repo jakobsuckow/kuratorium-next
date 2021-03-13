@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Album, Merch } from "../../@types";
 import { useLocalStorage } from "react-use";
+import { addToCart } from "../../services/shoppingCart";
 
 interface Props {
   albums: Album[];
@@ -12,16 +13,18 @@ interface Props {
 const Releases: React.FC<Props> = (props: Props) => {
   const { albums, merch, setShifted } = props;
   const [size, setSize] = React.useState<string | number>(0);
-  const [value, setValue, remove] = useLocalStorage("cart-item");
 
-  const clickHandler = () => {
+  const clickHandler = (merch: Merch) => {
     if (size === 0) {
       alert("please select a size");
     } else {
       setShifted(true);
-      setValue({
-        id: 1234,
-        name: "Tshirt",
+      addToCart({
+        quantity: 1,
+        id: merch.id,
+        name: merch.name,
+        price: merch.price,
+        size: size as string,
       });
     }
   };
@@ -58,7 +61,7 @@ const Releases: React.FC<Props> = (props: Props) => {
           </select>
           <div className="product_desc">
             <p className="price">{merch.price} €</p>
-            <span className="add_to_cart" onClick={clickHandler}>
+            <span className="add_to_cart" onClick={() => clickHandler(merch)}>
               Add to Cart
             </span>
           </div>

@@ -36,11 +36,12 @@ export interface News {
   id: string;
 }
 
-export interface Cart {
+export interface CartItem {
   id: string;
   name: string;
   size?: string;
-  price: string;
+  price: number;
+  quantity: number;
 }
 
 export interface Merch {
