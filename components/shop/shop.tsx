@@ -12,10 +12,9 @@ const Shop: React.FC<Props> = (props: Props) => {
   const [cart, setCart] = React.useState<any | null>([]);
 
   React.useEffect(() => {
-    console.log(`hi`);
     const localItems = localStorage.getItem("cart");
     setCart(JSON.parse(localItems as string));
-  }, [setShifted, clearCart, removeFromCart, cart]);
+  }, [setShifted, clearCart, removeFromCart]);
 
   return (
     <>
