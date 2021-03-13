@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { clearCart } from "../../services/shoppingCart";
+import { CartItem } from "../../@types";
+import { clearCart, removeFromCart } from "../../services/shoppingCart";
 
 interface Props {
   setShifted: Dispatch<SetStateAction<boolean>>;
@@ -12,13 +13,12 @@ const Shop: React.FC<Props> = (props: Props) => {
 
   React.useEffect(() => {
     const localItems = localStorage.getItem("cart");
-    setCart(localItems);
-  }, [setShifted, clearCart]);
+    setCart(JSON.parse(localItems as string));
+  }, [setShifted, clearCart, removeFromCart]);
 
   return (
     <>
       <h1>Shop</h1>
-      {JSON.stringify(cart)}
       <p>
         Welcome to the Kuratorium shop. We are shipping out all products on a weekly basis. Should
         you have any questions, please write an email to shop@kuratorium.net. By ordering, you
@@ -28,6 +28,14 @@ const Shop: React.FC<Props> = (props: Props) => {
       </p>
       {cart?.length > 0 ? (
         <>
+          {cart.map((c: CartItem, i: number) => (
+            <div key={i}>
+              <p>name:{c.name}</p>
+              <p>quantity: {c.quantity}</p>
+              <p onClick={() => removeFromCart(c.id)}>remove from cart</p>
+            </div>
+          ))}
+
           <div className="flex-2">
             <div className="inner">
               <span className="cursor underline" onClick={() => setShifted(false)}>
