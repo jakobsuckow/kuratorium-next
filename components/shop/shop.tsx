@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { useLocalStorage } from "react-use";
 
 interface Props {
   setShifted: Dispatch<SetStateAction<boolean>>;
@@ -8,6 +9,8 @@ const Shop: React.FC<Props> = (props: Props) => {
   const { setShifted } = props;
 
   const [cart, setCart] = React.useState<any[]>([]);
+
+  const [value, setValue, remove] = useLocalStorage("cart-item");
 
   return (
     <>

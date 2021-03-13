@@ -7,16 +7,17 @@ import Projects from "../components/projects/projects";
 import Feed from "../components/feed/feed";
 import { useMeasure } from "react-use";
 import { getData } from "../services/airtable";
-import { Album, News, Event } from "../@types";
+import { Album, News, Event, Merch } from "../@types";
 
 interface Props {
   events: Event[];
   news: News[];
   albums: Album[];
+  merch: Merch[];
 }
 
 const Index: NextPage<Props> = (props: Props) => {
-  const { events, news, albums } = props;
+  const { events, news, albums, merch } = props;
 
   const [ref, { width }] = useMeasure();
 
@@ -34,7 +35,7 @@ const Index: NextPage<Props> = (props: Props) => {
           <About />
         </div>
         <div className="projects">
-          <Projects albums={albums} />
+          <Projects albums={albums} merch={merch} setShifted={setShifted} shifted />
         </div>
         <div className="feed">
           <Feed events={events} news={news} />
@@ -58,11 +59,13 @@ export const getStaticProps: GetStaticProps = async context => {
   const events = await getData("Events");
   const news = await getData("Feed");
   const albums = await getData("Albums");
+  const merch = await getData("Merch");
   return {
     props: {
       events,
       news,
       albums,
+      merch,
     },
   };
 };

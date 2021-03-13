@@ -44,6 +44,7 @@ export interface Cart {
 }
 
 export interface Merch {
+  id: string;
   name: string;
   description: string;
   images: Artwork[];
@@ -67,7 +68,13 @@ export interface Artwork {
   filename: string;
   size: number;
   type: string;
-  thumbnails: any;
+  thumbnails: Sizes;
+}
+
+export interface Sizes {
+  small: Size;
+  large: Size;
+  full: Size;
 }
 
 // thumbnails: {
@@ -87,3 +94,9 @@ export interface Artwork {
 //   height: 3000
 //   }
 //   }
+
+export interface Size {
+  url: string;
+  width: string;
+  height: string;
+}
