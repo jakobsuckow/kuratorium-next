@@ -101,3 +101,16 @@ export interface Size {
   width: string;
   height: string;
 }
+
+export interface Order {
+  firstName: string;
+  lastName: string;
+  emailAddress: string;
+  streetName: string;
+  streetNumber: string;
+  city: string;
+  postal: string;
+  country: string;
+  shippingCost: number;
+  paymentMethod: string;
+}

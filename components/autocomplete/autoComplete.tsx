@@ -1,14 +1,18 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, ReducerState, Dispatch, ReducerAction } from "react";
 import { countryList } from "../../services/countryList";
 import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
-import { GlobalDataContext } from "../../services/globalDataProvider";
 import { useRouter } from "next/router";
+import { Order } from "../../@types";
 
-const AutoComplete = () => {
+interface Props {
+  userInput: any;
+  setUserInput: Dispatch<ReducerAction<any>>;
+}
+
+const AutoComplete = (props: Props) => {
+  const { userInput, setUserInput } = props;
   const [address, setAddress] = useState("");
   const router = useRouter();
-
-  const { setUserInput, userInput } = React.useContext(GlobalDataContext);
 
   const handleUser = (e: any) => {
     const name = e.target.name;

@@ -1,8 +1,25 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import AutoComplete from "../components/autocomplete/autoComplete";
+import { Order } from "../@types";
 
 const Checkout = () => {
+  const [userInput, setUserInput] = React.useReducer<any>(
+    (state: Order, newState: any) => ({ ...state, ...newState }),
+    {
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      streetName: "",
+      streetNumber: "",
+      city: "",
+      postal: "",
+      country: "",
+      shippingCost: 0,
+      paymentMethod: "",
+    }
+  );
+
   const [cart, setCart] = React.useState<any | null>([]);
 
   React.useEffect(() => {
@@ -83,7 +100,7 @@ const Checkout = () => {
         <p>{formatedSummary}</p>
       </div>
       <div className="divider my-2"></div>
-      <AutoComplete />
+      <AutoComplete userInput={userInput} setUserInput={setUserInput} />
     </div>
   );
 };
