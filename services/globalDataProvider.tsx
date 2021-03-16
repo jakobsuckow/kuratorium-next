@@ -1,4 +1,4 @@
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useReducer } from "react";
 import { CartItem } from "../@types";
 
 export interface Props {
@@ -8,6 +8,8 @@ export interface Props {
 type ContextProps = {
   cart: CartItem[] | undefined;
   setCart: React.Dispatch<SetStateAction<CartItem[]>>;
+  userInput: any;
+  setUserInput: any;
 };
 
 export const GlobalDataContext = React.createContext({} as ContextProps);
@@ -15,8 +17,27 @@ export const GlobalDataContext = React.createContext({} as ContextProps);
 const GlobalDataProvider = (props: Props) => {
   const { children } = props;
   const [cart, setCart] = React.useState<CartItem[] | undefined>();
+
+  const [userInput, setUserInput] = useReducer(
+    (state: any, newState: any) => ({ ...state, ...newState }),
+    {
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      streetName: "",
+      streetNumber: "",
+      city: "",
+      postal: "",
+      country: "",
+      shippingCost: 0,
+      paymentMethod: "",
+    }
+  );
+
   return (
-    <GlobalDataContext.Provider value={{ cart, setCart }}>{children}</GlobalDataContext.Provider>
+    <GlobalDataContext.Provider value={{ cart, setCart, userInput, setUserInput }}>
+      {children}
+    </GlobalDataContext.Provider>
   );
 };
 
