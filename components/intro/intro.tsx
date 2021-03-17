@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { Dispatch, SetStateAction } from "react";
 import Disclaimer from "./disclaimer";
 
@@ -10,7 +11,7 @@ const Intro: React.FC<Props> = (props: Props) => {
   return (
     <>
       <div className="welcome">
-        <img alt="Kuratorium" className="logo" draggable="false" />
+        <img src="/kuratorium-logo.png" alt="Kuratorium" className="logo" />
         <p className="headline">
           A project-based record label, initiated and operated by Lennart Wiehe and associates.
         </p>

@@ -21,7 +21,7 @@ const Index: NextPage<Props> = (props: Props) => {
 
   const [ref, { width }] = useMeasure();
 
-  const [shifted, setShifted] = React.useState<boolean>(true);
+  const [shifted, setShifted] = React.useState<boolean>(false);
 
   return (
     <>

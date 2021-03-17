@@ -11,7 +11,7 @@ declare module "*.png" {
 export interface Album {
   name: string;
   artist: string;
-  artwork: any[];
+  artwork: Artwork[];
   text: string;
   trackids: string[];
   tracknames: string[];
