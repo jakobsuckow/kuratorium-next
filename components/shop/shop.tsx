@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { CartItem } from "../../@types";
 import { clearCart, removeFromCart } from "../../services/shoppingCart";
+import { useRouter } from "next/router";
 
 interface Props {
   setShifted: Dispatch<SetStateAction<boolean>>;
@@ -8,6 +9,7 @@ interface Props {
 
 const Shop: React.FC<Props> = (props: Props) => {
   const { setShifted } = props;
+  const router = useRouter();
 
   const [cart, setCart] = React.useState<any | null>([]);
 
@@ -38,16 +40,10 @@ const Shop: React.FC<Props> = (props: Props) => {
 
           <div className="flex-2">
             <div className="inner">
-              <span className="cursor underline" onClick={() => setShifted(false)}>
-                Continue Shopping
-              </span>
+              <button onClick={() => setShifted(false)}>Continue Shopping</button>
             </div>
-            <div className="inner">
-              <span className="cursor tar">
-                <p className="tar cursor" onClick={clearCart}>
-                  Clear Cart
-                </p>
-              </span>
+            <div className="inner right">
+              <button onClick={() => router.push("/checkout")}>Go to Checkout</button>
             </div>
           </div>
         </>
