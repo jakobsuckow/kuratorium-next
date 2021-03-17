@@ -38,14 +38,12 @@ const Releases: React.FC<Props> = (props: Props) => {
         read all about it here.
       </p>
       {albums.map((album: Album, i: number) => (
-        <>
-          <div key={i}>
-            <b>{album.name}</b>
-            <p>{album.text}</p>
-            <img src={album.artwork[0].url} />
-          </div>
+        <div key={i}>
+          <b>{album.name}</b>
+          <p>{album.text}</p>
+          <img src={album.artwork[0].url} />
           <br />
-        </>
+        </div>
       ))}
       <h1>Merch</h1>
       {merch.map((merch: Merch, index: number) => (
