@@ -52,7 +52,7 @@ const AutoComplete = (props: Props) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    router.push("/");
+    router.push("/summary");
   };
 
   useEffect(() => {

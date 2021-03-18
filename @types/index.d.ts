@@ -8,6 +8,12 @@ declare module "*.png" {
   export default content;
 }
 
+declare global {
+  interface Window {
+    paypal: any;
+  }
+}
+
 export interface Album {
   name: string;
   artist: string;

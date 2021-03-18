@@ -2,25 +2,12 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import AutoComplete from "../components/autocomplete/autoComplete";
 import { Order } from "../@types";
+import { GlobalDataContext } from "../services/globalDataProvider";
 
 const Checkout = () => {
-  const [userInput, setUserInput] = React.useReducer<any>(
-    (state: Order, newState: any) => ({ ...state, ...newState }),
-    {
-      firstName: "",
-      lastName: "",
-      emailAddress: "",
-      streetName: "",
-      streetNumber: "",
-      city: "",
-      postal: "",
-      country: "",
-      shippingCost: 0,
-      paymentMethod: "",
-    }
-  );
-
   const [cart, setCart] = React.useState<any | null>([]);
+
+  const { userInput, setUserInput } = React.useContext(GlobalDataContext);
 
   React.useEffect(() => {
     console.log(`hi`);
@@ -41,9 +28,7 @@ const Checkout = () => {
       <>
         <div className="summary">
           <div className="tac mt-16">
-            {/* <Link href={`/`}>
-              <img src={logo} alt="Kuratorium" className="logo" draggable="false" />
-            </Link> */}
+            <img src="/kuratorium-logo.png" alt="Kuratorium" className="logo" draggable="false" />
           </div>
 
           <p>you did not add any Products</p>
@@ -56,9 +41,7 @@ const Checkout = () => {
   return (
     <div className="summary">
       <div className="tac mt-16">
-        {/* <Link href={`/`}>
-          <img src={logo} alt="Kuratorium" className="logo" draggable="false" />
-        </Link> */}
+        <img src="/kuratorium-logo.png" alt="Kuratorium" className="logo" draggable="false" />
       </div>
 
       <div className="agenda mb-4 mt-4">

@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import "../css/css.css";
 import { AppProps } from "next/dist/next-server/lib/router/router";
+import GlobalDataProvider from "../services/globalDataProvider";
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -18,7 +19,9 @@ export default function MyApp(props: AppProps) {
       <Head>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <Component {...pageProps} />
+      <GlobalDataProvider>
+        <Component {...pageProps} />
+      </GlobalDataProvider>
     </>
   );
 }
