@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import Paypal from "../components/paypal/paypal";
-import Stripe from "../components/stripe/stripe";
+import StripeCheckout from "../components/stripe/stripeCheckout";
 import { GlobalDataContext } from "../services/globalDataProvider";
 
 interface Props {}
@@ -113,7 +113,7 @@ const Summary: NextPage<Props> = (props: Props) => {
           <Paypal amount={summary} cart={cart} />
         </>
       ) : userInput.paymentMethod === "creditCard" ? (
-        <Stripe amount={summary} />
+        <StripeCheckout amount={summary} />
       ) : (
         <>
           <p>Please Select a Payment Method</p>
