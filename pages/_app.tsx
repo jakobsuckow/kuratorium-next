@@ -4,6 +4,9 @@ import Head from "next/head";
 import "../css/css.css";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import GlobalDataProvider from "../services/globalDataProvider";
+import { ThemeProvider } from "styled-components";
+import theme from "../theme";
+import GlobalStyle from "../services/globalStyle";
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -19,9 +22,12 @@ export default function MyApp(props: AppProps) {
       <Head>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <GlobalDataProvider>
-        <Component {...pageProps} />
-      </GlobalDataProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalDataProvider>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </GlobalDataProvider>
+      </ThemeProvider>
     </>
   );
 }

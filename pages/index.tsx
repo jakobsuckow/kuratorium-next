@@ -8,6 +8,10 @@ import Feed from "../components/feed/feed";
 import { useMeasure } from "react-use";
 import { getData } from "../services/airtable";
 import { Album, News, Event, Merch } from "../@types";
+import Row from "../components/row/row";
+import Column from "../components/column/column";
+import { StyledComponent } from "styled-components";
+import OutsideColumn from "../components/column/outsideColumn";
 
 interface Props {
   events: Event[];
@@ -21,35 +25,31 @@ const Index: NextPage<Props> = (props: Props) => {
 
   const [ref, { width }] = useMeasure();
 
+
   const [shifted, setShifted] = React.useState<boolean>(false);
 
   return (
     <>
-      <div
-        className="row"
-        style={{ transform: shifted ? `translateX(-${width}px)` : `translateX(-0px)` }}>
-        <div className="intro" ref={ref as LegacyRef<HTMLDivElement>}>
+      <Row shifted={shifted} width={width} className="row">
+        <Column
+          lg
+          //@ts-ignore
+          ref={ref as StyledComponent<"div", any>}>
           <Intro setShifted={setShifted} />
-        </div>
-        <div className="about">
+        </Column>
+        <Column>
           <About />
-        </div>
-        <div className="projects">
+        </Column>
+        <Column className="projects">
           <Projects albums={albums} merch={merch} setShifted={setShifted} shifted />
-        </div>
-        <div className="feed">
+        </Column>
+        <Column className="feed">
           <Feed events={events} news={news} />
-        </div>
-      </div>
-      <div
-        className="sideshop"
-        style={{
-          width: width,
-          transform: shifted ? `translateX(-${width}px)` : `translateX(${width}px)`,
-          marginRight: `-${width}px`,
-        }}>
+        </Column>
+      </Row>
+      <OutsideColumn width={width} shifted={shifted}>
         <Shop setShifted={setShifted} />
-      </div>
+      </OutsideColumn>
     </>
   );
 };

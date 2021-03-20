@@ -18,19 +18,19 @@ select:-webkit-autofill:active {
 
 .row {
   display: flex;
-  width: 100vw;
+  /* width: 100vw;
   overflow-x: hidden;
   height: 100vh;
-  transition: transform 0.7s;
+  transition: transform 0.7s; */
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   .row {
     display: block;
   }
-}
+} */
 
-.row > div {
+/* .row > div {
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
@@ -43,34 +43,26 @@ select:-webkit-autofill:active {
     position: relative;
     height: auto;
   }
-}
+} */
 
-.row > div::-webkit-scrollbar {
-  width: 0px;
-  /* Remove scrollbar space */
-  background: transparent;
-  /* Optional: just make scrollbar invisible */
-  -ms-overflow-style: none;
-}
-
-.row > .intro {
+/* .row > .intro {
   flex: 0 0 33.333%;
-}
+} */
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   .row > .intro {
     height: 100vh;
   }
-}
+} */
 
-.row > .about {
+/* .row > .about {
   flex: 1;
-}
+} */
 
-.row > .projects {
+/* .row > .projects {
   flex: 1;
   text-align: justify;
-}
+} */
 
 @media screen and (max-width: 600px) {
   .row > .projects {
@@ -83,9 +75,9 @@ select:-webkit-autofill:active {
   max-width: 100%;
 }
 
-.row > .feed {
+/* .row > .feed {
   flex: 1;
-}
+} */
 
 @media screen and (max-width: 600px) {
   .row > .feed {
@@ -98,7 +90,7 @@ select:-webkit-autofill:active {
   position: relative;
 }
 
-.sideshop {
+/* .sideshop {
   padding: 0 15px;
   text-align: justify;
   position: relative;
@@ -107,49 +99,8 @@ select:-webkit-autofill:active {
   transition: transform 0.7s;
   float: right;
   overflow-y: scroll;
-}
+} */
 
-@font-face {
-  font-family: "Prophet";
-  src: url("/assets/fonts/Prophet-Regular.otf") format("opentype");
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-  overflow-x: hidden;
-}
-
-::-webkit-scrollbar {
-  width: 0px;
-  /* Remove scrollbar space */
-  background: transparent;
-  /* Optional: just make scrollbar invisible */
-  -ms-overflow-style: none;
-}
-
-body {
-  font-family: "Prophet";
-  height: 100%;
-  width: 100vw;
-  background-color: #c8c7c5;
-  font-size: 1.2rem;
-  overflow: -moz-scrollbars-none;
-  overflow-x: hidden;
-}
-
-body::-webkit-scrollbar {
-  width: 0 !important;
-}
-
-body -webkit-scrollbar {
-  width: 0 !important;
-}
 
 a,
 a:active,
