@@ -5,6 +5,10 @@ import { useRouter } from "next/router";
 import { Order } from "../../@types";
 import { FormProvider, useForm, UseFormMethods } from "react-hook-form";
 import FormInput from "../forminput/formInput";
+import FormSelect from "../forminput/formSelect";
+import Button from "../button/button";
+import Flex from "../flex/flex";
+import Item from "../flex/item";
 
 interface Props {
   userInput: any;
@@ -16,26 +20,17 @@ const AutoComplete = (props: Props) => {
   const [address, setAddress] = useState("");
   const router = useRouter();
 
-  const handleUser = (e: any) => {
-    const name = e.target.name;
-    const newValue = e.target.value;
-
-    setUserInput({ [name]: newValue });
-  };
-
   const handleSelect = async (value: any) => {
     const [result] = await geocodeByAddress(value);
     const components = result.address_components;
     components.forEach((component: any) => {
       if (component.types[0] === "route") {
         setAddress(component.long_name);
-        setUserInput({ ["streetName"]: component.long_name });
+        setValue("streetName", component.long_name);
       }
       if (component.types.includes("street_number")) {
         const streetNumber = component.long_name;
-        setUserInput({
-          ["streetNumber"]: streetNumber,
-        });
+        setValue("streetNumber", streetNumber);
       }
       if (component.types[0] === "locality") {
         setUserInput({ ["city"]: component.long_name });
@@ -85,27 +80,23 @@ const AutoComplete = (props: Props) => {
     },
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, setValue } = methods;
 
   return (
     <FormProvider {...methods}>
       <h3>Personal Details:</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex-2">
-          <div className="inner left mr-2">
-            <label htmlFor="fistName">Fist Name*</label>
-            <FormInput required type="text" name="firstName" />
-          </div>
-          <div className="inner ml-2">
-            <label htmlFor="lastName">Last Name*</label>
-            <FormInput required type="text" name="lastName" />
-          </div>
-        </div>
-        <label htmlFor="emailAddress">Email Address*</label>
-        <FormInput required type="text" name="emailAddress" />
+        <Flex>
+          <Item>
+            <FormInput required type="text" name="firstName" label={`First name`} />
+          </Item>
+          <Item>
+            <FormInput required type="text" name="lastName" label={`Last name`} />
+          </Item>
+        </Flex>
+        <FormInput required type="text" name="emailAddress" label={`Email address`} />
         <div className="flex-2-1-3">
           <div className="inner mr-2">
-            <label htmlFor="streetName">Street*</label>
             <PlacesAutocomplete
               value={address}
               onChange={setAddress}
@@ -113,7 +104,9 @@ const AutoComplete = (props: Props) => {
               searchOptions={searchOptions}>
               {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                 <>
-                  <input
+                  <FormInput
+                    required
+                    label={`Street name`}
                     value={userInput.streetName}
                     {...getInputProps({
                       name: "streetName",
@@ -135,83 +128,40 @@ const AutoComplete = (props: Props) => {
             </PlacesAutocomplete>
           </div>
           <div className="inner ml-2">
-            <label htmlFor="">Street number</label>
-            <input
-              type="text"
-              name="streetNumber"
-              autoComplete="off"
-              value={userInput.streetNumber}
-              onChange={handleUser}
-            />
+            <FormInput required type="text" name="streetNumber" label={`Street number`} />
           </div>
         </div>
 
-        <label htmlFor="">Postal Code*</label>
-        <input
-          required
-          type="text"
-          name="postal"
-          autoComplete="off"
-          value={userInput.postal}
-          onChange={handleUser}
-        />
-        <label htmlFor="">City*</label>
-        <input
-          required
-          type="text"
-          name="city"
-          id="city"
-          autoComplete="off"
-          value={userInput.city}
-          onChange={handleUser}
-        />
+        <FormInput required type="text" name="postal" label={`Postal Code`} />
+        <FormInput required type="text" name="city" label={`City`} />
 
-        <label htmlFor="country">Select your country*</label>
-        <select
-          defaultValue=""
+        <FormSelect
           required
           name="country"
-          onChange={handleUser}
-          value={userInput.country}
-          className="mb-1">
-          <option value="">---</option>
-          {countryList.map((country, i) => (
-            <option key={i} value={country.name}>
-              {country.name}
-            </option>
-          ))}
-          <option value="germany">Germany</option>
-          <option value="france">France</option>
-        </select>
-        <label htmlFor="country">
-          Select payment method*
-          <select
-            required
-            name="paymentMethod"
-            onChange={handleUser}
-            value={userInput.paymentMethod}>
-            <option value="">---</option>
-            <option value="paypal">Paypal</option>
-            <option value="creditCard">Credit Card</option>
-          </select>
-        </label>
+          options={countryList.map((country: any) => country.name)}
+          label={`Select your country`}
+        />
 
-        <br />
-        <br />
-        <div className="flex-2">
-          <div className="inner">
-            <button
+        <FormSelect
+          required
+          name="paymentMethod"
+          options={["credit cart", "paypal"]}
+          label={`Select payment method`}
+        />
+        <Flex>
+          <Item>
+            <Button
               onClick={e => {
                 e.preventDefault();
                 router.push("/");
               }}>
               Go back to Shop
-            </button>
-          </div>
-          <div className="inner right">
-            <input type="submit" value="Go to Payment" />
-          </div>
-        </div>
+            </Button>
+          </Item>
+          <Item>
+            <Button type="submit">Go to Payment</Button>
+          </Item>
+        </Flex>
       </form>
     </FormProvider>
   );

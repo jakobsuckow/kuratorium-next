@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Paypal from "../components/paypal/paypal";
 import StripeCheckout from "../components/stripe/stripeCheckout";
 import { GlobalDataContext } from "../services/globalDataProvider";
+import Receipt from "../components/receipt/receipt";
 
 interface Props {}
 
@@ -31,7 +32,7 @@ const Summary: NextPage<Props> = (props: Props) => {
   });
 
   return (
-    <div className="summary">
+    <Receipt>
       <div className="tac mt-16">
         <img src="/kuratorium-logo.png" alt="Kuratorium" className="logo" draggable="false" />
       </div>
@@ -113,13 +114,13 @@ const Summary: NextPage<Props> = (props: Props) => {
           <Paypal amount={summary} cart={cart} />
         </>
       ) : userInput.paymentMethod === "creditCard" ? (
-        <StripeCheckout amount={summary} />
+        <StripeCheckout />
       ) : (
         <>
           <p>Please Select a Payment Method</p>
         </>
       )}
-    </div>
+    </Receipt>
   );
 };
 

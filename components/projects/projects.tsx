@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { Album, Merch } from "../../@types";
 import { addToCart } from "../../services/shoppingCart";
 import Image from "next/image";
+import ColumnImage from "../column/columnImage";
 
 interface Props {
   albums: Album[];
@@ -50,7 +51,9 @@ const Releases: React.FC<Props> = (props: Props) => {
         <div className="product" key={index}>
           <p>{merch.name}</p>
           <p>{merch.description}</p> <br />
-          <img src={merch.images[0].url} alt="" />
+          <div style={{ maxWidth: "100%" }}>
+            <img src={merch.images[0].url} alt="" />
+          </div>
           <select
             name="sizes"
             id="sizes"

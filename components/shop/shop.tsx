@@ -2,6 +2,9 @@ import React, { Dispatch, SetStateAction } from "react";
 import { CartItem } from "../../@types";
 import { clearCart, removeFromCart } from "../../services/shoppingCart";
 import { useRouter } from "next/router";
+import Button from "../button/button";
+import Flex from "../flex/flex";
+import Item from "../flex/item";
 
 interface Props {
   setShifted: Dispatch<SetStateAction<boolean>>;
@@ -38,14 +41,14 @@ const Shop: React.FC<Props> = (props: Props) => {
             </div>
           ))}
 
-          <div className="flex-2">
-            <div className="inner">
-              <button onClick={() => setShifted(false)}>Continue Shopping</button>
-            </div>
-            <div className="inner right">
-              <button onClick={() => router.push("/checkout")}>Go to Checkout</button>
-            </div>
-          </div>
+          <Flex>
+            <Item>
+              <Button onClick={() => setShifted(false)}>Continue Shopping</Button>
+            </Item>
+            <Item>
+              <Button onClick={() => router.push("/checkout")}>Go to Checkout</Button>
+            </Item>
+          </Flex>
         </>
       ) : (
         <p>

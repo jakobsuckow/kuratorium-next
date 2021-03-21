@@ -30,7 +30,7 @@ const Index: NextPage<Props> = (props: Props) => {
 
   return (
     <>
-      <Row shifted={shifted} width={width} className="row">
+      <Row shifted={shifted} width={width}>
         <Column
           lg
           //@ts-ignore
@@ -40,10 +40,10 @@ const Index: NextPage<Props> = (props: Props) => {
         <Column>
           <About />
         </Column>
-        <Column className="projects">
+        <Column>
           <Projects albums={albums} merch={merch} setShifted={setShifted} shifted />
         </Column>
-        <Column className="feed">
+        <Column>
           <Feed events={events} news={news} />
         </Column>
       </Row>

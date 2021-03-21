@@ -3,6 +3,7 @@ import Link from "next/link";
 import AutoComplete from "../components/autocomplete/autoComplete";
 import { Order } from "../@types";
 import { GlobalDataContext } from "../services/globalDataProvider";
+import Receipt from "../components/receipt/receipt";
 
 const Checkout = () => {
   const [cart, setCart] = React.useState<any | null>([]);
@@ -10,7 +11,6 @@ const Checkout = () => {
   const { userInput, setUserInput } = React.useContext(GlobalDataContext);
 
   React.useEffect(() => {
-    console.log(`hi`);
     const localItems = localStorage.getItem("cart");
     setCart(JSON.parse(localItems as string));
   }, []);
@@ -39,7 +39,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className="summary">
+    <Receipt>
       <div className="tac mt-16">
         <img src="/kuratorium-logo.png" alt="Kuratorium" className="logo" draggable="false" />
       </div>
@@ -84,7 +84,7 @@ const Checkout = () => {
       </div>
       <div className="divider my-2"></div>
       <AutoComplete userInput={userInput} setUserInput={setUserInput} />
-    </div>
+    </Receipt>
   );
 };
 

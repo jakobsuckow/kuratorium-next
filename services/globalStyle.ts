@@ -41,6 +41,11 @@ const GlobalStyle = createGlobalStyle`
   
   body -webkit-scrollbar {
     width: 0 !important;
-  }`;
+  }
+  
+  ::selection {
+    background-color: #4366cc;
+  }
+  `;
 
 export default GlobalStyle;

@@ -11,7 +11,6 @@ const Intro: React.FC<Props> = (props: Props) => {
   return (
     <>
       <div className="welcome">
-        <img src="/kuratorium-logo.png" alt="Kuratorium" className="logo" />
         <p className="headline">
           A project-based record label, initiated and operated by Lennart Wiehe and associates.
         </p>
@@ -30,7 +29,7 @@ const Intro: React.FC<Props> = (props: Props) => {
         </label>
         <input type="checkbox" id="toggler-id-1" className="toggler" />
         <div className="toggler-content">
-          <Disclaimer />
+          {/* <Disclaimer /> */}
         </div>
       </div>
     </>
