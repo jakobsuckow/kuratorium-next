@@ -3,6 +3,8 @@ import { countryList } from "../../services/countryList";
 import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
 import { useRouter } from "next/router";
 import { Order } from "../../@types";
+import { FormProvider, useForm, UseFormMethods } from "react-hook-form";
+import FormInput from "../forminput/formInput";
 
 interface Props {
   userInput: any;
@@ -50,9 +52,8 @@ const AutoComplete = (props: Props) => {
     types: ["address"],
   };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    router.push("/summary");
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
 
   useEffect(() => {
@@ -69,43 +70,39 @@ const AutoComplete = (props: Props) => {
     getShippingQuote(userInput.country);
   }, [userInput.country]);
 
+  const methods = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      streetName: "",
+      streetNumber: "",
+      city: "",
+      postal: "",
+      country: "",
+      shippingCost: 0,
+      paymentMethod: "",
+    },
+  });
+
+  const { handleSubmit } = methods;
+
   return (
-    <>
+    <FormProvider {...methods}>
       <h3>Personal Details:</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex-2">
           <div className="inner left mr-2">
             <label htmlFor="fistName">Fist Name*</label>
-            <input
-              required
-              type="text"
-              autoComplete="off"
-              name="firstName"
-              value={userInput.firstName}
-              onChange={handleUser}
-            />
+            <FormInput required type="text" name="firstName" />
           </div>
           <div className="inner ml-2">
             <label htmlFor="lastName">Last Name*</label>
-            <input
-              required
-              type="text"
-              autoComplete="off"
-              name="lastName"
-              value={userInput.lastName}
-              onChange={handleUser}
-            />
+            <FormInput required type="text" name="lastName" />
           </div>
         </div>
         <label htmlFor="emailAddress">Email Address*</label>
-        <input
-          required
-          autoComplete="off"
-          type="text"
-          name="emailAddress"
-          value={userInput.emailAddress}
-          onChange={handleUser}
-        />
+        <FormInput required type="text" name="emailAddress" />
         <div className="flex-2-1-3">
           <div className="inner mr-2">
             <label htmlFor="streetName">Street*</label>
@@ -216,7 +213,7 @@ const AutoComplete = (props: Props) => {
           </div>
         </div>
       </form>
-    </>
+    </FormProvider>
   );
 };
 

@@ -1,4 +1,4 @@
-input:-webkit-autofill,
+/* input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
@@ -10,7 +10,7 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus,
 select:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #c8c7c5 inset !important;
-}
+} */
 
 .wrapper {
   position: relative;
@@ -135,8 +135,7 @@ form {
   width: 100%;
 }
 
-input[type="text"] {
-  /* Remove First */
+/* input[type="text"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -144,7 +143,7 @@ input[type="text"] {
   padding: 2px;
   margin: 4px 0;
   font-size: 1.1em;
-}
+} */
 
 input[type="submit"] {
   padding: 2px;
@@ -159,9 +158,9 @@ label {
   display: block;
 }
 
-input:focus {
+/* input:focus {
   outline: none;
-}
+} */
 
 select {
   border: 1px solid #000;

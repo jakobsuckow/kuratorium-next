@@ -12,6 +12,7 @@ import Row from "../components/row/row";
 import Column from "../components/column/column";
 import { StyledComponent } from "styled-components";
 import OutsideColumn from "../components/column/outsideColumn";
+import { UseMeasureRef } from "react-use/lib/useMeasure";
 
 interface Props {
   events: Event[];
@@ -25,7 +26,6 @@ const Index: NextPage<Props> = (props: Props) => {
 
   const [ref, { width }] = useMeasure();
 
-
   const [shifted, setShifted] = React.useState<boolean>(false);
 
   return (
@@ -34,7 +34,7 @@ const Index: NextPage<Props> = (props: Props) => {
         <Column
           lg
           //@ts-ignore
-          ref={ref as StyledComponent<"div", any>}>
+          ref={ref as UseMeasureRef<HTMLElement>}>
           <Intro setShifted={setShifted} />
         </Column>
         <Column>

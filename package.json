@@ -16,7 +16,7 @@
     "next": "^10.0.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-hook-form": "^6.12.2",
+    "react-hook-form": "^6.15.5",
     "react-places-autocomplete": "^7.3.0",
     "react-use": "^17.1.1",
     "sass": "^1.32.8",
