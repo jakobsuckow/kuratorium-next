@@ -96,35 +96,28 @@ const AutoComplete = (props: Props) => {
         </Flex>
         <FormInput required type="text" name="emailAddress" label={`Email address`} />
 
-        <div className="inner mr-2">
-          <PlacesAutocomplete
-            value={address}
-            onChange={setAddress}
-            onSelect={handleSelect}
-            searchOptions={searchOptions}>
-            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-              <>
-                <FormInput
-                  required
-                  label={`Street name`}
-                  value={userInput.streetName}
-                  {...getInputProps({
-                    name: "streetName",
-                  })}
-                />
-                {loading && <Loading />}
-                {suggestions.map((suggestion: any) => (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      className: "",
-                    })}>
-                    {suggestion.description}
-                  </div>
-                ))}
-              </>
-            )}
-          </PlacesAutocomplete>
-        </div>
+        <PlacesAutocomplete
+          value={address}
+          onChange={setAddress}
+          onSelect={handleSelect}
+          searchOptions={searchOptions}>
+          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+            <>
+              <FormInput
+                required
+                label={`Street name`}
+                value={userInput.streetName}
+                {...getInputProps({
+                  name: "streetName",
+                })}
+              />
+              {loading && <Loading />}
+              {suggestions.map((suggestion: any) => (
+                <div {...getSuggestionItemProps(suggestion)}>{suggestion.description}</div>
+              ))}
+            </>
+          )}
+        </PlacesAutocomplete>
 
         <FormInput required type="text" name="streetNumber" label={`Street number`} />
 
