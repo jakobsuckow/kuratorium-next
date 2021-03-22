@@ -1,7 +1,5 @@
 import React from "react";
 import Head from "next/head";
-
-import "../css/css.css";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import GlobalDataProvider from "../services/globalDataProvider";
 import { ThemeProvider } from "styled-components";

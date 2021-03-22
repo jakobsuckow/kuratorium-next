@@ -10,7 +10,7 @@ import { getData } from "../services/airtable";
 import { Album, News, Event, Merch } from "../@types";
 import Row from "../components/row/row";
 import Column from "../components/column/column";
-import { StyledComponent } from "styled-components";
+
 import OutsideColumn from "../components/column/outsideColumn";
 import { UseMeasureRef } from "react-use/lib/useMeasure";
 

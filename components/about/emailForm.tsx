@@ -1,4 +1,5 @@
 import React from "react";
+import Block from "../text/block";
 
 interface Props {}
 
@@ -6,10 +7,10 @@ const EmailForm: React.FC<Props> = (props: Props) => {
   const {} = props;
   return (
     <>
-      <p>
+      <Block>
         If you would like to receive updates about future Kuratorium activities, submit your email
         address here.
-      </p>
+      </Block>
       <form
         onSubmit={e => {
           e.preventDefault();

@@ -4,6 +4,11 @@ import AutoComplete from "../components/autocomplete/autoComplete";
 import { Order } from "../@types";
 import { GlobalDataContext } from "../services/globalDataProvider";
 import Receipt from "../components/receipt/receipt";
+import Logo from "../components/logo/logo";
+import Divider from "../components/text/divider";
+import Underline from "../components/text/underline";
+import Text from "../components/text/text";
+import H3 from "../components/text/h3";
 
 const Checkout = () => {
   const [cart, setCart] = React.useState<any | null>([]);
@@ -26,63 +31,40 @@ const Checkout = () => {
   if (cart.length === 0) {
     return (
       <>
-        <div className="summary">
-          <div className="tac mt-16">
-            <img src="/kuratorium-logo.png" alt="Kuratorium" className="logo" draggable="false" />
-          </div>
+        <Logo />
 
-          <p>you did not add any Products</p>
-          <Link href="/">Go back to Shop</Link>
-        </div>
+        <Text>you did not add any Products</Text>
+        <Link href="/">Go back to Shop</Link>
       </>
     );
   }
 
   return (
     <Receipt>
-      <div className="tac mt-16">
-        <img src="/kuratorium-logo.png" alt="Kuratorium" className="logo" draggable="false" />
-      </div>
-
-      <div className="agenda mb-4 mt-4">
-        <div>
-          <p className="underline">Personal Details</p>
-        </div>
-        <div>
-          <p>Payment</p>
-        </div>
-        <div>
-          <p>Overview</p>
-        </div>
-      </div>
-      <h3 className="mb-4">Cart Summary</h3>
+      <Logo />
+      <Underline>Personal Details</Underline>
+      <Text>Payment</Text>
+      <Text>Overview</Text>
+      <H3 className="mb-4">Cart Summary</H3>
       {cart.map((item: any, index: number) => (
-        <div className="cart_item mb-2" key={index}>
-          {/* <img
-            src={item.images[0].thumbnails.large.url}
-            alt={item.name}
-            className="cart_img mr-1"
-          /> */}
-          <div className="item_name">
-            <p>{item.name}</p>
-            {item.size ? (
-              <>
-                <p>{item.size.toUpperCase()}</p>
-              </>
-            ) : null}
-          </div>
-          <div className="item_price">
-            <p>{item.price} €</p>
-          </div>
+        <div key={index}>
+          <Text>{item.name}</Text>
+          {item.size ? (
+            <>
+              <Text>{item.size.toUpperCase()}</Text>
+            </>
+          ) : null}
+
+          <Text>{item.price} €</Text>
         </div>
       ))}
-      <div className="cart_total">
-        <span>items in Cart: </span>
-        <p>{cart.length}</p>
-        <span>Total Price</span>
-        <p>{formatedSummary}</p>
-      </div>
-      <div className="divider my-2"></div>
+
+      <Text>items in Cart: </Text>
+      <Text>{cart.length}</Text>
+      <Text>Total Price</Text>
+      <Text>{formatedSummary}</Text>
+
+      <Divider />
       <AutoComplete userInput={userInput} setUserInput={setUserInput} />
     </Receipt>
   );

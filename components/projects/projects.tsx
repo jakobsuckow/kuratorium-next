@@ -1,8 +1,10 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Album, Merch } from "../../@types";
 import { addToCart } from "../../services/shoppingCart";
-import Image from "next/image";
-import ColumnImage from "../column/columnImage";
+import Text from "../text/text";
+import Underline from "../text/underline";
+import StyledImage from "../image/styledImage";
+import Block from "../text/block";
 
 interface Props {
   albums: Album[];
@@ -33,27 +35,24 @@ const Releases: React.FC<Props> = (props: Props) => {
   return (
     <>
       <h1>Projects</h1>
-      <p>
+      <Block>
         Kuratorium is a collection of independent projects. The first project is curated by Lennart
         Wiehe and called ‘A New Need for Subtlety and Hiss’. Upon its release in early 2019, you can
         read all about it here.
-      </p>
+      </Block>
       {albums.map((album: Album, i: number) => (
         <div key={i}>
           <b>{album.name}</b>
-          <p>{album.text}</p>
-          <img src={album.artwork[0].url} />
-          <br />
+          <Block>{album.text}</Block>
+          <StyledImage src={album.artwork[0].url} />
         </div>
       ))}
       <h1>Merch</h1>
       {merch.map((merch: Merch, index: number) => (
-        <div className="product" key={index}>
-          <p>{merch.name}</p>
-          <p>{merch.description}</p> <br />
-          <div style={{ maxWidth: "100%" }}>
-            <img src={merch.images[0].url} alt="" />
-          </div>
+        <div key={index}>
+          <Block>{merch.name}</Block>
+          <Block>{merch.description}</Block>
+          <StyledImage src={merch.images[0].url} alt="" />
           <select
             name="sizes"
             id="sizes"
@@ -65,12 +64,8 @@ const Releases: React.FC<Props> = (props: Props) => {
               </option>
             ))}
           </select>
-          <div className="product_desc">
-            <p className="price">{merch.price} €</p>
-            <span className="add_to_cart" onClick={() => clickHandler(merch)}>
-              Add to Cart
-            </span>
-          </div>
+          <Block>{merch.price} €</Block>
+          <Underline onClick={() => clickHandler(merch)}>Add to Cart</Underline>
         </div>
       ))}
     </>
