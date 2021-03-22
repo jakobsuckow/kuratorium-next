@@ -1,14 +1,14 @@
-import React, { useState, useEffect, ReducerState, Dispatch, ReducerAction } from "react";
+import React, { useState, useEffect, Dispatch, ReducerAction } from "react";
 import { countryList } from "../../services/countryList";
 import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
 import { useRouter } from "next/router";
-import { Order } from "../../@types";
-import { FormProvider, useForm, UseFormMethods } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import FormInput from "../forminput/formInput";
 import FormSelect from "../forminput/formSelect";
 import Button from "../button/button";
 import Flex from "../flex/flex";
 import Item from "../flex/item";
+import Loading from "../loading/loading";
 
 interface Props {
   userInput: any;
@@ -95,42 +95,38 @@ const AutoComplete = (props: Props) => {
           </Item>
         </Flex>
         <FormInput required type="text" name="emailAddress" label={`Email address`} />
-        <div className="flex-2-1-3">
-          <div className="inner mr-2">
-            <PlacesAutocomplete
-              value={address}
-              onChange={setAddress}
-              onSelect={handleSelect}
-              searchOptions={searchOptions}>
-              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                <>
-                  <FormInput
-                    required
-                    label={`Street name`}
-                    value={userInput.streetName}
-                    {...getInputProps({
-                      name: "streetName",
-                    })}
-                  />
-                  <div>
-                    {loading && <div className="loading">Loading... &nbsp;</div>}
-                    {suggestions.map((suggestion: any) => (
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          className: "cursor mb-1 suggestion",
-                        })}>
-                        {suggestion.description}
-                      </div>
-                    ))}
+
+        <div className="inner mr-2">
+          <PlacesAutocomplete
+            value={address}
+            onChange={setAddress}
+            onSelect={handleSelect}
+            searchOptions={searchOptions}>
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <>
+                <FormInput
+                  required
+                  label={`Street name`}
+                  value={userInput.streetName}
+                  {...getInputProps({
+                    name: "streetName",
+                  })}
+                />
+                {loading && <Loading />}
+                {suggestions.map((suggestion: any) => (
+                  <div
+                    {...getSuggestionItemProps(suggestion, {
+                      className: "",
+                    })}>
+                    {suggestion.description}
                   </div>
-                </>
-              )}
-            </PlacesAutocomplete>
-          </div>
-          <div className="inner ml-2">
-            <FormInput required type="text" name="streetNumber" label={`Street number`} />
-          </div>
+                ))}
+              </>
+            )}
+          </PlacesAutocomplete>
         </div>
+
+        <FormInput required type="text" name="streetNumber" label={`Street number`} />
 
         <FormInput required type="text" name="postal" label={`Postal Code`} />
         <FormInput required type="text" name="city" label={`City`} />

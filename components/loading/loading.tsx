@@ -5,8 +5,8 @@ interface Props {
   name?: string;
 }
 
-const loading: React.FC<Props> = (props: Props) => {
+const Loading: React.FC<Props> = (props: Props) => {
   const { name } = props;
   return <StyledLoading>Loading...{name && `${name}`}</StyledLoading>;
 };
-export default loading;
+export default Loading;
