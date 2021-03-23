@@ -34,12 +34,12 @@ const Checkout = () => {
   });
   if (cart.length === 0) {
     return (
-      <>
+      <Receipt>
         <Logo center />
 
         <Text>you did not add any Products</Text>
         <Link href="/">Go back to Shop</Link>
-      </>
+      </Receipt>
     );
   }
 

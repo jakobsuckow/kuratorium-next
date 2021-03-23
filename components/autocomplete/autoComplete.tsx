@@ -138,18 +138,15 @@ const AutoComplete = (props: Props) => {
           label={`Select payment method`}
         />
         <Flex>
-          <Item>
-            <Button
-              onClick={e => {
-                e.preventDefault();
-                router.push("/");
-              }}>
-              Go back to Shop
-            </Button>
-          </Item>
-          <Item>
-            <Button type="submit">Go to Payment</Button>
-          </Item>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              router.push("/");
+            }}>
+            Go back to Shop
+          </Button>
+
+          <Button type="submit">Go to Payment</Button>
         </Flex>
       </form>
     </FormProvider>
