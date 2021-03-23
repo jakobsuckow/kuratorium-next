@@ -1,26 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
+import StyledLink from "../text/styledLink";
 
 interface Props {
   href: string;
   children: any;
 }
 
-const StyledLink = styled.a`
-  color: #000;
-  &:active,
-  &:hover,
-  &:visited {
-    color: #000;
-  }
-`;
-
 const Link: React.FC<Props> = (props: Props) => {
   const { href, children } = props;
+  const router = useRouter();
   return (
     <NextLink href={href} passHref>
-      <StyledLink>{children}</StyledLink>
+      <StyledLink isActive={router.pathname === href}>{children}</StyledLink>
     </NextLink>
   );
 };

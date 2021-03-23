@@ -19,9 +19,7 @@ const Intro: React.FC<Props> = (props: Props) => {
         <Block>
           A project-based record label, initiated and operated by Lennart Wiehe and associates.
         </Block>
-        <Underline className="cursor underline" onClick={() => setShifted(true)}>
-          Go to Shop
-        </Underline>
+        <Underline onClick={() => setShifted(true)}>Go to Shop</Underline>
         <Link href={`mailto:hallo@kuratorium.net`}>hallo@kuratorium.net</Link>
       </Welcome>
       <Link href={`/disclaimer`}>Disclaimer</Link>

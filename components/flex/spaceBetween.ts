@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-const Flex = styled.div`
+const SpaceBetween = styled.div`
   display: flex;
-  flex-flow: row wrap;
   justify-content: space-between;
 `;
 
-export default Flex;
+export default SpaceBetween;
