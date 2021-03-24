@@ -50,7 +50,7 @@ const Releases: React.FC<Props> = (props: Props) => {
           <Image
             src={album.artwork[0].url}
             width={album.artwork[0].thumbnails.large.width}
-            height={album.artwork[0].thumbnails.large.width}
+            height={album.artwork[0].thumbnails.large.height}
             layout="responsive"
           />
         </div>
@@ -63,7 +63,7 @@ const Releases: React.FC<Props> = (props: Props) => {
           <Image
             src={merch.images[0].url}
             width={merch.images[0].thumbnails.large.width}
-            height={merch.images[0].thumbnails.large.width}
+            height={merch.images[0].thumbnails.large.height}
             layout="responsive"
           />
           <StyledSelect

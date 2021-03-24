@@ -16,14 +16,12 @@ const Dates: React.FC<Props> = (props: Props) => {
     <>
       <h1>Feed</h1>
       {news.map((n: News, index: number) => (
-        <>
-          <Link href={n.link} key={index}>
-            <List key={n.id}>
-              <ListItem>{n.date}</ListItem>
-              <ListItem>{n.headline}</ListItem>
-            </List>
-          </Link>
-        </>
+        <Link href={n.link} key={index}>
+          <List key={n.id}>
+            <ListItem>{n.date}</ListItem>
+            <ListItem>{n.headline}</ListItem>
+          </List>
+        </Link>
       ))}
       <h1>Events</h1>
       <>
