@@ -46,6 +46,7 @@ const Dates: React.FC<Props> = (props: Props) => {
                     width={event.artwork[0].thumbnails.large.width}
                     height={event.artwork[0].thumbnails.large.height}
                     alt={event.name}
+                    layout="responsive"
                   />
                 </StyledHoverImageDiv>
               </List>

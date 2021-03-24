@@ -48,6 +48,7 @@ const Releases: React.FC<Props> = (props: Props) => {
           <b>{album.name}</b>
           <Block>{album.text}</Block>
           <Image
+            loading="eager"
             src={album.artwork[0].url}
             width={album.artwork[0].thumbnails.large.width}
             height={album.artwork[0].thumbnails.large.height}
