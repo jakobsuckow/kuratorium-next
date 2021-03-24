@@ -2,9 +2,11 @@ import React, { Dispatch, SetStateAction } from "react";
 import { Album, Merch } from "../../@types";
 import { addToCart } from "../../services/shoppingCart";
 import Text from "../text/text";
-import Underline from "../text/underline";
 import StyledImage from "../image/styledImage";
 import Block from "../text/block";
+import Button from "../button/button";
+import Flex from "../flex/flex";
+import StyledSelect from "../forminput/styledSelect";
 
 interface Props {
   albums: Album[];
@@ -53,7 +55,7 @@ const Releases: React.FC<Props> = (props: Props) => {
           <Block>{merch.name}</Block>
           <Block>{merch.description}</Block>
           <StyledImage src={merch.images[0].url} alt="" />
-          <select
+          <StyledSelect
             name="sizes"
             id="sizes"
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSize(e.target.value)}>
@@ -63,9 +65,13 @@ const Releases: React.FC<Props> = (props: Props) => {
                 {size}
               </option>
             ))}
-          </select>
-          <Block>{merch.price} €</Block>
-          <Underline onClick={() => clickHandler(merch)}>Add to Cart</Underline>
+          </StyledSelect>
+          <Flex>
+            <Text>{merch.price} €</Text>
+            <Button noBorder onClick={() => clickHandler(merch)}>
+              Add to Cart
+            </Button>
+          </Flex>
         </div>
       ))}
     </>

@@ -10,7 +10,7 @@ interface Props {
   label: string;
 }
 
-const formSelect: React.FC<Props> = (props: Props) => {
+const FormSelect: React.FC<Props> = (props: Props) => {
   const { name, required, options, label } = props;
   const { register, control } = useFormContext();
   return (
@@ -39,4 +39,4 @@ const formSelect: React.FC<Props> = (props: Props) => {
     />
   );
 };
-export default formSelect;
+export default FormSelect;
