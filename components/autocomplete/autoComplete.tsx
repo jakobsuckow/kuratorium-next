@@ -9,14 +9,13 @@ import Button from "../button/button";
 import Flex from "../flex/flex";
 import Item from "../flex/item";
 import Loading from "../loading/loading";
+import { GlobalDataContext } from "../../services/globalDataProvider";
 
-interface Props {
-  userInput: any;
-  setUserInput: Dispatch<ReducerAction<any>>;
-}
+interface Props {}
 
 const AutoComplete = (props: Props) => {
-  const { userInput, setUserInput } = props;
+  const {} = props;
+  const { userInput, setUserInput } = React.useContext(GlobalDataContext);
   const [address, setAddress] = useState("");
   const router = useRouter();
 
@@ -33,13 +32,13 @@ const AutoComplete = (props: Props) => {
         setValue("streetNumber", streetNumber);
       }
       if (component.types[0] === "locality") {
-        setUserInput({ ["city"]: component.long_name });
+        setValue("city", component.long_name);
       }
       if (component.types[0] === "postal_code") {
-        setUserInput({ ["postal"]: component.long_name });
+        setValue("postal", component.long_name);
       }
       if (component.types[0] === "country") {
-        setUserInput({ ["country"]: component.long_name });
+        setValue("country", component.long_name);
       }
     });
   };
@@ -48,14 +47,15 @@ const AutoComplete = (props: Props) => {
   };
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    setUserInput(data);
+    router.push("/payment");
   };
 
   useEffect(() => {
     function getShippingQuote(country: any) {
       countryList.map((c: any) => {
         if (c.name === country) {
-          setUserInput({ ["shippingCost"]: c.cost });
+          setValue("shippingCost", c.cost);
         } else {
           return;
         }

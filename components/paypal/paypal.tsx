@@ -1,6 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { CartItem } from "../../@types";
+import Text from "../text/text";
+import Divider from "../text/divider";
+import Flex from "../flex/flex";
 
 interface Props {
   amount: number;
@@ -62,21 +65,22 @@ const Paypal: React.FC<Props> = (props: Props) => {
   }, [amount]);
 
   return (
-    <div>
-      {errors && <div>{errors.message}</div>}
-      <div className="divider"></div>
-      <div className="flex-2">
-        <div className="inner">
-          <p>Total Amount</p>
-        </div>
-        <div className="inner right">{amount}€</div>
-      </div>
-
+    <>
+      <Text>
+        After clicking the button, you will be redirected to PayPal to complete your purchase
+        securely.
+      </Text>
+      {errors && <Text>{errors.message}</Text>}
+      <Divider />
+      <Flex>
+        <Text>Total Amount</Text>
+        <Text>{amount}€</Text>
+      </Flex>
       <div className={`loading ${!loading && `hidden`}`}>waiting for Paypal...</div>
       <div className="paypal_button">
         <div ref={paypalRef} className={`${loading && `hidden`}`} />
       </div>
-    </div>
+    </>
   );
 };
 export default Paypal;

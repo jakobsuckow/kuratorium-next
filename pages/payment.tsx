@@ -11,6 +11,7 @@ import Flex from "../components/flex/flex";
 import Text from "../components/text/text";
 import Divider from "../components/text/divider";
 import H3 from "../components/text/h3";
+import Block from "../components/text/block";
 
 interface Props {}
 
@@ -37,6 +38,8 @@ const Payment: NextPage<Props> = (props: Props) => {
     currency: "EUR",
   });
 
+  console.log(userInput.paymentMethod);
+
   return (
     <Receipt>
       <Logo center />
@@ -61,35 +64,25 @@ const Payment: NextPage<Props> = (props: Props) => {
         <Text>Total with Shipping</Text>
         <Text>{formatedSummary}€</Text>
       </Flex>
-      <Text>
+      <Block>
         We are shipping out all products on a weekly basis. Should you have any questions, please
         write an email to shop@kuratorium.net. By ordering, you declare your acceptance of our terms
         and conditions, as well as the cancellation policy.
-      </Text>
-
+      </Block>
       <H3>Shipping Address</H3>
       <Text>Contact: {userInput.emailAddress}</Text>
       <Text>
-        Address: {userInput.streetName} {userInput.streetNumber}, {userInput.city},{" "}
+        Address: {userInput.streetName} {userInput.streetNumber}, {userInput.city},
         {userInput.country}
       </Text>
-
       <H3>Payment</H3>
       <Text>All transactions are secure.</Text>
       {userInput.paymentMethod === "paypal" ? (
-        <>
-          <Text>
-            After clicking the button, you will be redirected to PayPal to complete your purchase
-            securely.
-          </Text>
-          <Paypal amount={summary} cart={cart} />
-        </>
-      ) : userInput.paymentMethod === "creditCard" ? (
+        <Paypal amount={summary} cart={cart} />
+      ) : userInput.paymentMethod === "credit cart" ? (
         <StripeCheckout />
       ) : (
-        <>
-          <p>Please Select a Payment Method</p>
-        </>
+        <Text>Please Select a Payment Method</Text>
       )}
     </Receipt>
   );
