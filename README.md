@@ -7,3 +7,9 @@ A project-based record label, initiated and operated by Lennart Wiehe and associ
 ### Package Manager
 
 yarn
+
+### Stack
+- next.js 
+- styled-components
+- vercel
+
