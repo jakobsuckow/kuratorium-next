@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 interface Props {
   portrait: boolean;
-  src: string;
 }
 
-export const StyledHoverImage = styled.img`
+export const StyledHoverImageDiv = styled.div`
   display: none;
   visibility: hidden;
   position: absolute;
@@ -18,7 +17,7 @@ export const StyledHoverImage = styled.img`
 `;
 
 const HoverDiv = styled.div`
-  &:hover ${StyledHoverImage} {
+  &:hover ${StyledHoverImageDiv} {
     display: block;
     visibility: visible;
   }

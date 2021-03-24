@@ -3,7 +3,9 @@ import { Event, News } from "../../@types";
 import List from "../list/list";
 import ListItem from "../list/listItem";
 import Link from "../link/link";
-import HoverDiv, { StyledHoverImage } from "../hoverImage/hoverDiv";
+import HoverDiv, { StyledHoverImageDiv } from "../hoverImage/hoverDiv";
+import { relative } from "node:path";
+import Image from "next/image";
 
 interface Props {
   events: Event[];
@@ -34,13 +36,18 @@ const Dates: React.FC<Props> = (props: Props) => {
                 <ListItem>{event.venue}</ListItem>
                 <ListItem>{event.city}</ListItem>
                 <ListItem>{event.musicBy}</ListItem>
-                <StyledHoverImage
-                  src={event.artwork[0].thumbnails.large.url}
+                <StyledHoverImageDiv
                   portrait={Boolean(
                     event.artwork[0].thumbnails.large.height >
                       event.artwork[0].thumbnails.large.width
-                  )}
-                />
+                  )}>
+                  <Image
+                    src={event.artwork[0].thumbnails.large.url}
+                    width={event.artwork[0].thumbnails.large.width}
+                    height={event.artwork[0].thumbnails.large.height}
+                    alt={event.name}
+                  />
+                </StyledHoverImageDiv>
               </List>
             </HoverDiv>
           </Link>
