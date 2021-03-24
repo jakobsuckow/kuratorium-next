@@ -69,7 +69,7 @@ const Checkout = () => {
       </Flex>
 
       <Divider />
-      <AutoComplete userInput={userInput} setUserInput={setUserInput} />
+      <AutoComplete />
     </Receipt>
   );
 };
