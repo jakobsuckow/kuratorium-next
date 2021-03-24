@@ -6,7 +6,6 @@ import { GlobalDataContext } from "../services/globalDataProvider";
 import Receipt from "../components/receipt/receipt";
 import Logo from "../components/logo/logo";
 import Divider from "../components/text/divider";
-import Underline from "../components/text/underline";
 import Text from "../components/text/text";
 import H3 from "../components/text/h3";
 import ReceiptMenu from "../components/receipt/receiptMenu";

@@ -7,6 +7,7 @@ import Block from "../text/block";
 import Button from "../button/button";
 import Flex from "../flex/flex";
 import StyledSelect from "../forminput/styledSelect";
+import Image from "next/image";
 
 interface Props {
   albums: Album[];
@@ -46,7 +47,12 @@ const Releases: React.FC<Props> = (props: Props) => {
         <div key={i}>
           <b>{album.name}</b>
           <Block>{album.text}</Block>
-          <StyledImage src={album.artwork[0].url} />
+          <Image
+            src={album.artwork[0].url}
+            width={album.artwork[0].thumbnails.large.width}
+            height={album.artwork[0].thumbnails.large.width}
+            layout="responsive"
+          />
         </div>
       ))}
       <h1>Merch</h1>
@@ -54,7 +60,12 @@ const Releases: React.FC<Props> = (props: Props) => {
         <div key={index}>
           <Block>{merch.name}</Block>
           <Block>{merch.description}</Block>
-          <StyledImage src={merch.images[0].url} alt="" />
+          <Image
+            src={merch.images[0].url}
+            width={merch.images[0].thumbnails.large.width}
+            height={merch.images[0].thumbnails.large.width}
+            layout="responsive"
+          />
           <StyledSelect
             name="sizes"
             id="sizes"
