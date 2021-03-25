@@ -8,9 +8,9 @@ const Column = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
-  padding: 0 15px;
+  padding: 0 4px;
 
-  ${(props: Props) => (props.lg ? `flex: 0 0 33.333%;` : `flex: 1;`)}
+  ${(props: Props) => (props.lg ? `flex: 0 0 40%;` : `flex: 1;`)}
 
   &::-webkit-scrollbar {
     width: 0px;

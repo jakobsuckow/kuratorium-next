@@ -1,4 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProps } from "styled-components";
+
+interface Props extends ThemeProps<any> {}
 
 const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -29,8 +31,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Prophet";
     height: 100%;
     width: 100vw;
-    background-color: #c8c7c5;
-    font-size: 1.2rem;
+    background-color: ${(props: Props) => props.theme.colors.light}; ;
     overflow: -moz-scrollbars-none;
     overflow-x: hidden;
   }
