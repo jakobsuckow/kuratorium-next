@@ -19,6 +19,12 @@ const AutoComplete = (props: Props) => {
   const [address, setAddress] = useState("");
   const router = useRouter();
 
+  const [autoComp, setAutocomp] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    setTimeout(() => setAutocomp(true), 2000);
+  }, []);
+
   const handleSelect = async (value: any) => {
     const [result] = await geocodeByAddress(value);
     const components = result.address_components;
@@ -96,28 +102,32 @@ const AutoComplete = (props: Props) => {
         </Flex>
         <FormInput required type="text" name="emailAddress" label={`Email address`} />
 
-        <PlacesAutocomplete
-          value={address}
-          onChange={setAddress}
-          onSelect={handleSelect}
-          searchOptions={searchOptions}>
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <>
-              <FormInput
-                required
-                label={`Street name`}
-                value={userInput.streetName}
-                {...getInputProps({
-                  name: "streetName",
-                })}
-              />
-              {loading && <Loading />}
-              {suggestions.map((suggestion: any) => (
-                <div {...getSuggestionItemProps(suggestion)}>{suggestion.description}</div>
-              ))}
-            </>
-          )}
-        </PlacesAutocomplete>
+        {autoComp ? (
+          <PlacesAutocomplete
+            value={address}
+            onChange={setAddress}
+            onSelect={handleSelect}
+            searchOptions={searchOptions}>
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <>
+                <FormInput
+                  required
+                  label={`Street name`}
+                  value={userInput.streetName}
+                  {...getInputProps({
+                    name: "streetName",
+                  })}
+                />
+                {loading && <Loading />}
+                {suggestions.map((suggestion: any) => (
+                  <div {...getSuggestionItemProps(suggestion)}>{suggestion.description}</div>
+                ))}
+              </>
+            )}
+          </PlacesAutocomplete>
+        ) : (
+          <FormInput required label={`Street name`} name="streetName" type="text" />
+        )}
 
         <FormInput required type="text" name="streetNumber" label={`Street number`} />
 

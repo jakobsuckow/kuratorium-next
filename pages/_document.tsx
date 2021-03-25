@@ -36,9 +36,6 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
           <script
-            src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_KEY}&libraries=places`}
-            async></script>
-          <script
             src={`https://www.paypal.com/sdk/js?client-id=${process.env.NEXT_PUBLIC_PAYPAL_KEY}&currency=EUR`}
             async></script>
         </body>

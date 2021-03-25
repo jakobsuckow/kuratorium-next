@@ -3,4 +3,5 @@ module.exports = {
   images: {
     domains: ["dl.airtable.com"],
   },
+  experimental: { scriptLoader: true },
 };
