@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import Button from "../button/button";
+import ShoppingBag from "../cart/shoppingBag";
 import Link from "../link/link";
 import Logo from "../logo/logo";
 import Block from "../text/block";
@@ -19,15 +20,7 @@ const Intro: React.FC<Props> = (props: Props) => {
       <Heading>Kuratorium</Heading>
       <Welcome>
         <Logo />
-        {/* <Block>
-          A project-based record label, initiated and operated by Lennart Wiehe and associates.
-        </Block> */}
-        <Text>
-          <Button noBorder onClick={() => setShifted(true)}>
-            Go to Shop
-          </Button>
-        </Text>
-        <Link href={`mailto:hallo@kuratorium.net`}>hallo@kuratorium.net</Link>
+        <ShoppingBag setShifted={setShifted} />
       </Welcome>
       <Link href={`/disclaimer`}>Disclaimer</Link>
     </>
