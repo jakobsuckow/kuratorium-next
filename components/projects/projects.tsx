@@ -37,7 +37,6 @@ const Releases: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <h1>Projects</h1>
       <Block>
         Kuratorium is a collection of independent projects. The first project is curated by Lennart
         Wiehe and called ‘A New Need for Subtlety and Hiss’. Upon its release in early 2019, you can

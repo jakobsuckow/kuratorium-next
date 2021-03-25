@@ -25,7 +25,6 @@ const Shop: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <h1>Shop</h1>
       <Text>
         Welcome to the Kuratorium shop. We are shipping out all products on a weekly basis. Should
         you have any questions, please write an email to shop@kuratorium.net. By ordering, you

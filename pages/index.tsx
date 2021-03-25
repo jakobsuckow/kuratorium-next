@@ -30,7 +30,7 @@ const Index: NextPage<Props> = (props: Props) => {
 
   return (
     <>
-      <Row shifted={shifted} width={width}>
+      <Row shifted={shifted} width={width + 80}>
         <Column
           lg
           //@ts-ignore
@@ -47,7 +47,7 @@ const Index: NextPage<Props> = (props: Props) => {
           <Feed events={events} news={news} />
         </Column>
       </Row>
-      <OutsideColumn width={width} shifted={shifted}>
+      <OutsideColumn width={width + 80} shifted={shifted}>
         <Shop setShifted={setShifted} />
       </OutsideColumn>
     </>

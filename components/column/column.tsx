@@ -5,10 +5,11 @@ interface Props {
 }
 
 const Column = styled.div`
+  margin-top: 35px;
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
-  padding: 0 4px;
+  padding: ${(props: Props) => (props.lg ? `0 40px` : `0 4px`)};
 
   ${(props: Props) => (props.lg ? `flex: 0 0 40%;` : `flex: 1;`)}
 
@@ -22,6 +23,8 @@ const Column = styled.div`
     overflow-y: visible;
     position: relative;
     height: auto;
+
+    padding: 0 4px;
 
     ${(props: Props) => props.lg && `height: 100vh;`}
   }

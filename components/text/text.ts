@@ -6,6 +6,7 @@ const Text = styled.p<Props>`
   font-size: 16px;
   line-height: 1.7em;
   color: ${(props: Props) => props.theme.colors.black};
+  cursor: default;
 `;
 
 export default Text;

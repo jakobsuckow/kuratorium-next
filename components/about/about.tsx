@@ -7,7 +7,6 @@ const About: React.FC<Props> = (props: Props) => {
   const {} = props;
   return (
     <>
-      <h1>About</h1>
       <Block>
         The last years saw a massive increase in record labels; most of them with the concept to
         showcase the music of friends and associates. This led to competition in a market that used

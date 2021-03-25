@@ -16,7 +16,6 @@ const Dates: React.FC<Props> = (props: Props) => {
   const { events, news } = props;
   return (
     <>
-      <h1>Feed</h1>
       {news.map((n: News, index: number) => (
         <Link href={n.link} key={index}>
           <List key={n.id}>
@@ -25,7 +24,6 @@ const Dates: React.FC<Props> = (props: Props) => {
           </List>
         </Link>
       ))}
-      <h1>Events</h1>
       <>
         {events.map((event: Event, index: number) => (
           <Link href={event.link} key={index}>
