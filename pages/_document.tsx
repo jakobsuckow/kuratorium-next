@@ -35,9 +35,9 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script
+          {/* <script
             src={`https://www.paypal.com/sdk/js?client-id=${process.env.NEXT_PUBLIC_PAYPAL_KEY}&currency=EUR`}
-            async></script>
+            async></script> */}
         </body>
       </Html>
     );
