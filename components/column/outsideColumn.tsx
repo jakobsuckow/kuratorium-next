@@ -6,7 +6,7 @@ interface Props {
 }
 
 const OutsideColumn = styled.div`
-  width: calc(${(props: Props) => props.width}px - 80px);
+  width: ${(props: Props) => props.width}px;
   transform: ${(props: Props) =>
     props.shifted ? `translateX(-${props.width}px)` : `translateX(${props.width}px)`};
   margin-right: -${props => props.width}px;

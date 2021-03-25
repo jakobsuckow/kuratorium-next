@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Event, News } from "../../@types";
 import List from "../list/list";
 import ListItem from "../list/listItem";
 import Link from "../link/link";
 import HoverDiv, { StyledHoverImageDiv } from "../hoverImage/hoverDiv";
-import { relative } from "node:path";
 import Image from "next/image";
 
 interface Props {
