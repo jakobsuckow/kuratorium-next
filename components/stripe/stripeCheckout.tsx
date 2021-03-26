@@ -10,6 +10,10 @@ import {
 import { useRouter } from "next/router";
 import axios from "axios";
 import { withStripe } from "./withStripe";
+import StripeField from "./stripeField";
+import Divider from "../text/divider";
+import Flex from "../flex/flex";
+import Text from "../text/text";
 
 interface Props {
   amount: number;
@@ -55,36 +59,25 @@ const StripeCheckout: React.FC<Props> = (props: Props) => {
         <div className="loading">waiting for credit card...</div>
       ) : (
         <>
-          <label>
-            Card number
-            <CardNumberElement options={options}/>
-          </label>
-          <label>
-            Name on Card
-            <input type="text" placeholder="Name on Card" />
-          </label>
-          <div className="flex-2">
-            <div className="inner mr-1">
-              <label>
-                Expiration date
-                <CardExpiryElement options={options} />
-              </label>
-            </div>
-            <div className="inner ml-1">
-              <label>
-                CVC
-                <CardCvcElement options={options} />
-              </label>
-            </div>
-          </div>
-          <br />
-          <div className="divider"></div>
-          <div className="flex-2">
-            <div className="inner">
-              <p>Total Amount</p>
-            </div>
-            <div className="inner right">{amount}€</div>
-          </div>
+          <StripeField
+            label="Card number"
+            type="cardNumber"
+            disabled={submitting}
+            required={true}
+          />
+          <StripeField
+            label="Card expiry"
+            type="cardExpiry"
+            disabled={submitting}
+            required={true}
+          />
+          <StripeField label="CVC" type="cardCVC" disabled={submitting} required={true} />
+
+          <Divider />
+          <Flex>
+            <Text>Total Amount</Text>
+            <Text>{amount}€</Text>
+          </Flex>
           <button type="submit" disabled={!stripe} className="mt-2">
             Pay with credit cart
           </button>

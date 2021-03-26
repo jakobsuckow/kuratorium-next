@@ -4,7 +4,7 @@ import React from "react";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY as string);
 
-export const withStripe = (C: React.FC<{}>) => {
+export const withStripe = (C: any) => {
   return class Component extends React.Component {
     constructor(props: any) {
       super(props);

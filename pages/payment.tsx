@@ -38,8 +38,6 @@ const Payment: NextPage<Props> = (props: Props) => {
     currency: "EUR",
   });
 
-  console.log(userInput.paymentMethod);
-
   return (
     <Receipt>
       <Logo center />
@@ -79,8 +77,11 @@ const Payment: NextPage<Props> = (props: Props) => {
       <Text>All transactions are secure.</Text>
       {userInput.paymentMethod === "paypal" ? (
         <Paypal amount={summary} cart={cart} />
-      ) : userInput.paymentMethod === "credit cart" ? (
-        <StripeCheckout />
+      ) : userInput.paymentMethod === "credit card" ? (
+        <StripeCheckout
+          //@ts-ignore
+          amount={summary}
+        />
       ) : (
         <Text>Please Select a Payment Method</Text>
       )}
