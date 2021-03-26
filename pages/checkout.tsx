@@ -11,10 +11,10 @@ import H3 from "../components/text/h3";
 import ReceiptMenu from "../components/receipt/receiptMenu";
 import Flex from "../components/flex/flex";
 import Script from "next/dist/client/experimental-script.js";
-import Head from "next/head";
 
 const Checkout = () => {
   const [cart, setCart] = React.useState<any | null>([]);
+  const [autoComp, setAutocomp] = React.useState<boolean>(false);
 
   const { userInput, setUserInput } = React.useContext(GlobalDataContext);
 
@@ -33,6 +33,12 @@ const Checkout = () => {
     style: "currency",
     currency: "EUR",
   });
+
+  const onLoad = React.useCallback(() => {
+    console.log(`loaded Google Script tag`);
+    setAutocomp(true);
+  }, []);
+
   if (cart.length === 0) {
     return (
       <Receipt>
@@ -47,6 +53,12 @@ const Checkout = () => {
   return (
     <>
       <Script
+        id="paypal1"
+        onLoad={() => console.log(`Paypal loaded`)}
+        src={`https://www.paypal.com/sdk/js?client-id=${process.env.NEXT_PUBLIC_PAYPAL_KEY}&currency=EUR`}
+        async></Script>
+      <Script
+        onLoad={onLoad}
         id="googleplace"
         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_KEY}&libraries=places`}></Script>
       <Receipt>
@@ -74,7 +86,7 @@ const Checkout = () => {
         </Flex>
 
         <Divider />
-        <AutoComplete />
+        <AutoComplete autoComp={autoComp} setAutoComp={setAutocomp} />
       </Receipt>
     </>
   );

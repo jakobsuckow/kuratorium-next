@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch, ReducerAction } from "react";
+import React, { useState, useEffect, Dispatch, ReducerAction, SetStateAction } from "react";
 import { countryList } from "../../services/countryList";
 import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
 import { useRouter } from "next/router";
@@ -11,19 +11,16 @@ import Item from "../flex/item";
 import Loading from "../loading/loading";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 
-interface Props {}
+interface Props {
+  autoComp: boolean;
+  setAutoComp: Dispatch<SetStateAction<boolean>>;
+}
 
 const AutoComplete = (props: Props) => {
-  const {} = props;
+  const { autoComp, setAutoComp } = props;
   const { userInput, setUserInput } = React.useContext(GlobalDataContext);
   const [address, setAddress] = useState("");
   const router = useRouter();
-
-  const [autoComp, setAutocomp] = React.useState<boolean>(false);
-
-  React.useEffect(() => {
-    setTimeout(() => setAutocomp(true), 2000);
-  }, []);
 
   const handleSelect = async (value: any) => {
     const [result] = await geocodeByAddress(value);
