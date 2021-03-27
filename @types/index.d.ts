@@ -120,3 +120,11 @@ export interface Order {
   shippingCost: number;
   paymentMethod: string;
 }
+
+interface Track {
+  // title: string;
+  // artist: string;
+  // time: number;
+  src: string;
+  isPlaying: boolean;
+}

@@ -5,6 +5,7 @@ interface Props {
 }
 
 const Column = styled.div`
+  position: relative;
   margin-top: 35px;
   -ms-overflow-style: none;
   scrollbar-width: none;
