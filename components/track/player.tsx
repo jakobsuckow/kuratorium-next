@@ -15,6 +15,14 @@ const Wrapper = styled.div`
   border-radius: 1px;
   position: relative;
   bottom: 20px;
+
+  @media only screen and (max-width: ${props => props.theme.breakpoints.sm}) {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+  }
+
 `;
 
 const StyledControls = styled.div`
@@ -51,7 +59,7 @@ const Player: React.FC<Props> = (props: Props) => {
 
   const { currentTrack, toggle } = React.useContext(GlobalDataContext);
 
-  const [count, setCount] = React.useState<string>("0");
+  const [count, setCount] = React.useState<string>("");
 
   const audioref = React.useRef(new Audio(currentTrack?.src));
 
