@@ -14,9 +14,7 @@ interface Props {
 const Intro: React.FC<Props> = (props: Props) => {
   const { setShifted } = props;
 
-  const DynamicPlayer = dynamic(() => import("../track/player"), {
-    ssr: false,
-  });
+  const DynamicPlayer = dynamic(() => import("../track/player"));
 
   return (
     <>
