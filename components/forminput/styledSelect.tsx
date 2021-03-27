@@ -8,6 +8,10 @@ const StyledSelect = styled.select`
   background: transparent;
   font-family: inherit;
   height: 22px;
+
+  &:focus {
+    outline: 0;
+  }
 `;
 
 export default StyledSelect;

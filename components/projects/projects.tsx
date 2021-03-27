@@ -8,8 +8,6 @@ import Button from "../button/button";
 import Flex from "../flex/flex";
 import StyledSelect from "../forminput/styledSelect";
 import Image from "next/image";
-import Track from "../track/track";
-import dynamic from "next/dynamic";
 
 interface Props {
   albums: Album[];
@@ -37,11 +35,6 @@ const Releases: React.FC<Props> = (props: Props) => {
     }
   };
 
-  const DynamicComponent = dynamic(() => import("../track/track"), {
-    ssr: false,
-    loading: () => <p>loading...</p>,
-  });
-
   return (
     <>
       <Block>
@@ -62,7 +55,6 @@ const Releases: React.FC<Props> = (props: Props) => {
           />
         </div>
       ))}
-      <DynamicComponent />
       <h1>Merch</h1>
       {merch.map((merch: Merch, index: number) => (
         <div key={index}>

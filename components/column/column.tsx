@@ -5,7 +5,8 @@ interface Props {
 }
 
 const Column = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: column;
   margin-top: 35px;
   -ms-overflow-style: none;
   scrollbar-width: none;

@@ -12,6 +12,10 @@ const Button = styled.button`
   border-radius: 0px;
   padding: 2px 2px;
   font-family: inherit;
+
+  &:focus {
+    outline: 0;
+  }
 `;
 
 export default Button;

@@ -12,4 +12,4 @@ yarn
 - next.js 
 - styled-components
 - vercel
-
+- strapi backend
