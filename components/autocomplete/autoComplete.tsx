@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch, ReducerAction } from "react";
+import React, { useState, useEffect, Dispatch, ReducerAction, SetStateAction } from "react";
 import { countryList } from "../../services/countryList";
 import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
 import { useRouter } from "next/router";
@@ -11,10 +11,13 @@ import Item from "../flex/item";
 import Loading from "../loading/loading";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 
-interface Props {}
+interface Props {
+  autoComp: boolean;
+  setAutoComp: Dispatch<SetStateAction<boolean>>;
+}
 
 const AutoComplete = (props: Props) => {
-  const {} = props;
+  const { autoComp, setAutoComp } = props;
   const { userInput, setUserInput } = React.useContext(GlobalDataContext);
   const [address, setAddress] = useState("");
   const router = useRouter();
@@ -96,28 +99,32 @@ const AutoComplete = (props: Props) => {
         </Flex>
         <FormInput required type="text" name="emailAddress" label={`Email address`} />
 
-        <PlacesAutocomplete
-          value={address}
-          onChange={setAddress}
-          onSelect={handleSelect}
-          searchOptions={searchOptions}>
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <>
-              <FormInput
-                required
-                label={`Street name`}
-                value={userInput.streetName}
-                {...getInputProps({
-                  name: "streetName",
-                })}
-              />
-              {loading && <Loading />}
-              {suggestions.map((suggestion: any) => (
-                <div {...getSuggestionItemProps(suggestion)}>{suggestion.description}</div>
-              ))}
-            </>
-          )}
-        </PlacesAutocomplete>
+        {autoComp ? (
+          <PlacesAutocomplete
+            value={address}
+            onChange={setAddress}
+            onSelect={handleSelect}
+            searchOptions={searchOptions}>
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <>
+                <FormInput
+                  required
+                  label={`Street name`}
+                  value={userInput.streetName}
+                  {...getInputProps({
+                    name: "streetName",
+                  })}
+                />
+                {loading && <Loading />}
+                {suggestions.map((suggestion: any) => (
+                  <div {...getSuggestionItemProps(suggestion)}>{suggestion.description}</div>
+                ))}
+              </>
+            )}
+          </PlacesAutocomplete>
+        ) : (
+          <FormInput required label={`Street name`} name="streetName" type="text" />
+        )}
 
         <FormInput required type="text" name="streetNumber" label={`Street number`} />
 

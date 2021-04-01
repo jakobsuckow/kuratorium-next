@@ -10,9 +10,11 @@ import Text from "../components/text/text";
 import H3 from "../components/text/h3";
 import ReceiptMenu from "../components/receipt/receiptMenu";
 import Flex from "../components/flex/flex";
+import Script from "next/dist/client/experimental-script.js";
 
 const Checkout = () => {
   const [cart, setCart] = React.useState<any | null>([]);
+  const [autoComp, setAutocomp] = React.useState<boolean>(false);
 
   const { userInput, setUserInput } = React.useContext(GlobalDataContext);
 
@@ -31,6 +33,12 @@ const Checkout = () => {
     style: "currency",
     currency: "EUR",
   });
+
+  const onLoad = React.useCallback(() => {
+    console.log(`loaded Google Script tag`);
+    setAutocomp(true);
+  }, []);
+
   if (cart.length === 0) {
     return (
       <Receipt>
@@ -43,33 +51,44 @@ const Checkout = () => {
   }
 
   return (
-    <Receipt>
-      <Logo center />
-      <ReceiptMenu />
-      <H3 className="mb-4">Cart Summary</H3>
-      {cart.map((item: any, index: number) => (
-        <div key={index}>
-          <Flex>
-            <Text>{item.name}</Text>
-            <Text>{item.price} €</Text>
-          </Flex>
-          <Text>Size</Text>
-          <Text>{item.size?.toUpperCase()}</Text>
-        </div>
-      ))}
+    <>
+      <Script
+        id="paypal1"
+        onLoad={() => console.log(`Paypal loaded`)}
+        src={`https://www.paypal.com/sdk/js?client-id=${process.env.NEXT_PUBLIC_PAYPAL_KEY}&currency=EUR`}
+        async></Script>
+      <Script
+        onLoad={onLoad}
+        id="googleplace"
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_KEY}&libraries=places`}></Script>
+      <Receipt>
+        <Logo center />
+        <ReceiptMenu />
+        <H3 className="mb-4">Cart Summary</H3>
+        {cart.map((item: any, index: number) => (
+          <div key={index}>
+            <Flex>
+              <Text>{item.name}</Text>
+              <Text>{item.price} €</Text>
+            </Flex>
+            <Text>Size</Text>
+            <Text>{item.size?.toUpperCase()}</Text>
+          </div>
+        ))}
 
-      <Flex>
-        <Text>items in Cart: </Text>
-        <Text>{cart.length}</Text>
-      </Flex>
-      <Flex>
-        <Text>Total Price</Text>
-        <Text>{formatedSummary}</Text>
-      </Flex>
+        <Flex>
+          <Text>items in Cart: </Text>
+          <Text>{cart.length}</Text>
+        </Flex>
+        <Flex>
+          <Text>Total Price</Text>
+          <Text>{formatedSummary}</Text>
+        </Flex>
 
-      <Divider />
-      <AutoComplete />
-    </Receipt>
+        <Divider />
+        <AutoComplete autoComp={autoComp} setAutoComp={setAutocomp} />
+      </Receipt>
+    </>
   );
 };
 

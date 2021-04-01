@@ -4,6 +4,7 @@ import { CartItem } from "../../@types";
 import Text from "../text/text";
 import Divider from "../text/divider";
 import Flex from "../flex/flex";
+import Script from "next/dist/client/experimental-script.js";
 
 interface Props {
   amount: number;
@@ -20,48 +21,52 @@ const Paypal: React.FC<Props> = (props: Props) => {
   const paypalRef = React.useRef(null);
 
   React.useEffect(() => {
-    window.paypal
-      .Buttons({
-        style: {
-          size: "small",
-          color: "silver",
-          shape: "rect",
-          layout: "horizontal",
-          tagline: "false",
-        },
-        createOrder: (data: any, actions: any) => {
-          return actions.order.create({
-            purchase_units: [
-              {
-                description: `${cart.map((item: CartItem) => {
-                  const { size, name } = item;
-                  return `${name} size ${size}`;
-                })}`,
-                amount: {
-                  currency_code: "EUR",
-                  value: `${amount}`,
-                },
-              },
-            ],
-          });
-        },
+    setTimeout(
+      () =>
+        window.paypal
+          .Buttons({
+            style: {
+              size: "small",
+              color: "silver",
+              shape: "rect",
+              layout: "horizontal",
+              tagline: "false",
+            },
+            createOrder: (data: any, actions: any) => {
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    description: `${cart.map((item: CartItem) => {
+                      const { size, name } = item;
+                      return `${name} size ${size}`;
+                    })}`,
+                    amount: {
+                      currency_code: "EUR",
+                      value: `${amount}`,
+                    },
+                  },
+                ],
+              });
+            },
 
-        // onInit: async (data, actions) => {
-        //   actions.disable()
-        //   setProcessing(true)
-        // },
+            // onInit: async (data, actions) => {
+            //   actions.disable()
+            //   setProcessing(true)
+            // },
 
-        onApprove: async (data: any, actions: any) => {
-          setLoading(true);
-          const order = await actions.order.capture();
-          router.push("thankyou");
-        },
-        onError: (err: any) => {
-          setErrors(err);
-          console.error(err);
-        },
-      })
-      .render(paypalRef.current);
+            onApprove: async (data: any, actions: any) => {
+              setLoading(true);
+              const order = await actions.order.capture();
+              router.push("thankyou");
+            },
+            onError: (err: any) => {
+              setErrors(err);
+              console.error(err);
+            },
+          })
+          .render(paypalRef.current),
+      4000
+    );
   }, [amount]);
 
   return (
