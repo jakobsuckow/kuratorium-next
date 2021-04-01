@@ -12,7 +12,7 @@ const Circle = styled.div`
   width: 35px;
 
   text-align: center;
-  margin-top: 10px;
+  margin-top: 70px;
   padding-top: 6px;
 
   cursor: pointer;

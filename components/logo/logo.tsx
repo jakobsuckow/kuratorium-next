@@ -14,7 +14,7 @@ const Logo: React.FC<Props> = (props: Props) => {
   const { center } = props;
   return (
     <StyledLogoWrapper center={center}>
-      <img src="/kuratorium-logo.png" alt="Kuratorium" width="320px" />
+      <img src="/kuratorium-logo.png" alt="Kuratorium" width="223px" />
     </StyledLogoWrapper>
   );
 };

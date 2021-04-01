@@ -4,6 +4,7 @@ import ShoppingBag from "../cart/shoppingBag";
 import Link from "../link/link";
 import Logo from "../logo/logo";
 import Heading from "../text/heading";
+import Player from "../track/player";
 
 import Welcome from "../welcome/welcome";
 
@@ -14,8 +15,6 @@ interface Props {
 const Intro: React.FC<Props> = (props: Props) => {
   const { setShifted } = props;
 
-  const DynamicPlayer = dynamic(() => import("../track/player"));
-
   return (
     <>
       <Heading>Kuratorium</Heading>
@@ -24,7 +23,7 @@ const Intro: React.FC<Props> = (props: Props) => {
         <ShoppingBag setShifted={setShifted} />
       </Welcome>
       <Link href={`/disclaimer`}>Disclaimer</Link>
-      <DynamicPlayer />
+      <Player />
     </>
   );
 };

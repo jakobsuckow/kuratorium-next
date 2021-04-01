@@ -1,24 +1,26 @@
 import React from "react";
-import Button from "../button/button";
+import { GlobalDataContext } from "../../services/globalDataProvider";
 
-interface Props {}
+interface Props {
+  play: boolean;
+}
 
 const Track: React.FC<Props> = (props: Props) => {
-  const url = `http://localhost:1337/uploads/02_Wie_Wolken_da4aa472a5.mp3`;
-  const {} = props;
+  const { currentTrack, toggle } = React.useContext(GlobalDataContext);
 
-  const audioref = React.useRef(new Audio(url));
-
-  const [playing, setPlaying] = React.useState(false);
-
-  const toggle = () => {
-    setPlaying(!playing);
-  };
+  const audioref = React.useRef(new Audio(currentTrack?.src));
 
   React.useEffect(() => {
-    playing ? audioref.current.play() : audioref.current.pause();
-  }, [playing]);
-
-  return <Button onClick={toggle}>{playing ? `Pause` : `Play`}</Button>;
+    if (currentTrack.isPlaying) {
+      audioref.current.play();
+      setInterval(() => {
+        audioref?.current?.currentTime.toFixed(0);
+      }, 1000);
+    } else {
+      console.log(`pause`);
+      audioref.current.pause();
+    }
+  }, [toggle]);
+  return <audio ref={audioref} src={currentTrack.src}></audio>;
 };
 export default Track;

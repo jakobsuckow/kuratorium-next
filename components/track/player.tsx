@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import React from "react";
 import styled from "styled-components";
 import { GlobalDataContext } from "../../services/globalDataProvider";
@@ -38,31 +39,37 @@ const SongTitle = styled(Text)`
 const Player: React.FC<Props> = (props: Props) => {
   const {} = props;
 
-  const { currentTrack, toggle } = React.useContext(GlobalDataContext);
+  const { currentTrack, setCurrentTrack, toggle } = React.useContext(GlobalDataContext);
 
-  const [count, setCount] = React.useState<string>("");
-
-  const audioref = React.useRef(new Audio(currentTrack?.src));
-
-  React.useEffect(() => {
-    if (currentTrack?.isPlaying) {
-      audioref.current.play();
-      setInterval(() => {
-        setCount(audioref.current.currentTime.toFixed(0));
-      }, 1000);
+  const handlePlay = () => {
+    if (currentTrack.src === "") {
+      setCurrentTrack({
+        isPlaying: true,
+        src: "http://localhost:1337/uploads/02_Wie_Wolken_0c1ea1b868.mp3",
+      });
     } else {
-      audioref.current.pause();
+      toggle();
     }
+  };
+
+  const reset = React.useCallback(() => {
+    setCurrentTrack({
+      src: "",
+      isPlaying: false,
+    });
   }, [toggle]);
+
+  const DynamicTrack = dynamic(() => import("./track"));
 
   return (
     <Wrapper>
       <StyledControls>
-        <Button noBorder onClick={toggle}>
+        <Button noBorder onClick={handlePlay}>
           {currentTrack?.isPlaying ? <Pause /> : <Play />}
         </Button>
       </StyledControls>
-      <SongTitle> {count}</SongTitle>
+      {currentTrack.src !== "" ? <DynamicTrack play={currentTrack.isPlaying} /> : null}
+      <Button onClick={reset}>Stop</Button>
     </Wrapper>
   );
 };
