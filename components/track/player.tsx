@@ -45,7 +45,7 @@ const Player: React.FC<Props> = (props: Props) => {
     if (currentTrack.src === "") {
       setCurrentTrack({
         isPlaying: true,
-        src: "http://localhost:1337/uploads/02_Wie_Wolken_0c1ea1b868.mp3",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
       });
     } else {
       toggle();
