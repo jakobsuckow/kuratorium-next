@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
 
@@ -8,13 +9,14 @@ interface Props {
 const StyledLogoWrapper = styled.div`
   width: 100%;
   text-align: ${(props: Props) => (props.center ? `center` : `left`)};
+  padding-left: ${(props: Props) => (props.center ? `0` : `10px`)};
 `;
 
 const Logo: React.FC<Props> = (props: Props) => {
   const { center } = props;
   return (
     <StyledLogoWrapper center={center}>
-      <img src="/kuratorium-logo.png" alt="Kuratorium" width="223px" />
+      <Image src="/kuratorium-logo.png" alt="Kuratorium" width="223px" height="27px" />
     </StyledLogoWrapper>
   );
 };
