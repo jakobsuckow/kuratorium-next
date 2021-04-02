@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Prophet";
     height: 100%;
     width: 100vw;
+    overflow-x: hidden;
     background-color: ${(props: Props) => props.theme.colors.light}; ;
     overflow: -moz-scrollbars-none;
   }

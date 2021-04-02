@@ -15,7 +15,7 @@ const OutsideColumn = styled.div`
   text-align: justify;
   position: relative;
   margin-top: calc(-100vh + 35px);
-  height: 60vh;
+  height: 100vh;
   transition: transform 0.7s, visibility 0.7s;
   float: right;
   overflow-y: scroll;

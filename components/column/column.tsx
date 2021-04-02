@@ -21,7 +21,7 @@ const Column = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    overflow-y: auto;
+    overflow-y: visible;
     position: relative;
     height: auto;
     padding: 0 4px;
