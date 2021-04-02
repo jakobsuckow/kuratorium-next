@@ -10,13 +10,13 @@ const OutsideColumn = styled.div`
   transform: ${(props: Props) =>
     props.shifted ? `translateX(-${props.width}px)` : `translateX(${props.width}px)`};
   margin-right: -${props => props.width}px;
-  display: none;
-  padding: 0 15px;
+  visibility: ${props => (props.shifted ? `visible` : `hidden`)};
+  padding: 0 4px;
   text-align: justify;
   position: relative;
   margin-top: calc(-100vh + 35px);
   height: 60vh;
-  transition: transform 0.7s;
+  transition: transform 0.7s, visibility 0.7s;
   float: right;
   overflow-y: scroll;
 `;

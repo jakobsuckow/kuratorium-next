@@ -33,8 +33,6 @@ const GlobalStyle = createGlobalStyle`
     width: 100vw;
     background-color: ${(props: Props) => props.theme.colors.light}; ;
     overflow: -moz-scrollbars-none;
-    overflow-x: hidden;
-
   }
   
   body::-webkit-scrollbar {
