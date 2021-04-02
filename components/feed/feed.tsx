@@ -5,6 +5,7 @@ import ListItem from "../list/listItem";
 import Link from "../link/link";
 import HoverDiv, { StyledHoverImageDiv } from "../hoverImage/hoverDiv";
 import Image from "next/image";
+import Inner from "../column/inner"
 
 interface Props {
   events: Event[];
@@ -14,7 +15,7 @@ interface Props {
 const Dates: React.FC<Props> = (props: Props) => {
   const { events, news } = props;
   return (
-    <>
+    <Inner>
       {news.map((n: News, index: number) => (
         <Link href={n.link} key={index}>
           <List key={n.id}>
@@ -51,7 +52,7 @@ const Dates: React.FC<Props> = (props: Props) => {
           </Link>
         ))}
       </>
-    </>
+    </Inner>
   );
 };
 

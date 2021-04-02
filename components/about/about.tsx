@@ -1,4 +1,5 @@
 import React from "react";
+import Inner from "../column/inner";
 import Block from "../text/block";
 
 interface Props {}
@@ -6,7 +7,7 @@ interface Props {}
 const About: React.FC<Props> = (props: Props) => {
   const {} = props;
   return (
-    <>
+    <Inner>
       <Block>
         The last years saw a massive increase in record labels; most of them with the concept to
         showcase the music of friends and associates. This led to competition in a market that used
@@ -30,7 +31,7 @@ const About: React.FC<Props> = (props: Props) => {
         of a project’s extent. For each project, every aspect of its operational nature can be
         defined from scratch.
       </Block>
-    </>
+    </Inner>
   );
 };
 export default About;

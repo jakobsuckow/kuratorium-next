@@ -7,6 +7,7 @@ import Flex from "../flex/flex";
 import Item from "../flex/item";
 import Text from "../text/text";
 import Link from "../link/link";
+import Inner from "../column/inner";
 
 interface Props {
   setShifted: Dispatch<SetStateAction<boolean>>;
@@ -24,7 +25,7 @@ const Shop: React.FC<Props> = (props: Props) => {
   }, [setShifted, clearCart, removeFromCart]);
 
   return (
-    <>
+    <Inner>
       <Text>
         Welcome to the Kuratorium shop. We are shipping out all products on a weekly basis. Should
         you have any questions, please write an email to shop@kuratorium.net. By ordering, you
@@ -55,7 +56,7 @@ const Shop: React.FC<Props> = (props: Props) => {
           to Projects and add to add.
         </Text>
       )}
-    </>
+    </Inner>
   );
 };
 export default Shop;

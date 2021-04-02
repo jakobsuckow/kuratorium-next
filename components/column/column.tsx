@@ -11,7 +11,6 @@ const Column = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
-  padding: ${(props: Props) => (props.lg ? `0 40px` : `0 4px`)};
 
   ${(props: Props) => (props.lg ? `flex: 0 0 40%;` : `flex: 1;`)}
 
@@ -22,12 +21,10 @@ const Column = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    overflow-y: visible;
+    overflow-y: auto;
     position: relative;
     height: auto;
-
     padding: 0 4px;
-
     ${(props: Props) => props.lg && `height: 100vh;`}
   }
 `;

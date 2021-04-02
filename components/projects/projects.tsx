@@ -8,6 +8,7 @@ import Button from "../button/button";
 import Flex from "../flex/flex";
 import StyledSelect from "../forminput/styledSelect";
 import Image from "next/image";
+import Inner from "../column/inner";
 
 interface Props {
   albums: Album[];
@@ -36,7 +37,7 @@ const Releases: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <>
+    <Inner>
       <Block>
         Kuratorium is a collection of independent projects. The first project is curated by Lennart
         Wiehe and called ‘A New Need for Subtlety and Hiss’. Upon its release in early 2019, you can
@@ -85,7 +86,7 @@ const Releases: React.FC<Props> = (props: Props) => {
           </Flex>
         </div>
       ))}
-    </>
+    </Inner>
   );
 };
 

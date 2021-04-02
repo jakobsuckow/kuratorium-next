@@ -11,7 +11,6 @@ const Row = styled.div`
 
   display: flex;
   width: 100vw;
-  overflow-x: hidden;
   height: 100vh;
   transition: transform 0.7s;
 

@@ -14,6 +14,10 @@ export const StyledHoverImageDiv = styled.div`
   left: 0;
   right: 0;
   ${(props: Props) => (props.portrait ? `max-width: 25%;` : `max-width: 50%;`)}
+
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const HoverDiv = styled.div`
