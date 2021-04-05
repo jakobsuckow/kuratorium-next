@@ -8,12 +8,12 @@ interface Props {
 const Circle = styled.div`
   position: relative;
   border-radius: 50%;
-  height: 35px;
-  width: 35px;
-
+  height: 45px;
+  width: 45px;
   text-align: center;
   margin-top: 70px;
-  padding-top: 6px;
+  padding-top: 10px;
+  padding-left: 8px;
 
   cursor: pointer;
   &:hover {
@@ -29,14 +29,14 @@ const Number = styled.span`
   font-size: 1.2em;
 `;
 
-const ShoppingBag: React.FC<Props> = (props: Props) => {
+const Bag: React.FC<Props> = (props: Props) => {
   const { setShifted } = props;
   return (
     <Circle onClick={() => setShifted(true)}>
       <svg
-        width="19"
-        height="20"
-        viewBox="0 0 19 20"
+        width="26"
+        height="27"
+        viewBox="0 0 26 27"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path
@@ -52,4 +52,4 @@ const ShoppingBag: React.FC<Props> = (props: Props) => {
     </Circle>
   );
 };
-export default ShoppingBag;
+export default Bag;

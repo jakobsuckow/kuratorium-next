@@ -12,6 +12,7 @@ const StyledLink = styled.a`
   &:visited {
     color: #000;
   }
+  font-size: 16px;
 `;
 
 export default StyledLink;

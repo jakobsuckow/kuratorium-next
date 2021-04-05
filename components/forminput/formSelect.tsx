@@ -1,6 +1,7 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import Label from "./label";
+import StyledOption from "./styledOption";
 import StyledSelect from "./styledSelect";
 
 interface Props {
@@ -29,9 +30,9 @@ const FormSelect: React.FC<Props> = (props: Props) => {
             required={required}
             onChange={(e: any) => onChange(e.target.value)}>
             {options.map((option: any) => (
-              <option key={option} value={option}>
+              <StyledOption key={option} value={option}>
                 {option}
-              </option>
+              </StyledOption>
             ))}
           </StyledSelect>
         </>

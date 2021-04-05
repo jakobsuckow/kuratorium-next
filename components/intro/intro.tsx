@@ -1,6 +1,6 @@
 
 import React, { Dispatch, SetStateAction } from "react";
-import ShoppingBag from "../cart/shoppingBag";
+import ShoppingBag from "../cart/bag";
 import Inner from "../column/inner";
 import Link from "../link/link";
 import Logo from "../logo/logo";

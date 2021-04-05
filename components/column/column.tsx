@@ -20,6 +20,10 @@ const Column = styled.div`
     -ms-overflow-style: none;
   }
 
+  &:last-child {
+    margin-bottom: 35px;
+  }
+
   @media screen and (max-width: 600px) {
     overflow-y: visible;
     position: relative;
