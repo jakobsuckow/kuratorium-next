@@ -46,9 +46,9 @@ const Index: NextPage<Props> = (props: Props) => {
           <Feed events={events} news={news} />
         </Column>
       </Row>
-      <OutsideColumn width={width + 8} shifted={shifted}>
+      {/* <OutsideColumn width={width + 8} shifted={shifted}>
         <Shop setShifted={setShifted} />
-      </OutsideColumn>
+      </OutsideColumn> */}
     </>
   );
 };
