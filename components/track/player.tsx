@@ -7,24 +7,32 @@ import Text from "../text/text";
 import Pause from "./assets/pause";
 import Play from "./assets/play";
 
-interface Props {}
+interface Props {
+  width: number;
+  shifted: boolean;
+}
 
-const Wrapper = styled.span`
+const Wrapper = styled.div<Props>`
+  transform: ${(props: Props) =>
+    props.shifted ? `translateX(-${props.width}px)` : `translateX(-0px)`};
+  transition: transform 0.7s;
   margin-top: auto;
   display: flex;
-  width: 100%;
+  width: calc(${(props: Props) => props.width}px - 70px);
+  margin-left: 40px;
   background-color: ${props => props.theme.colors.grey};
   height: 42px;
   border-radius: 1px;
-  position: relative;
+  position: absolute;
   bottom: 20px;
+  z-index: 10;
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.sm}) {
-    z-index: 10;
     position: fixed;
     bottom: 10px;
     width: calc(100% - 16px);
-    margin-left: auto;
+    margin-left: 8px;
+    margin-right: 8px;
   }
 `;
 
@@ -38,7 +46,7 @@ const SongTitle = styled(Text)`
 `;
 
 const Player: React.FC<Props> = (props: Props) => {
-  const {} = props;
+  const { width, shifted } = props;
 
   const { currentTrack, setCurrentTrack, toggle } = React.useContext(GlobalDataContext);
 
@@ -63,7 +71,7 @@ const Player: React.FC<Props> = (props: Props) => {
   const DynamicTrack = dynamic(() => import("./track"));
 
   return (
-    <Wrapper>
+    <Wrapper width={width} shifted={shifted}>
       <StyledControls>
         <Button noBorder onClick={handlePlay}>
           {currentTrack?.isPlaying ? <Pause /> : <Play />}

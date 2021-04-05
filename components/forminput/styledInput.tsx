@@ -11,6 +11,10 @@ const StyledInput = styled.input`
   }
   &:focus {
     outline: none;
+  }
+  &:required {
+    box-shadow: none;
+  }
 `;
 
 export default StyledInput;
