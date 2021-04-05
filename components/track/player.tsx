@@ -9,7 +9,7 @@ import Play from "./assets/play";
 
 interface Props {}
 
-const Wrapper = styled.div`
+const Wrapper = styled.span`
   margin-top: auto;
   display: flex;
   width: 100%;
@@ -20,7 +20,11 @@ const Wrapper = styled.div`
   bottom: 20px;
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.sm}) {
-    position: sticky;
+    z-index: 10;
+    position: fixed;
+    bottom: 10px;
+    width: calc(100% - 16px);
+    margin-left: auto;
   }
 `;
 

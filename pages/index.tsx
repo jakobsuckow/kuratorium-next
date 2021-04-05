@@ -12,6 +12,7 @@ import Row from "../components/row/row";
 import Column from "../components/column/column";
 import OutsideColumn from "../components/column/outsideColumn";
 import { UseMeasureRef } from "react-use/lib/useMeasure";
+import Player from "../components/track/player";
 
 interface Props {
   events: Event[];
@@ -29,6 +30,7 @@ const Index: NextPage<Props> = (props: Props) => {
 
   return (
     <>
+      <Player />
       <Row shifted={shifted} width={width + 8}>
         <Column
           lg
