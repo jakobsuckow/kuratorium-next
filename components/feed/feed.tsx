@@ -5,15 +5,16 @@ import ListItem from "../list/listItem";
 import Link from "../link/link";
 import HoverDiv, { StyledHoverImageDiv } from "../hoverImage/hoverDiv";
 import Image from "next/image";
-import Inner from "../column/inner"
+import Inner from "../column/inner";
 
 interface Props {
   events: Event[];
   news: News[];
+  shifted: boolean;
 }
 
 const Dates: React.FC<Props> = (props: Props) => {
-  const { events, news } = props;
+  const { events, news, shifted } = props;
   return (
     <Inner>
       {news.map((n: News, index: number) => (
@@ -34,19 +35,23 @@ const Dates: React.FC<Props> = (props: Props) => {
                 <ListItem>{event.venue}</ListItem>
                 <ListItem>{event.city}</ListItem>
                 <ListItem>{event.musicBy}</ListItem>
-                <StyledHoverImageDiv
-                  portrait={Boolean(
-                    event.artwork[0].thumbnails.large.height >
-                      event.artwork[0].thumbnails.large.width
-                  )}>
-                  <Image
-                    src={event.artwork[0].thumbnails.large.url}
-                    width={event.artwork[0].thumbnails.large.width}
-                    height={event.artwork[0].thumbnails.large.height}
-                    alt={event.name}
-                    layout="responsive"
-                  />
-                </StyledHoverImageDiv>
+                {!shifted ? (
+                  <StyledHoverImageDiv
+                    portrait={Boolean(
+                      event.artwork[0].thumbnails.large.height >
+                        event.artwork[0].thumbnails.large.width
+                    )}>
+                    <Image
+                      src={event.artwork[0].thumbnails.large.url}
+                      width={event.artwork[0].thumbnails.large.width}
+                      height={event.artwork[0].thumbnails.large.height}
+                      alt={event.name}
+                      layout="responsive"
+                    />
+                  </StyledHoverImageDiv>
+                ) : (
+                  <></>
+                )}
               </List>
             </HoverDiv>
           </Link>

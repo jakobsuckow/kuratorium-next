@@ -43,7 +43,7 @@ const Index: NextPage<Props> = (props: Props) => {
           <Projects albums={albums} merch={merch} setShifted={setShifted} shifted />
         </Column>
         <Column>
-          <Feed events={events} news={news} />
+          <Feed events={events} news={news} shifted={shifted} />
         </Column>
       </Row>
       <OutsideColumn width={width + 8} shifted={shifted}>

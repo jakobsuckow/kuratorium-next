@@ -20,10 +20,7 @@ const Wrapper = styled.div`
   bottom: 20px;
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.sm}) {
-    display: flex;
-    position: fixed;
-    bottom: 20px;
-    left: 0;
+    position: sticky;
   }
 `;
 
