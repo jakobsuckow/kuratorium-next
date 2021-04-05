@@ -6,18 +6,18 @@ interface Props {
 }
 
 const OutsideColumn = styled.div`
-  width: ${(props: Props) => props.width}px;
+  width: ${(props: Props) => (props.shifted ? `${props.width}px` : `0px`)};
   transform: ${(props: Props) =>
     props.shifted ? `translateX(-${props.width}px)` : `translateX(${props.width}px)`};
   margin-right: -${props => props.width}px;
   visibility: ${props => (props.shifted ? `visible` : `hidden`)};
   padding: 0 4px;
   text-align: justify;
-  position: relative;
-  margin-top: calc(-100vh + 35px);
-  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
   transition: transform 0.7s, visibility 0.7s;
-  float: right;
   overflow-y: scroll;
 `;
 
