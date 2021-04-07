@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Album, Product, SKU } from "../../@types";
+import { Album, Product, SKU, Track } from "../../@types";
 import { addToCart } from "../../services/shoppingCart";
 import Text from "../text/text";
 import Block from "../text/block";
@@ -8,6 +8,7 @@ import Flex from "../flex/flex";
 import StyledSelect from "../forminput/styledSelect";
 import Image from "next/image";
 import Inner from "../column/inner";
+import { GlobalDataContext } from "../../services/globalDataProvider";
 
 interface Props {
   albums: Album[];
@@ -19,6 +20,8 @@ interface Props {
 const Releases: React.FC<Props> = (props: Props) => {
   const { albums, products, setShifted } = props;
   const [size, setSize] = React.useState<string | number>(0);
+
+  const { setCurrentTrack } = React.useContext(GlobalDataContext);
 
   const clickHandler = (product: Product) => {
     if (size === 0) {
@@ -53,6 +56,17 @@ const Releases: React.FC<Props> = (props: Props) => {
             height={album.cover.height}
             layout="responsive"
           />
+          {album.tracks.map((track: Track) => (
+            <div
+              onClick={() =>
+                setCurrentTrack({
+                  ...track,
+                  isPlaying: true,
+                })
+              }>
+              {track.title}
+            </div>
+          ))}
         </div>
       ))}
       <h1>Merch</h1>
