@@ -157,6 +157,7 @@ export interface Track {
   updated_at: Date;
   preview: Preview;
   isPlaying: boolean;
+  Cover: Image;
 }
 
 export interface Preview {
@@ -165,7 +166,7 @@ export interface Preview {
   alternativeText: string;
   caption: string;
   ext: string;
-  size: size;
+  size: number;
   url: string;
   mime: string;
 }

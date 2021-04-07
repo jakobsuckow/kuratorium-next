@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import styled from "styled-components";
+import { Track } from "../../@types";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 import Button from "../button/button";
 import Text from "../text/text";
@@ -50,7 +51,11 @@ const Player: React.FC<Props> = (props: Props) => {
 
   const { currentTrack, setCurrentTrack, toggle } = React.useContext(GlobalDataContext);
 
-  const handlePlay = () => {};
+  const handlePlay = () => {
+    if (currentTrack) {
+      currentTrack.isPlaying = !currentTrack.isPlaying;
+    }
+  };
 
   const reset = React.useCallback(() => {
     setCurrentTrack(undefined);
@@ -61,12 +66,14 @@ const Player: React.FC<Props> = (props: Props) => {
   return (
     <Wrapper width={width} shifted={shifted}>
       <StyledControls>
-        <Button noBorder onClick={handlePlay}>
+        <Button noBorder onClick={() => handlePlay}>
           {currentTrack?.isPlaying ? <Pause /> : <Play />}
         </Button>
       </StyledControls>
       {currentTrack ? <DynamicTrack play={currentTrack.isPlaying} /> : null}
-      <Button onClick={reset}>Stop</Button>
+      <Button noBorder onClick={reset}>
+        Stop
+      </Button>
     </Wrapper>
   );
 };

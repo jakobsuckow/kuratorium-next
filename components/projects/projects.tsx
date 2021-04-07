@@ -56,8 +56,9 @@ const Releases: React.FC<Props> = (props: Props) => {
             height={album.cover.height}
             layout="responsive"
           />
-          {album.tracks.map((track: Track) => (
+          {album.tracks.map((track: Track, i: number) => (
             <div
+              key={i}
               onClick={() =>
                 setCurrentTrack({
                   ...track,

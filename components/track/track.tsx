@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 
@@ -21,6 +22,11 @@ const Track: React.FC<Props> = (props: Props) => {
       audioref.current.pause();
     }
   }, [toggle]);
-  return <audio ref={audioref} src={currentTrack?.preview.url}></audio>;
+
+  return (
+    <>
+      <audio ref={audioref} src={currentTrack?.preview.url}></audio>
+    </>
+  );
 };
 export default Track;
