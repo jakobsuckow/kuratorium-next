@@ -50,22 +50,10 @@ const Player: React.FC<Props> = (props: Props) => {
 
   const { currentTrack, setCurrentTrack, toggle } = React.useContext(GlobalDataContext);
 
-  const handlePlay = () => {
-    if (currentTrack.src === "") {
-      setCurrentTrack({
-        isPlaying: true,
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-      });
-    } else {
-      toggle();
-    }
-  };
+  const handlePlay = () => {};
 
   const reset = React.useCallback(() => {
-    setCurrentTrack({
-      src: "",
-      isPlaying: false,
-    });
+    setCurrentTrack(undefined);
   }, [toggle]);
 
   const DynamicTrack = dynamic(() => import("./track"));
@@ -77,7 +65,7 @@ const Player: React.FC<Props> = (props: Props) => {
           {currentTrack?.isPlaying ? <Pause /> : <Play />}
         </Button>
       </StyledControls>
-      {currentTrack.src !== "" ? <DynamicTrack play={currentTrack.isPlaying} /> : null}
+      {currentTrack ? <DynamicTrack play={currentTrack.isPlaying} /> : null}
       <Button onClick={reset}>Stop</Button>
     </Wrapper>
   );

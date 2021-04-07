@@ -10,8 +10,8 @@ type ContextProps = {
   setCart: React.Dispatch<SetStateAction<CartItem[]>>;
   userInput: any;
   setUserInput: any;
-  currentTrack: Track;
-  setCurrentTrack: React.Dispatch<SetStateAction<Track>>;
+  currentTrack: Track | undefined;
+  setCurrentTrack: React.Dispatch<SetStateAction<Track | undefined>>;
   toggle: () => void;
 };
 
@@ -21,10 +21,7 @@ const GlobalDataProvider = (props: Props) => {
   const { children } = props;
   const [cart, setCart] = React.useState<CartItem[] | undefined>();
 
-  const [currentTrack, setCurrentTrack] = React.useState<Track>({
-    isPlaying: false,
-    src: "",
-  });
+  const [currentTrack, setCurrentTrack] = React.useState<Track | undefined>(undefined);
 
   const toggle = () => {
     setCurrentTrack((track: Track) => ({

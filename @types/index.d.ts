@@ -94,15 +94,6 @@ export interface Order {
   total: number;
 }
 
-export interface Artwork {
-  id: string;
-  url: string;
-  filename: string;
-  size: number;
-  type: string;
-  thumbnails: Sizes;
-}
-
 export interface Image {
   id: any;
   name: string;
@@ -142,18 +133,6 @@ export interface Format {
   height: number;
 }
 
-export interface Sizes {
-  small: Size;
-  large: Size;
-  full: Size;
-}
-
-export interface Size {
-  url: string;
-  width: string;
-  height: string;
-}
-
 export interface Order {
   firstName: string;
   lastName: string;
@@ -167,10 +146,26 @@ export interface Order {
   paymentMethod: string;
 }
 
-interface Track {
-  // title: string;
-  // artist: string;
-  // time: number;
-  src: string;
+export interface Track {
+  id: any;
+  title: string;
+  time: number;
+  artist: number;
+  album: number;
+  published_at: Date;
+  created_at: Date;
+  updated_at: Date;
+  preview: Preview;
   isPlaying: boolean;
+}
+
+export interface Preview {
+  id: any;
+  name: string;
+  alternativeText: string;
+  caption: string;
+  ext: string;
+  size: size;
+  url: string;
+  mime: string;
 }
