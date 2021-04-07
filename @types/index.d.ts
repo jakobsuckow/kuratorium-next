@@ -70,6 +70,7 @@ export interface Product {
   updated_at: Date;
   image: Image;
   sizes: string[];
+  skus: SKU[];
 }
 
 export interface SKU {

@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Album, Product } from "../../@types";
+import { Album, Product, SKU } from "../../@types";
 import { addToCart } from "../../services/shoppingCart";
 import Text from "../text/text";
-import StyledImage from "../image/styledImage";
 import Block from "../text/block";
 import Button from "../button/button";
 import Flex from "../flex/flex";
@@ -67,17 +66,19 @@ const Releases: React.FC<Props> = (props: Props) => {
             height={product.image.formats.small.height}
             layout="responsive"
           />
-          {/* <StyledSelect
+
+          <StyledSelect
             name="sizes"
             id="sizes"
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSize(e.target.value)}>
             <option value="0">choose size</option>
-            {merch.sizes.map((size: string, index: number) => (
-              <option key={index} value={size}>
-                {size}
+            {product.skus.map((sku: SKU) => (
+              <option key={sku.slug} value={sku.slug}>
+                {sku.size}
               </option>
             ))}
-          </StyledSelect> */}
+          </StyledSelect>
+
           <Flex>
             <Text>{product.price} €</Text>
             <Button noBorder onClick={() => clickHandler(product)}>
