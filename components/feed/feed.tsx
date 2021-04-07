@@ -35,23 +35,20 @@ const Dates: React.FC<Props> = (props: Props) => {
                 <ListItem>{event.venue}</ListItem>
                 <ListItem>{event.city}</ListItem>
                 <ListItem>{event.musicby}</ListItem>
-                {/* {!shifted ? (
+                {!shifted ? (
                   <StyledHoverImageDiv
-                    portrait={Boolean(
-                      event.artwork[0].thumbnails.large.height >
-                        event.artwork[0].thumbnails.large.width
-                    )}>
+                    portrait={Boolean(event.artwork[0].height > event.artwork[0].width)}>
                     <Image
-                      src={event.artwork[0].thumbnails.large.url}
-                      width={event.artwork[0].thumbnails.large.width}
-                      height={event.artwork[0].thumbnails.large.height}
+                      src={event.artwork[0].formats.medium.url}
+                      width={event.artwork[0].formats.medium.width}
+                      height={event.artwork[0].formats.medium.height}
                       alt={event.title}
                       layout="responsive"
                     />
                   </StyledHoverImageDiv>
                 ) : (
                   <></>
-                )} */}
+                )}
               </List>
             </HoverDiv>
           </Link>

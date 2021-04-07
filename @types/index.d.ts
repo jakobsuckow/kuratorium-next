@@ -39,7 +39,7 @@ export interface Event {
   venue: string;
   city: string;
   musicby: string;
-  artwork: Artwork[];
+  artwork: Image[];
   artworkby: string;
 }
 
