@@ -6,8 +6,8 @@ import Shop from "../components/shop/shop";
 import Projects from "../components/projects/projects";
 import Feed from "../components/feed/feed";
 import { useMeasure } from "react-use";
-import { getData } from "../services/airtable";
-import { Album, News, Event, Merch } from "../@types";
+import { getAlbums, getEvents, getLinks, getProducs } from "../services/strapi";
+import { Album, Event, News, Product } from "../@types";
 import Row from "../components/row/row";
 import Column from "../components/column/column";
 import OutsideColumn from "../components/column/outsideColumn";
@@ -18,11 +18,11 @@ interface Props {
   events: Event[];
   news: News[];
   albums: Album[];
-  merch: Merch[];
+  products: Product[];
 }
 
 const Index: NextPage<Props> = (props: Props) => {
-  const { events, news, albums, merch } = props;
+  const { events, news, albums, products } = props;
 
   const [ref, { width }] = useMeasure();
 
@@ -42,7 +42,7 @@ const Index: NextPage<Props> = (props: Props) => {
           <About />
         </Column>
         <Column>
-          <Projects albums={albums} merch={merch} setShifted={setShifted} shifted />
+          <Projects albums={albums} products={products} setShifted={setShifted} shifted />
         </Column>
         <Column>
           <Feed events={events} news={news} shifted={shifted} />
@@ -57,16 +57,16 @@ const Index: NextPage<Props> = (props: Props) => {
 export default Index;
 
 export const getStaticProps: GetStaticProps = async context => {
-  const events = await getData("Events");
-  const news = await getData("Feed");
-  const albums = await getData("Albums");
-  const merch = await getData("Merch");
+  const events = await getEvents();
+  const news = await getLinks();
+  const albums = await getAlbums();
+  const products = await getProducs();
   return {
     props: {
       events,
       news,
       albums,
-      merch,
+      products,
     },
   };
 };

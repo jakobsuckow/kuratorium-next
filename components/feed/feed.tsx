@@ -31,11 +31,11 @@ const Dates: React.FC<Props> = (props: Props) => {
             <HoverDiv>
               <List key={event.id}>
                 <ListItem>{event.date}</ListItem>
-                <ListItem>{event.name}</ListItem>
+                <ListItem>{event.title}</ListItem>
                 <ListItem>{event.venue}</ListItem>
                 <ListItem>{event.city}</ListItem>
-                <ListItem>{event.musicBy}</ListItem>
-                {!shifted ? (
+                <ListItem>{event.musicby}</ListItem>
+                {/* {!shifted ? (
                   <StyledHoverImageDiv
                     portrait={Boolean(
                       event.artwork[0].thumbnails.large.height >
@@ -45,13 +45,13 @@ const Dates: React.FC<Props> = (props: Props) => {
                       src={event.artwork[0].thumbnails.large.url}
                       width={event.artwork[0].thumbnails.large.width}
                       height={event.artwork[0].thumbnails.large.height}
-                      alt={event.name}
+                      alt={event.title}
                       layout="responsive"
                     />
                   </StyledHoverImageDiv>
                 ) : (
                   <></>
-                )}
+                )} */}
               </List>
             </HoverDiv>
           </Link>

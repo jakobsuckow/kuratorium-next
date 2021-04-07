@@ -15,24 +15,32 @@ declare global {
 }
 
 export interface Album {
-  name: string;
+  title: string;
   artist: string;
-  artwork: Artwork[];
+  cover: Image;
   text: string;
   trackids: string[];
   tracknames: string[];
+  description: string;
+  date_created: Date;
+  published_at: Date;
+  created_at: Date;
+  updated_at: Date;
+  tracks: any;
 }
 
 export interface Event {
   id: string;
   date: Date;
-  name: string;
+  published_at: Date;
+  created_at: Date;
+  title: string;
   link: string;
   venue: string;
   city: string;
-  musicBy: string;
+  musicby: string;
   artwork: Artwork[];
-  artworkBy: string;
+  artworkby: string;
 }
 
 export interface News {
@@ -50,13 +58,29 @@ export interface CartItem {
   quantity: number;
 }
 
-export interface Merch {
+export interface Product {
   id: string;
-  name: string;
+  title: string;
   description: string;
-  images: Artwork[];
   price: number;
+  date_added: Date;
+  active: boolean;
+  published_at: Date;
+  created_at: Date;
+  updated_at: Date;
+  image: Image;
   sizes: string[];
+}
+
+export interface SKU {
+  id: any;
+  size: string;
+  stock: string;
+  published_at: string;
+  created_at: Date;
+  updated_at: Date;
+  product: any;
+  slug: string;
 }
 
 export interface Order {
@@ -78,29 +102,50 @@ export interface Artwork {
   thumbnails: Sizes;
 }
 
+export interface Image {
+  id: any;
+  name: string;
+  alternativeText: string;
+  caption: string;
+  width: number;
+  height: number;
+  formats: Formats;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: string;
+  provider: string;
+  provider_metadata: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface Formats {
+  large: Format;
+  small: Format;
+  medium: Format;
+  thumbnail: Format;
+}
+
+export interface Format {
+  ext: string;
+  url: string;
+  hash: string;
+  mime: string;
+  name: string;
+  path: any;
+  size: number;
+  width: number;
+  height: number;
+}
+
 export interface Sizes {
   small: Size;
   large: Size;
   full: Size;
 }
-
-// thumbnails: {
-//   small: {
-//   url: "https://dl.airtable.com/.attachmentThumbnails/fb66c6ed1645297f29fc5419242524cc/530c4211",
-//   width: 36,
-//   height: 36
-//   },
-//   large: {
-//   url: "https://dl.airtable.com/.attachmentThumbnails/4e9bd188f826b1184b138a0fbcc441b2/2ee26e1c",
-//   width: 512,
-//   height: 512
-//   },
-//   full: {
-//   url: "https://dl.airtable.com/.attachmentThumbnails/1d8a8a24e3a508a4fe9dcd10c1e544a6/a480ce2b",
-//   width: 3000,
-//   height: 3000
-//   }
-//   }
 
 export interface Size {
   url: string;

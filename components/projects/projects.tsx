@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Album, Merch } from "../../@types";
+import { Album, Product } from "../../@types";
 import { addToCart } from "../../services/shoppingCart";
 import Text from "../text/text";
 import StyledImage from "../image/styledImage";
@@ -12,25 +12,25 @@ import Inner from "../column/inner";
 
 interface Props {
   albums: Album[];
-  merch: Merch[];
+  products: Product[];
   setShifted: Dispatch<SetStateAction<boolean>>;
   shifted: boolean;
 }
 
 const Releases: React.FC<Props> = (props: Props) => {
-  const { albums, merch, setShifted } = props;
+  const { albums, products, setShifted } = props;
   const [size, setSize] = React.useState<string | number>(0);
 
-  const clickHandler = (merch: Merch) => {
+  const clickHandler = (product: Product) => {
     if (size === 0) {
       alert("please select a size");
     } else {
       setShifted(true);
       addToCart({
         quantity: 1,
-        id: merch.id,
-        name: merch.name,
-        price: merch.price,
+        id: product.id,
+        name: product.title,
+        price: product.price,
         size: size as string,
       });
     }
@@ -45,29 +45,29 @@ const Releases: React.FC<Props> = (props: Props) => {
       </Block>
       {albums.map((album: Album, i: number) => (
         <div key={i}>
-          <b>{album.name}</b>
-          <Block>{album.text}</Block>
+          <Text>{album.title}</Text>
+          <Block>{album.description}</Block>
           <Image
             loading="eager"
-            src={album.artwork[0].url}
-            width={album.artwork[0].thumbnails.large.width}
-            height={album.artwork[0].thumbnails.large.height}
+            src={album.cover.url}
+            width={album.cover.width}
+            height={album.cover.height}
             layout="responsive"
           />
         </div>
       ))}
       <h1>Merch</h1>
-      {merch.map((merch: Merch, index: number) => (
+      {products.map((product: Product, index: number) => (
         <div key={index}>
-          <Block>{merch.name}</Block>
-          <Block>{merch.description}</Block>
+          <Block>{product.title}</Block>
+          <Block>{product.description}</Block>
           <Image
-            src={merch.images[0].url}
-            width={merch.images[0].thumbnails.large.width}
-            height={merch.images[0].thumbnails.large.height}
+            src={product.image.formats.small.url}
+            width={product.image.formats.small.width}
+            height={product.image.formats.small.height}
             layout="responsive"
           />
-          <StyledSelect
+          {/* <StyledSelect
             name="sizes"
             id="sizes"
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSize(e.target.value)}>
@@ -77,10 +77,10 @@ const Releases: React.FC<Props> = (props: Props) => {
                 {size}
               </option>
             ))}
-          </StyledSelect>
+          </StyledSelect> */}
           <Flex>
-            <Text>{merch.price} €</Text>
-            <Button noBorder onClick={() => clickHandler(merch)}>
+            <Text>{product.price} €</Text>
+            <Button noBorder onClick={() => clickHandler(product)}>
               Add to Cart
             </Button>
           </Flex>
