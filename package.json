@@ -11,8 +11,6 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.1",
-    "airtable": "^0.10.1",
-    "axios": "^0.21.1",
     "next": "^10.0.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -23,7 +21,6 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "@types/airtable": "^0.8.1",
     "@types/node": "^14.14.33",
     "@types/react": "^17.0.0",
     "@types/react-places-autocomplete": "^7.2.6",
