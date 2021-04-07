@@ -8,7 +8,6 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { useRouter } from "next/router";
-import axios from "axios";
 import { withStripe } from "./withStripe";
 import StripeField from "./stripeField";
 import Divider from "../text/divider";
@@ -39,12 +38,12 @@ const StripeCheckout: React.FC<Props> = (props: Props) => {
         const { id } = paymentMethod;
         setSubmitting(true);
         try {
-          const { data } = await axios.post("api/stripe/charge/", {
-            id,
-            amount: amount * 100,
+          const res = await fetch("api/stripe/charge/", {
+            method: "POST",
+            body: JSON.stringify({ id, amount: amount * 100 }),
           });
-          const { status } = data;
-          if (status === "succeeded") {
+
+          if (res.ok) {
             router.push("/thankyou");
           }
         } catch (error) {
