@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
+import { GlobalDataContext } from "../../services/globalDataProvider";
 
 interface Props {
   setShifted: Dispatch<SetStateAction<boolean>>;
@@ -31,6 +32,7 @@ const Number = styled.span`
 
 const Bag: React.FC<Props> = (props: Props) => {
   const { setShifted } = props;
+  const { cart } = React.useContext(GlobalDataContext);
   return (
     <Circle onClick={() => setShifted(true)}>
       <svg
@@ -48,7 +50,7 @@ const Bag: React.FC<Props> = (props: Props) => {
           stroke="#0D6893"
         />
       </svg>
-      <Number>3</Number>
+      <Number>{cart?.length}</Number>
     </Circle>
   );
 };

@@ -21,20 +21,19 @@ const Releases: React.FC<Props> = (props: Props) => {
   const { albums, products, setShifted } = props;
   const [size, setSize] = React.useState<string | number>(0);
 
-  const { setCurrentTrack } = React.useContext(GlobalDataContext);
+  const { setCurrentTrack, setCart } = React.useContext(GlobalDataContext);
 
   const clickHandler = (product: Product) => {
     if (size === 0) {
       alert("please select a size");
     } else {
       setShifted(true);
-      addToCart({
-        quantity: 1,
-        id: product.id,
-        name: product.title,
-        price: product.price,
-        size: size as string,
-      });
+      setCart((currentCart: any) => [
+        ...currentCart,
+        {
+          product,
+        },
+      ]);
     }
   };
 

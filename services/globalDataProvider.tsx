@@ -1,13 +1,14 @@
 import React, { SetStateAction, useReducer } from "react";
-import { CartItem, Track } from "../@types";
+import { Track } from "../@types";
+import useLocalStorage from "./useLocalStorate";
 
 export interface Props {
   children: React.ReactNode;
 }
 
 type ContextProps = {
-  cart: CartItem[] | undefined;
-  setCart: React.Dispatch<SetStateAction<CartItem[]>>;
+  cart: any[] | undefined;
+  setCart: any;
   userInput: any;
   setUserInput: any;
   currentTrack: Track | undefined;
@@ -18,7 +19,7 @@ export const GlobalDataContext = React.createContext({} as ContextProps);
 
 const GlobalDataProvider = (props: Props) => {
   const { children } = props;
-  const [cart, setCart] = React.useState<CartItem[] | undefined>();
+  const [cart, setCart] = useLocalStorage("cart", []);
 
   const [currentTrack, setCurrentTrack] = React.useState<Track | undefined>(undefined);
 
