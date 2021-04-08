@@ -43,9 +43,10 @@ const Track: React.FC<Props> = (props: Props) => {
   React.useEffect(() => {
     if (isPlaying) {
       audioref.current.play();
-      setInterval(() => {
+      const timer = setInterval(() => {
         setCurrentTime(audioref?.current?.currentTime);
       }, 1000);
+      return () => clearTimeout(timer);
     } else {
       console.log(`pause`);
       audioref.current.pause();
