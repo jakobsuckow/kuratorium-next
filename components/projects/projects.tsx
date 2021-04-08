@@ -57,14 +57,7 @@ const Releases: React.FC<Props> = (props: Props) => {
             layout="responsive"
           />
           {album.tracks.map((track: Track, i: number) => (
-            <div
-              key={i}
-              onClick={() =>
-                setCurrentTrack({
-                  ...track,
-                  isPlaying: true,
-                })
-              }>
+            <div key={i} onClick={() => setCurrentTrack(track)}>
               {track.title}
             </div>
           ))}
