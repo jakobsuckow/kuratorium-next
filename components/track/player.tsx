@@ -1,12 +1,7 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import styled from "styled-components";
-import { Track } from "../../@types";
 import { GlobalDataContext } from "../../services/globalDataProvider";
-import Button from "../button/button";
-import Text from "../text/text";
-import Pause from "./assets/pause";
-import Play from "./assets/play";
 
 interface Props {
   width: number;
