@@ -35,7 +35,7 @@ const Index: NextPage<Props> = (props: Props) => {
         <Column
           lg
           //@ts-ignore
-          ref={ref as UseMeasureRef<HTMLElement>}>
+          ref={ref}>
           <Intro setShifted={setShifted} />
         </Column>
         <Column>
