@@ -8,6 +8,7 @@ import StyledSelect from "../forminput/styledSelect";
 import Image from "next/image";
 import Inner from "../column/inner";
 import { GlobalDataContext } from "../../services/globalDataProvider";
+import Underline from "../text/underline";
 
 interface Props {
   albums: Album[];
@@ -36,6 +37,16 @@ const Releases: React.FC<Props> = (props: Props) => {
     }
   };
 
+  const addAlbumToCart = (album: Album) => {
+    setShifted(true);
+    setCart((currentCart: any) => [
+      ...currentCart,
+      {
+        album,
+      },
+    ]);
+  };
+
   return (
     <Inner>
       <Block>
@@ -55,10 +66,11 @@ const Releases: React.FC<Props> = (props: Props) => {
             layout="responsive"
           />
           {album.tracks.map((track: Track, i: number) => (
-            <div key={i} onClick={() => setCurrentTrack(track)}>
+            <Underline key={i} onClick={() => setCurrentTrack(track)}>
               {track.title}
-            </div>
+            </Underline>
           ))}
+          <Button onClick={() => addAlbumToCart(album)}>Add to Cart</Button>
         </div>
       ))}
       <h1>Merch</h1>

@@ -12,6 +12,11 @@ interface WrapperProps {
   hidden: boolean;
 }
 
+// ${props =>
+//   props.hidden
+//     ? `transform: translateY(100px); width: 0px;`
+//     : `transform: translateY(0); width: 100%`}
+
 const Wrapper = styled.div<WrapperProps & Props>`
   transform: ${props => (props.shifted ? `translateX(-${props.width}px)` : `translateX(-0px)`)};
   transition: transform 0.7s;
@@ -25,11 +30,6 @@ const Wrapper = styled.div<WrapperProps & Props>`
   position: absolute;
   bottom: 20px;
   z-index: 10;
-
-  ${props =>
-    props.hidden
-      ? `transform: translateY(100px); width: 0px;`
-      : `transform: translateY(0); width: 100%`}
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.sm}) {
     position: fixed;
@@ -45,7 +45,9 @@ const Player: React.FC<Props> = (props: Props) => {
 
   const { currentTrack } = React.useContext(GlobalDataContext);
 
-  const DynamicTrack = dynamic(() => import("./track"));
+  const DynamicTrack = dynamic(() => import("./track"), {
+    ssr: false,
+  });
 
   return (
     <Wrapper width={width} shifted={shifted} hidden={Boolean(!currentTrack)}>
