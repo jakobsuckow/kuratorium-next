@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Album, Product, SKU, Track } from "../../@types";
-import { addToCart } from "../../services/shoppingCart";
 import Text from "../text/text";
 import Block from "../text/block";
 import Button from "../button/button";

@@ -73,6 +73,20 @@ export interface Product {
   skus: SKU[];
 }
 
+export interface ProductWithoutSKU {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  date_added: Date;
+  active: boolean;
+  published_at: Date;
+  created_at: Date;
+  updated_at: Date;
+  image: Image;
+  sizes: string[];
+}
+
 export interface SKU {
   id: any;
   size: string;
@@ -80,7 +94,7 @@ export interface SKU {
   published_at: string;
   created_at: Date;
   updated_at: Date;
-  product: any;
+  product: ProductWithoutSKU;
   slug: string;
 }
 
