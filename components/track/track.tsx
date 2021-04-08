@@ -58,7 +58,13 @@ const Track: React.FC<Props> = (props: Props) => {
       <Button noBorder onClick={togglePlay}>
         {isPlaying ? <Pause /> : <Play />}
       </Button>
-      <audio ref={audioref} src={currentTrack?.preview.url} autoPlay={false}>
+      <audio
+        ref={audioref}
+        src={currentTrack?.preview.url}
+        autoPlay={false}
+        onEnded={() => console.log(`track has ended`)}
+        // onCanPlay={() => alert("track can play")}
+      >
         Your browser does not support the
         <code>audio</code> element.
       </audio>

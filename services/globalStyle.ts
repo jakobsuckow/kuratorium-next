@@ -45,6 +45,10 @@ const GlobalStyle = createGlobalStyle`
   ::selection {
     background-color: #4366cc;
   }
+
+  option {
+    font-size:16px;
+  }
   `;
 
 export default GlobalStyle;

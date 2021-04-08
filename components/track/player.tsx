@@ -31,7 +31,10 @@ const Wrapper = styled.div<WrapperProps & Props>`
   bottom: 20px;
   z-index: 10;
 
-  ${props => (props.hidden ? `transform: translateY(100px);` : `transform: translateY(0);`)}
+  ${props =>
+    props.hidden
+      ? `transform: translateY(100px); width: 0px;`
+      : `transform: translateY(0); width: 100%`}
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.sm}) {
     position: fixed;
