@@ -11,10 +11,13 @@ import Play from "./assets/play";
 interface Props {
   width: number;
   shifted: boolean;
+}
+
+interface WrapperProps {
   hidden: boolean;
 }
 
-const Wrapper = styled.div<Props>`
+const Wrapper = styled.div<WrapperProps & Props>`
   transform: ${props => (props.shifted ? `translateX(-${props.width}px)` : `translateX(-0px)`)};
   transition: transform 0.7s;
   margin-top: auto;
@@ -28,7 +31,7 @@ const Wrapper = styled.div<Props>`
   bottom: 20px;
   z-index: 10;
 
-  ${props => (props.hidden ? `visibility:hidden;` : `visibility: visible;`)}
+  ${props => (props.hidden ? `transform: translateY(100px);` : `transform: translateY(0);`)}
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.sm}) {
     position: fixed;
@@ -40,15 +43,15 @@ const Wrapper = styled.div<Props>`
 `;
 
 const Player: React.FC<Props> = (props: Props) => {
-  const { width, shifted, hidden } = props;
+  const { width, shifted } = props;
 
   const { currentTrack } = React.useContext(GlobalDataContext);
 
   const DynamicTrack = dynamic(() => import("./track"));
 
   return (
-    <Wrapper width={width} shifted={shifted} hidden={hidden}>
-      {currentTrack ? <DynamicTrack play={currentTrack.isPlaying} /> : null}
+    <Wrapper width={width} shifted={shifted} hidden={Boolean(!currentTrack)}>
+      {currentTrack ? <DynamicTrack /> : null}
     </Wrapper>
   );
 };

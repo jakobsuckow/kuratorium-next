@@ -156,7 +156,6 @@ export interface Track {
   created_at: Date;
   updated_at: Date;
   preview: Preview;
-  isPlaying: boolean;
   Cover: Image;
 }
 

@@ -12,7 +12,6 @@ type ContextProps = {
   setUserInput: any;
   currentTrack: Track | undefined;
   setCurrentTrack: React.Dispatch<SetStateAction<Track | undefined>>;
-  toggle: () => void;
 };
 
 export const GlobalDataContext = React.createContext({} as ContextProps);
@@ -22,13 +21,6 @@ const GlobalDataProvider = (props: Props) => {
   const [cart, setCart] = React.useState<CartItem[] | undefined>();
 
   const [currentTrack, setCurrentTrack] = React.useState<Track | undefined>(undefined);
-
-  const toggle = () => {
-    setCurrentTrack((track: Track) => ({
-      ...track,
-      isPlaying: !track.isPlaying,
-    }));
-  };
 
   const [userInput, setUserInput] = useReducer(
     (state: any, newState: any) => ({ ...state, ...newState }),
@@ -48,7 +40,7 @@ const GlobalDataProvider = (props: Props) => {
 
   return (
     <GlobalDataContext.Provider
-      value={{ cart, setCart, userInput, setUserInput, currentTrack, setCurrentTrack, toggle }}>
+      value={{ cart, setCart, userInput, setUserInput, currentTrack, setCurrentTrack }}>
       {children}
     </GlobalDataContext.Provider>
   );

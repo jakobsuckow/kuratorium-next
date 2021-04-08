@@ -20,12 +20,10 @@ const TrackInfo = styled(Text)`
   color: ${props => props.theme.colors.pink};
 `;
 
-interface Props {
-  play: boolean;
-}
+interface Props {}
 
 const Track: React.FC<Props> = (props: Props) => {
-  const { currentTrack, toggle } = React.useContext(GlobalDataContext);
+  const { currentTrack } = React.useContext(GlobalDataContext);
 
   const audioref = React.useRef(new Audio(currentTrack?.preview.url));
 
