@@ -39,39 +39,15 @@ const Wrapper = styled.div<Props>`
   }
 `;
 
-const StyledControls = styled.div`
-  padding: 8px;
-`;
-
-const SongTitle = styled(Text)`
-  padding: 8px;
-  color: ${props => props.theme.colors.pink};
-`;
-
 const Player: React.FC<Props> = (props: Props) => {
   const { width, shifted, hidden } = props;
 
-  const { currentTrack, setCurrentTrack, toggle } = React.useContext(GlobalDataContext);
-
-  const handlePlay = () => {
-    if (currentTrack) {
-      currentTrack.isPlaying = !currentTrack.isPlaying;
-    }
-  };
-
-  const reset = React.useCallback(() => {
-    setCurrentTrack(undefined);
-  }, [toggle]);
+  const { currentTrack } = React.useContext(GlobalDataContext);
 
   const DynamicTrack = dynamic(() => import("./track"));
 
   return (
     <Wrapper width={width} shifted={shifted} hidden={hidden}>
-      <StyledControls>
-        <Button noBorder onClick={() => handlePlay}>
-          {currentTrack?.isPlaying ? <Pause /> : <Play />}
-        </Button>
-      </StyledControls>
       {currentTrack ? <DynamicTrack play={currentTrack.isPlaying} /> : null}
     </Wrapper>
   );
