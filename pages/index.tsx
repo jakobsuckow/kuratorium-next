@@ -30,7 +30,7 @@ const Index: NextPage<Props> = (props: Props) => {
 
   return (
     <>
-      <Player width={width} shifted={shifted} />
+      <Player width={width} shifted={shifted} hidden={false} />
       <Row shifted={shifted} width={width + 8}>
         <Column
           lg

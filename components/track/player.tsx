@@ -11,11 +11,11 @@ import Play from "./assets/play";
 interface Props {
   width: number;
   shifted: boolean;
+  hidden: boolean;
 }
 
 const Wrapper = styled.div<Props>`
-  transform: ${(props: Props) =>
-    props.shifted ? `translateX(-${props.width}px)` : `translateX(-0px)`};
+  transform: ${props => (props.shifted ? `translateX(-${props.width}px)` : `translateX(-0px)`)};
   transition: transform 0.7s;
   margin-top: auto;
   display: flex;
@@ -27,6 +27,8 @@ const Wrapper = styled.div<Props>`
   position: absolute;
   bottom: 20px;
   z-index: 10;
+
+  ${props => (props.hidden ? `visibility:hidden;` : `visibility: visible;`)}
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.sm}) {
     position: fixed;
@@ -47,7 +49,7 @@ const SongTitle = styled(Text)`
 `;
 
 const Player: React.FC<Props> = (props: Props) => {
-  const { width, shifted } = props;
+  const { width, shifted, hidden } = props;
 
   const { currentTrack, setCurrentTrack, toggle } = React.useContext(GlobalDataContext);
 
@@ -64,16 +66,13 @@ const Player: React.FC<Props> = (props: Props) => {
   const DynamicTrack = dynamic(() => import("./track"));
 
   return (
-    <Wrapper width={width} shifted={shifted}>
+    <Wrapper width={width} shifted={shifted} hidden={hidden}>
       <StyledControls>
         <Button noBorder onClick={() => handlePlay}>
           {currentTrack?.isPlaying ? <Pause /> : <Play />}
         </Button>
       </StyledControls>
       {currentTrack ? <DynamicTrack play={currentTrack.isPlaying} /> : null}
-      <Button noBorder onClick={reset}>
-        Stop
-      </Button>
     </Wrapper>
   );
 };
