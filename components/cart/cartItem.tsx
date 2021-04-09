@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   background: ${props => props.theme.colors.grey};
   display: flex;
   justify-content: space-between;
-
   border-radius: 1px;
 `;
 
@@ -28,8 +27,9 @@ const CartImg = styled.img`
 const DeleteButton = styled(Button)`
   height: 20px;
   background: #c4c4c4;
-  padding: 10px;
   border-radius: 5px;
+  padding: 4px 8px;
+  text-decoration: none;
 `;
 
 interface Props {
