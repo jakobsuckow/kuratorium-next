@@ -15,6 +15,7 @@ declare global {
 }
 
 export interface Album {
+  uuid: string;
   id: any;
   title: string;
   artist: string;
@@ -60,6 +61,7 @@ export interface CartItem {
 }
 
 export interface Product {
+  uuid: string;
   id: string;
   title: string;
   description: string;

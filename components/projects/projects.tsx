@@ -29,7 +29,7 @@ const Releases: React.FC<Props> = (props: Props) => {
     } else {
       setShifted(true);
       addToCart({
-        id: product.id,
+        id: product.uuid,
         image: product.image.formats.thumbnail.url,
         name: product.title,
         price: product.price,
@@ -41,7 +41,7 @@ const Releases: React.FC<Props> = (props: Props) => {
   const addAlbumToCart = (album: Album) => {
     setShifted(true);
     addToCart({
-      id: album.id,
+      id: album.uuid,
       image: album.cover.formats.thumbnail.url,
       name: album.title,
       price: 20,
