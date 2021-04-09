@@ -66,6 +66,7 @@ const Releases: React.FC<Props> = (props: Props) => {
             width={album.cover.width}
             height={album.cover.height}
             layout="responsive"
+            alt={album.description}
           />
           {album.tracks.map((track: Track, i: number) => (
             <Underline key={i} onClick={() => setCurrentTrack(track)}>
@@ -85,6 +86,7 @@ const Releases: React.FC<Props> = (props: Props) => {
             width={product.image.formats.small.width}
             height={product.image.formats.small.height}
             layout="responsive"
+            alt={product.description}
           />
 
           <StyledSelect
