@@ -5,6 +5,7 @@ import GlobalDataProvider from "../services/globalDataProvider";
 import { ThemeProvider } from "styled-components";
 import theme from "../theme";
 import GlobalStyle from "../services/globalStyle";
+import { Html } from "next/document";
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -16,7 +17,7 @@ export default function MyApp(props: AppProps) {
     }
   }, []);
   return (
-    <>
+    <Html lang="en">
       <Head>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
@@ -26,6 +27,6 @@ export default function MyApp(props: AppProps) {
           <Component {...pageProps} />
         </GlobalDataProvider>
       </ThemeProvider>
-    </>
+    </Html>
   );
 }
