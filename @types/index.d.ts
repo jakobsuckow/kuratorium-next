@@ -99,6 +99,13 @@ export interface SKU {
   slug: string;
 }
 
+export interface CartItem {
+  name: string;
+  id: string;
+  image: string;
+  quantity: number;
+}
+
 export interface Order {
   street: string;
   postal: string;

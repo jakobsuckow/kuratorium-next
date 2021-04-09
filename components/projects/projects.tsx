@@ -21,36 +21,32 @@ const Releases: React.FC<Props> = (props: Props) => {
   const { albums, products, setShifted } = props;
   const [size, setSize] = React.useState<string | number>(0);
 
-  const { setCurrentTrack, setCart } = React.useContext(GlobalDataContext);
+  const { setCurrentTrack, setCart, addToCart } = React.useContext(GlobalDataContext);
 
   const addProductToCart = (product: Product) => {
     if (size === 0) {
       alert("please select a size");
     } else {
       setShifted(true);
-      setCart((currentCart: any) => [
-        ...currentCart,
-        {
-          id: product.id,
-          name: product.title,
-          quantity: 1,
-          image: product.image.formats.thumbnail.url,
-        },
-      ]);
+      addToCart({
+        id: product.id,
+        image: product.image.formats.thumbnail.url,
+        name: product.title,
+        price: product.price,
+        quantity: 1,
+      });
     }
   };
 
   const addAlbumToCart = (album: Album) => {
     setShifted(true);
-    setCart((currentCart: any) => [
-      ...currentCart,
-      {
-        id: album.id,
-        name: album.title,
-        quantity: 1,
-        image: album.cover.formats.thumbnail.url,
-      },
-    ]);
+    addToCart({
+      id: album.id,
+      image: album.cover.formats.thumbnail.url,
+      name: album.title,
+      price: 20,
+      quantity: 1,
+    });
   };
 
   return (
