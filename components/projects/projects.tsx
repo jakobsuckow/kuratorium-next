@@ -23,7 +23,7 @@ const Releases: React.FC<Props> = (props: Props) => {
 
   const { setCurrentTrack, setCart } = React.useContext(GlobalDataContext);
 
-  const clickHandler = (product: Product) => {
+  const addProductToCart = (product: Product) => {
     if (size === 0) {
       alert("please select a size");
     } else {
@@ -31,7 +31,10 @@ const Releases: React.FC<Props> = (props: Props) => {
       setCart((currentCart: any) => [
         ...currentCart,
         {
-          product,
+          id: product.id,
+          name: product.title,
+          quantity: 1,
+          image: product.image.formats.thumbnail.url,
         },
       ]);
     }
@@ -42,7 +45,10 @@ const Releases: React.FC<Props> = (props: Props) => {
     setCart((currentCart: any) => [
       ...currentCart,
       {
-        album,
+        id: album.id,
+        name: album.title,
+        quantity: 1,
+        image: album.cover.formats.thumbnail.url,
       },
     ]);
   };
@@ -99,7 +105,7 @@ const Releases: React.FC<Props> = (props: Props) => {
 
           <Flex>
             <Text>{product.price} €</Text>
-            <Button noBorder onClick={() => clickHandler(product)}>
+            <Button noBorder onClick={() => addProductToCart(product)}>
               Add to Cart
             </Button>
           </Flex>

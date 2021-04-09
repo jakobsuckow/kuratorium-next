@@ -13,6 +13,7 @@ type ContextProps = {
   setUserInput: any;
   currentTrack: Track | undefined;
   setCurrentTrack: React.Dispatch<SetStateAction<Track | undefined>>;
+  deleteItem: (id: string) => void;
 };
 
 export const GlobalDataContext = React.createContext({} as ContextProps);
@@ -20,6 +21,11 @@ export const GlobalDataContext = React.createContext({} as ContextProps);
 const GlobalDataProvider = (props: Props) => {
   const { children } = props;
   const [cart, setCart] = useLocalStorage("cart", []);
+
+  const deleteItem = (id: string) => {
+    const cartItem = cart.map((item: any) => item.id);
+    console.log(cartItem);
+  };
 
   const [currentTrack, setCurrentTrack] = React.useState<Track | undefined>(undefined);
 
@@ -41,7 +47,7 @@ const GlobalDataProvider = (props: Props) => {
 
   return (
     <GlobalDataContext.Provider
-      value={{ cart, setCart, userInput, setUserInput, currentTrack, setCurrentTrack }}>
+      value={{ cart, setCart, userInput, setUserInput, currentTrack, setCurrentTrack, deleteItem }}>
       {children}
     </GlobalDataContext.Provider>
   );

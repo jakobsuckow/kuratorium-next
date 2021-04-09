@@ -15,6 +15,7 @@ declare global {
 }
 
 export interface Album {
+  id: any;
   title: string;
   artist: string;
   cover: Image;
