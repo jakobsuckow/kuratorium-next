@@ -10,12 +10,26 @@ const Wrapper = styled.div`
   width: 100%;
   background: ${props => props.theme.colors.grey};
   display: flex;
+  justify-content: space-between;
+
   border-radius: 1px;
+`;
+
+const Name = styled(Text)`
+  color: ${props => props.theme.colors.blue};
+  padding-top: 10px;
 `;
 
 const CartImg = styled.img`
   height: 100%;
   width: auto;
+`;
+
+const DeleteButton = styled(Button)`
+  height: 20px;
+  background: #c4c4c4;
+  padding: 10px;
+  border-radius: 5px;
 `;
 
 interface Props {
@@ -31,11 +45,14 @@ const CartItem: React.FC<Props> = (props: Props) => {
   return (
     <Wrapper>
       <CartImg src={image} alt="" />
-      <Text>{name}</Text>
-      <Text>{quantity}</Text>
-      <Button noBorder onClick={() => deleteItem(id)}>
+      <div>
+        <Name>{name}</Name>
+        <Text>{quantity}</Text>
+      </div>
+
+      <DeleteButton noBorder onClick={() => deleteItem(id)}>
         Delete
-      </Button>
+      </DeleteButton>
     </Wrapper>
   );
 };

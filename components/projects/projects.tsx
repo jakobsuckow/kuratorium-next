@@ -21,7 +21,7 @@ const Releases: React.FC<Props> = (props: Props) => {
   const { albums, products, setShifted } = props;
   const [size, setSize] = React.useState<string | number>(0);
 
-  const { setCurrentTrack, setCart, addToCart } = React.useContext(GlobalDataContext);
+  const { setCurrentTrack, addToCart } = React.useContext(GlobalDataContext);
 
   const addProductToCart = (product: Product) => {
     if (size === 0) {

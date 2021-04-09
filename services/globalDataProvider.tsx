@@ -8,7 +8,6 @@ export interface Props {
 
 type ContextProps = {
   cart: CartItem[] | [];
-  setCart: any;
   userInput: any;
   setUserInput: any;
   currentTrack: Track | undefined;
@@ -29,15 +28,14 @@ const GlobalDataProvider = (props: Props) => {
   };
 
   const addToCart = (cartItem: CartItem) => {
-    const existingArray = cart.filter((item: CartItem) => item.id == cartItem.id);
-    const item: CartItem = existingArray[0];
+    const [existing] = cart.filter((item: CartItem) => item.id == cartItem.id);
     let others = cart.filter((item: CartItem) => item.id !== cartItem.id);
-    if (existingArray.length > 0) {
+    if (existing) {
       setCart([
         ...others,
         {
-          ...(item as CartItem),
-          quantity: item.quantity + 1,
+          ...(existing as CartItem),
+          quantity: existing.quantity + 1,
         },
       ]);
     } else {
@@ -68,7 +66,6 @@ const GlobalDataProvider = (props: Props) => {
     <GlobalDataContext.Provider
       value={{
         cart,
-        setCart,
         userInput,
         setUserInput,
         currentTrack,
