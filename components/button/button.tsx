@@ -5,12 +5,13 @@ interface Props {
 }
 
 const Button = styled.button`
+  height: 32px;
   border: ${(props: Props) => (props.noBorder ? `none` : `1px solid #000`)};
-  cursor: ${(props: Props) => (props.noBorder ? `pointer` : `default`)};
+  cursor: pointer;
   background: transparent;
   text-decoration: ${(props: Props) => (props.noBorder ? `underline` : `none`)};
   border-radius: 0px;
-  padding: 2px 2px;
+  padding: 2px 8px;
   font-family: inherit;
 
   &:focus {

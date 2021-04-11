@@ -8,6 +8,7 @@ interface Props {
 
 const StyledLogoWrapper = styled.div`
   width: 100%;
+  margin-bottom: ${(props: Props) => (props.center ? `60px` : `0`)};
   text-align: ${(props: Props) => (props.center ? `center` : `left`)};
   padding-left: ${(props: Props) => (props.center ? `0` : `10px`)};
 `;

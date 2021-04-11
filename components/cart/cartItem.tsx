@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   background: ${props => props.theme.colors.grey};
   display: flex;
   justify-content: space-between;
-  border-radius: 1px;
+  border-radius: 2px;
 `;
 
 const Name = styled(Text)`
@@ -22,6 +22,7 @@ const Name = styled(Text)`
 const CartImg = styled.img`
   height: 100%;
   width: auto;
+  border-radius: 2px 0 0 2px;
 `;
 
 const DeleteButton = styled(Button)`

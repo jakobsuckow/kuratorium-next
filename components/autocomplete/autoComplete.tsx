@@ -10,6 +10,8 @@ import Flex from "../flex/flex";
 import Item from "../flex/item";
 import Loading from "../loading/loading";
 import { GlobalDataContext } from "../../services/globalDataProvider";
+import Text from "../text/text";
+import Underline from "../text/underline";
 
 interface Props {
   autoComp: boolean;
@@ -87,7 +89,6 @@ const AutoComplete = (props: Props) => {
 
   return (
     <FormProvider {...methods}>
-      <h3>Personal Details:</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex>
           <Item>
@@ -117,7 +118,9 @@ const AutoComplete = (props: Props) => {
                 />
                 {loading && <Loading />}
                 {suggestions.map((suggestion: any) => (
-                  <div {...getSuggestionItemProps(suggestion)}>{suggestion.description}</div>
+                  <Underline {...getSuggestionItemProps(suggestion)}>
+                    {suggestion.description}
+                  </Underline>
                 ))}
               </>
             )}

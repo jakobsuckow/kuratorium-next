@@ -11,28 +11,23 @@ import H3 from "../components/text/h3";
 import ReceiptMenu from "../components/receipt/receiptMenu";
 import Flex from "../components/flex/flex";
 import Script from "next/dist/client/experimental-script.js";
+import CartItem from "../components/cart/cartItem";
 
 const Checkout = () => {
-  const [cart, setCart] = React.useState<any | null>([]);
   const [autoComp, setAutocomp] = React.useState<boolean>(false);
 
-  const { userInput, setUserInput } = React.useContext(GlobalDataContext);
+  const { cart } = React.useContext(GlobalDataContext);
 
   const router = useRouter();
 
-  React.useEffect(() => {
-    const localItems = localStorage.getItem("cart");
-    setCart(JSON.parse(localItems as string));
-  }, []);
+  // const totalPrice = cart.reduce((acc: any, currentCart: any) => acc + currentCart.price, 0);
 
-  const totalPrice = cart.reduce((acc: any, currentCart: any) => acc + currentCart.price, 0);
+  // const summary = parseFloat(totalPrice);
 
-  const summary = parseFloat(totalPrice);
-
-  const formatedSummary = summary.toLocaleString("de-AT", {
-    style: "currency",
-    currency: "EUR",
-  });
+  // const formatedSummary = summary.toLocaleString("de-AT", {
+  //   style: "currency",
+  //   currency: "EUR",
+  // });
 
   const onLoad = React.useCallback(() => {
     console.log(`loaded Google Script tag`);
@@ -64,16 +59,8 @@ const Checkout = () => {
       <Receipt>
         <Logo center />
         <ReceiptMenu />
-        <H3 className="mb-4">Cart Summary</H3>
         {cart.map((item: any, index: number) => (
-          <div key={index}>
-            <Flex>
-              <Text>{item.name}</Text>
-              <Text>{item.price} €</Text>
-            </Flex>
-            <Text>Size</Text>
-            <Text>{item.size?.toUpperCase()}</Text>
-          </div>
+          <CartItem id={item.id} quantity={item.quantity} image={item.image} name={item.name} />
         ))}
 
         <Flex>
@@ -82,7 +69,6 @@ const Checkout = () => {
         </Flex>
         <Flex>
           <Text>Total Price</Text>
-          <Text>{formatedSummary}</Text>
         </Flex>
 
         <Divider />
