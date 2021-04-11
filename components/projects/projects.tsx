@@ -81,7 +81,7 @@ const Releases: React.FC<Props> = (props: Props) => {
             </Flex>
           ))}
           <Flex>
-            <div></div>
+            <Text>Price: {album.price}€</Text>
             <Button noBorder onClick={() => addAlbumToCart(album)}>
               Add to Cart
             </Button>

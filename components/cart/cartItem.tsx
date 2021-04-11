@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 import Button from "../button/button";
+import Item from "../flex/item";
 import Text from "../text/text";
 
 const Wrapper = styled.div`
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   border-radius: 2px;
+  align-self: stretch;
 `;
 
 const Name = styled(Text)`
@@ -38,6 +40,7 @@ interface Props {
   id: string;
   image: string;
   quantity: number;
+  price: number;
 }
 
 const CartItem: React.FC<Props> = (props: Props) => {
@@ -45,12 +48,13 @@ const CartItem: React.FC<Props> = (props: Props) => {
   const { deleteItem } = React.useContext(GlobalDataContext);
   return (
     <Wrapper>
-      <CartImg src={image} alt="" />
-      <div>
+      <Item>
+        <CartImg src={image} alt="" />
+      </Item>
+      <Item>
         <Name>{name}</Name>
         <Text>{quantity}</Text>
-      </div>
-
+      </Item>
       <DeleteButton noBorder onClick={() => deleteItem(id)}>
         Delete
       </DeleteButton>

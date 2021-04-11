@@ -29,6 +29,7 @@ export interface Album {
   created_at: Date;
   updated_at: Date;
   tracks: any;
+  price: number;
 }
 
 export interface Event {
