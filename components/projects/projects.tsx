@@ -8,6 +8,8 @@ import StyledSelect from "../forminput/styledSelect";
 import Image from "next/image";
 import Inner from "../column/inner";
 import { GlobalDataContext } from "../../services/globalDataProvider";
+import H4 from "../text/h4";
+import PlaySmall from "./assets/play-small";
 import Underline from "../text/underline";
 
 interface Props {
@@ -68,15 +70,25 @@ const Releases: React.FC<Props> = (props: Props) => {
             layout="responsive"
             alt={album.description}
           />
+          <Underline>Tracklist</Underline>
           {album.tracks.map((track: Track, i: number) => (
-            <Underline key={i} onClick={() => setCurrentTrack(track)}>
-              {track.title}
-            </Underline>
+            <Flex>
+              <PlaySmall />
+              <Text key={i} onClick={() => setCurrentTrack(track)}>
+                {track.title}
+              </Text>
+              <Text>{track.time}</Text>
+            </Flex>
           ))}
-          <Button onClick={() => addAlbumToCart(album)}>Add to Cart</Button>
+          <Flex>
+            <div></div>
+            <Button noBorder onClick={() => addAlbumToCart(album)}>
+              Add to Cart
+            </Button>
+          </Flex>
         </div>
       ))}
-      <h1>Merch</h1>
+      <H4>Merch</H4>
       {products.map((product: Product, index: number) => (
         <div key={index}>
           <Block>{product.title}</Block>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const H4 = styled.h4`
-  font-size: 41.7px;
+  font-size: 26.06px;
   line-height: auto;
 `;
 
