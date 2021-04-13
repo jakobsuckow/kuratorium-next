@@ -60,7 +60,13 @@ const Checkout = () => {
         <Logo center />
         <ReceiptMenu />
         {cart.map((item: any, index: number) => (
-          <CartItem id={item.id} quantity={item.quantity} image={item.image} name={item.name} />
+          <CartItem
+            id={item.id}
+            quantity={item.quantity}
+            image={item.image}
+            name={item.name}
+            price={item.price}
+          />
         ))}
 
         <Flex>

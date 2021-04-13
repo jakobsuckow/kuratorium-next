@@ -24,6 +24,7 @@ const Shop: React.FC<Props> = (props: Props) => {
           quantity={cartItem.quantity}
           image={cartItem.image}
           name={cartItem.name}
+          price={cartItem.price}
         />
       ))}
       <Flex>
