@@ -12,6 +12,8 @@ import Loading from "../loading/loading";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 import Text from "../text/text";
 import Underline from "../text/underline";
+import FormRadio from "../forminput/formRadio";
+import RadioGroup from "../forminput/radioGroup";
 
 interface Props {
   autoComp: boolean;
@@ -87,6 +89,10 @@ const AutoComplete = (props: Props) => {
 
   const { handleSubmit, setValue } = methods;
 
+  const submit = (data: any) => {
+    console.log(data);
+  };
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -99,7 +105,6 @@ const AutoComplete = (props: Props) => {
           </Item>
         </Flex>
         <FormInput required type="text" name="emailAddress" label={`Email address`} />
-
         {autoComp ? (
           <PlacesAutocomplete
             value={address}
@@ -128,33 +133,27 @@ const AutoComplete = (props: Props) => {
         ) : (
           <FormInput required label={`Street name`} name="streetName" type="text" />
         )}
-
         <FormInput required type="text" name="streetNumber" label={`Street number`} />
-
         <FormInput required type="text" name="postal" label={`Postal Code`} />
         <FormInput required type="text" name="city" label={`City`} />
-
-        <FormSelect
-          required
-          name="country"
-          options={countryList.map((country: any) => country.name)}
-          label={`Select your country`}
+        <FormRadio
+          name="payment"
+          value="credit"
+          label={`Credit card`}
+          labelText={`
+            Pay with Credit Card. We are using Stripe as a payment Provider
+          `}
         />
-
-        <FormSelect
-          required
-          name="paymentMethod"
-          options={["credit cart", "paypal"]}
-          label={`Select payment method`}
+        <FormRadio
+          name="payment"
+          value="paypal"
+          label={`Paypal`}
+          labelText={`
+            Pay with Paypal. We are using Stripe as a payment Provider
+          `}
         />
         <Flex>
-          <Button
-            onClick={e => {
-              e.preventDefault();
-              router.push("/");
-            }}>
-            Go back to Shop
-          </Button>
+          <Button onClick={handleSubmit(submit)}>Go back to Shop</Button>
 
           <Button type="submit">Go to Payment</Button>
         </Flex>
