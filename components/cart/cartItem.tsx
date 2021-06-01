@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 import Button from "../button/button";
-import Item from "../flex/item";
+import AlignRight from "../text/alignRight";
 import Text from "../text/text";
 
 const Wrapper = styled.div`
@@ -16,11 +16,15 @@ const Wrapper = styled.div`
   align-self: stretch;
 `;
 
-const CartWrapperItem = styled.div``;
+const Filler = styled.div`
+  flex-grow: 1;
+`;
 
 const Name = styled(Text)`
   color: ${props => props.theme.colors.blue};
-  padding-top: 10px;
+  padding-top: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 
 const CartImg = styled.img`
@@ -46,20 +50,20 @@ interface Props {
 }
 
 const CartItem: React.FC<Props> = (props: Props) => {
-  const { id, image, quantity, name } = props;
+  const { id, image, quantity, name, price } = props;
   const { deleteItem } = React.useContext(GlobalDataContext);
   return (
     <Wrapper>
-      <Item>
-        <CartImg src={image} alt="" />
-      </Item>
-      <Item>
+      <CartImg src={image} alt="" />
+      <Name>Quantity {quantity}</Name>
+      <Filler />
+      <AlignRight>
         <Name>{name}</Name>
-        <Text>{quantity}</Text>
-      </Item>
-      <DeleteButton noBorder onClick={() => deleteItem(id)}>
-        Delete
-      </DeleteButton>
+        <Name>{price}€</Name>
+        <DeleteButton noBorder onClick={() => deleteItem(id)}>
+          Delete
+        </DeleteButton>
+      </AlignRight>
     </Wrapper>
   );
 };
