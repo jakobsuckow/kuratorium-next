@@ -5,6 +5,7 @@ import Link from "../link/link";
 interface Props {}
 
 const MenuWrapper = styled.div`
+  margin: 12px 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -14,7 +15,7 @@ const ReceiptMenu: React.FC<Props> = (props: Props) => {
   const {} = props;
   return (
     <MenuWrapper>
-      <Link href="/checkout">Personal Details</Link>
+      <Link href="/checkout">Personal</Link>
       <Link href="/payment">Payment</Link>
       <Link href="/overview">Overview</Link>
     </MenuWrapper>
