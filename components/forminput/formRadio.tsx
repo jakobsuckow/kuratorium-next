@@ -1,10 +1,8 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import styled, { ThemeProps } from "styled-components";
-import H3 from "../text/h3";
 import H4 from "../text/h4";
-import Small from "../text/small"
-import Text from "../text/text"
+import Small from "../text/small";
 
 interface Props {
   required?: boolean;

@@ -1,17 +1,16 @@
-import React from "react";
+import Script from "next/dist/client/experimental-script.js";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import React from "react";
 import AutoComplete from "../components/autocomplete/autoComplete";
-import { GlobalDataContext } from "../services/globalDataProvider";
-import Receipt from "../components/receipt/receipt";
+import CartItem from "../components/cart/cartItem";
+import Flex from "../components/flex/flex";
 import Logo from "../components/logo/logo";
+import Receipt from "../components/receipt/receipt";
+import ReceiptMenu from "../components/receipt/receiptMenu";
 import Divider from "../components/text/divider";
 import Text from "../components/text/text";
-import H3 from "../components/text/h3";
-import ReceiptMenu from "../components/receipt/receiptMenu";
-import Flex from "../components/flex/flex";
-import Script from "next/dist/client/experimental-script.js";
-import CartItem from "../components/cart/cartItem";
+import { GlobalDataContext } from "../services/globalDataProvider";
 
 const Checkout = () => {
   const [autoComp, setAutocomp] = React.useState<boolean>(false);
@@ -19,15 +18,6 @@ const Checkout = () => {
   const { cart } = React.useContext(GlobalDataContext);
 
   const router = useRouter();
-
-  // const totalPrice = cart.reduce((acc: any, currentCart: any) => acc + currentCart.price, 0);
-
-  // const summary = parseFloat(totalPrice);
-
-  // const formatedSummary = summary.toLocaleString("de-AT", {
-  //   style: "currency",
-  //   currency: "EUR",
-  // });
 
   const onLoad = React.useCallback(() => {
     console.log(`loaded Google Script tag`);
@@ -68,7 +58,6 @@ const Checkout = () => {
             price={item.price}
           />
         ))}
-
         <Flex>
           <Text>items in Cart: </Text>
           <Text>{cart.length}</Text>

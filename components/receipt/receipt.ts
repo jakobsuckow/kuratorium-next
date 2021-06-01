@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Receipt = styled.div`
   max-width: 40%;
-  margin: 100px auto;
+  margin: 40px auto;
   padding: 0 4px;
 
   @media screen and (max-width: ${props => props.theme.breakpoints.md}) {

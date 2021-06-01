@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Dispatch, ReducerAction, SetStateAction } from "react";
 import { countryList } from "../../services/countryList";
 import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { FormProvider, useForm } from "react-hook-form";
 import FormInput from "../forminput/formInput";
 import FormSelect from "../forminput/formSelect";
@@ -73,6 +73,7 @@ const AutoComplete = (props: Props) => {
   }, [userInput.country]);
 
   const methods = useForm({
+    reValidateMode: "onSubmit",
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -139,6 +140,7 @@ const AutoComplete = (props: Props) => {
         <FormRadio
           name="payment"
           value="credit"
+          required
           label={`Credit card`}
           labelText={`
             Pay with Credit Card. We are using Stripe as a payment Provider
@@ -146,6 +148,7 @@ const AutoComplete = (props: Props) => {
         />
         <FormRadio
           name="payment"
+          required
           value="paypal"
           label={`Paypal`}
           labelText={`
@@ -153,7 +156,13 @@ const AutoComplete = (props: Props) => {
           `}
         />
         <Flex>
-          <Button onClick={handleSubmit(submit)}>Go back to Shop</Button>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              router.push("/");
+            }}>
+            Go back to Shop
+          </Button>
 
           <Button type="submit">Go to Payment</Button>
         </Flex>

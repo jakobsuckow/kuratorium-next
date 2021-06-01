@@ -1,17 +1,17 @@
-import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import Paypal from "../components/paypal/paypal";
-import StripeCheckout from "../components/stripe/stripeCheckout";
-import { GlobalDataContext } from "../services/globalDataProvider";
-import Receipt from "../components/receipt/receipt";
-import Logo from "../components/logo/logo";
-import ReceiptMenu from "../components/receipt/receiptMenu";
+import React from "react";
 import Flex from "../components/flex/flex";
-import Text from "../components/text/text";
-import Divider from "../components/text/divider";
-import H3 from "../components/text/h3";
+import Logo from "../components/logo/logo";
+import Paypal from "../components/paypal/paypal";
+import Receipt from "../components/receipt/receipt";
+import ReceiptMenu from "../components/receipt/receiptMenu";
+import StripeCheckout from "../components/stripe/stripeCheckout";
 import Block from "../components/text/block";
+import Divider from "../components/text/divider";
+import H4 from "../components/text/h4";
+import Text from "../components/text/text";
+import { GlobalDataContext } from "../services/globalDataProvider";
 
 interface Props {}
 
@@ -42,7 +42,7 @@ const Payment: NextPage<Props> = (props: Props) => {
     <Receipt>
       <Logo center />
       <ReceiptMenu />
-      <H3>Cart Summary</H3>
+      <H4>Cart Summary</H4>
       {cart.map((item: any, index: number) => (
         <div key={index}>
           <Flex>
@@ -67,13 +67,13 @@ const Payment: NextPage<Props> = (props: Props) => {
         write an email to shop@kuratorium.net. By ordering, you declare your acceptance of our terms
         and conditions, as well as the cancellation policy.
       </Block>
-      <H3>Shipping Address</H3>
+      <H4>Shipping Address</H4>
       <Text>Contact: {userInput.emailAddress}</Text>
       <Text>
         Address: {userInput.streetName} {userInput.streetNumber}, {userInput.city},
         {userInput.country}
       </Text>
-      <H3>Payment</H3>
+      <H4>Payment</H4>
       <Text>All transactions are secure.</Text>
       {userInput.paymentMethod === "paypal" ? (
         <Paypal amount={summary} cart={cart} />
