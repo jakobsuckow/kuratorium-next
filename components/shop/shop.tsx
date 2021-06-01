@@ -18,15 +18,17 @@ const Shop: React.FC<Props> = (props: Props) => {
 
   return (
     <Inner>
-      {cart?.map((cartItem: any) => (
-        <CartItem
-          id={cartItem.id}
-          quantity={cartItem.quantity}
-          image={cartItem.image}
-          name={cartItem.name}
-          price={cartItem.price}
-        />
-      ))}
+      <>
+        {cart?.map((cartItem: any) => (
+          <CartItem
+            id={cartItem.id}
+            quantity={cartItem.quantity}
+            image={cartItem.image}
+            name={cartItem.name}
+            price={cartItem.price}
+          />
+        ))}
+      </>
       <Flex>
         <Button onClick={() => setShifted(false)}>Go Back</Button>
         <Button onClick={() => router.push("/checkout")}>Go to checkout</Button>

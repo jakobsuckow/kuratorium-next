@@ -16,13 +16,15 @@ const Wrapper = styled.div`
   align-self: stretch;
 `;
 
+const CartWrapperItem = styled.div``;
+
 const Name = styled(Text)`
   color: ${props => props.theme.colors.blue};
   padding-top: 10px;
 `;
 
 const CartImg = styled.img`
-  height: 100%;
+  height: 95px;
   width: auto;
   border-radius: 2px 0 0 2px;
 `;

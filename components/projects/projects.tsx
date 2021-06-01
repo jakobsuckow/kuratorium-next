@@ -1,16 +1,16 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { Album, Product, SKU, Track } from "../../@types";
-import Text from "../text/text";
-import Block from "../text/block";
-import Button from "../button/button";
-import Flex from "../flex/flex";
-import StyledSelect from "../forminput/styledSelect";
-import Image from "next/image";
-import Inner from "../column/inner";
-import { GlobalDataContext } from "../../services/globalDataProvider";
-import H4 from "../text/h4";
-import PlaySmall from "./assets/play-small";
-import Underline from "../text/underline";
+import Image from "next/image"
+import React, { Dispatch, SetStateAction } from "react"
+import { Album, Product, SKU, Track } from "../../@types"
+import { GlobalDataContext } from "../../services/globalDataProvider"
+import Button from "../button/button"
+import Inner from "../column/inner"
+import Flex from "../flex/flex"
+import StyledSelect from "../forminput/styledSelect"
+import Block from "../text/block"
+import H4 from "../text/h4"
+import Text from "../text/text"
+import Underline from "../text/underline"
+import PlaySmall from "./assets/play-small"
 
 interface Props {
   albums: Album[];
