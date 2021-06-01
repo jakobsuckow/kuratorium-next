@@ -20,6 +20,8 @@ const OutsideColumn = styled.div`
   height: 100%;
   transition: transform 0.7s, visibility 0.7s;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default OutsideColumn;

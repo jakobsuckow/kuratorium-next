@@ -5,6 +5,8 @@ import CartItem from "../cart/cartItem";
 import Inner from "../column/inner";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 import Flex from "../flex/flex";
+import { Blue } from "../text/text";
+import Filler from "../flex/filler";
 
 interface Props {
   setShifted: Dispatch<SetStateAction<boolean>>;
@@ -18,21 +20,26 @@ const Shop: React.FC<Props> = (props: Props) => {
 
   return (
     <Inner>
-      <>
-        {cart?.map((cartItem: any) => (
-          <CartItem
-            id={cartItem.id}
-            quantity={cartItem.quantity}
-            image={cartItem.image}
-            name={cartItem.name}
-            price={cartItem.price}
-          />
-        ))}
-      </>
-      <Flex>
-        <Button onClick={() => setShifted(false)}>Go Back</Button>
-        <Button onClick={() => router.push("/checkout")}>Go to checkout</Button>
-      </Flex>
+      {cart?.map((cartItem: any) => (
+        <CartItem
+          id={cartItem.id}
+          quantity={cartItem.quantity}
+          image={cartItem.image}
+          name={cartItem.name}
+          price={cartItem.price}
+        />
+      ))}
+      <Filler />
+      <div>
+        <Flex>
+          <Button noBorder onClick={() => setShifted(false)}>
+            Go Back
+          </Button>
+          <Button noBorder onClick={() => router.push("/checkout")}>
+            Go to checkout
+          </Button>
+        </Flex>
+      </div>
     </Inner>
   );
 };

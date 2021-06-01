@@ -1,19 +1,16 @@
-import React, { useState, useEffect, Dispatch, ReducerAction, SetStateAction } from "react";
-import { countryList } from "../../services/countryList";
-import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import FormInput from "../forminput/formInput";
-import FormSelect from "../forminput/formSelect";
+import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
+import { countryList } from "../../services/countryList";
+import { GlobalDataContext } from "../../services/globalDataProvider";
 import Button from "../button/button";
 import Flex from "../flex/flex";
 import Item from "../flex/item";
-import Loading from "../loading/loading";
-import { GlobalDataContext } from "../../services/globalDataProvider";
-import Text from "../text/text";
-import Underline from "../text/underline";
+import FormInput from "../forminput/formInput";
 import FormRadio from "../forminput/formRadio";
-import RadioGroup from "../forminput/radioGroup";
+import Loading from "../loading/loading";
+import Underline from "../text/underline";
 
 interface Props {
   autoComp: boolean;
@@ -138,8 +135,8 @@ const AutoComplete = (props: Props) => {
         <FormInput required type="text" name="postal" label={`Postal Code`} />
         <FormInput required type="text" name="city" label={`City`} />
         <FormRadio
-          name="payment"
-          value="credit"
+          name="paymentMethod"
+          value="creditCard"
           required
           label={`Credit card`}
           labelText={`
@@ -147,7 +144,7 @@ const AutoComplete = (props: Props) => {
           `}
         />
         <FormRadio
-          name="payment"
+          name="paymentMethod"
           required
           value="paypal"
           label={`Paypal`}

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 import Button from "../button/button";
+import Filler from "../flex/filler";
 import AlignRight from "../text/alignRight";
 import Text from "../text/text";
 
@@ -14,10 +15,6 @@ const Wrapper = styled.div`
   justify-content: space-between;
   border-radius: 2px;
   align-self: stretch;
-`;
-
-const Filler = styled.div`
-  flex-grow: 1;
 `;
 
 const Name = styled(Text)`

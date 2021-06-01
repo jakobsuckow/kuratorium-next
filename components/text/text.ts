@@ -9,3 +9,7 @@ const Text = styled.p<Props>`
 `;
 
 export default Text;
+
+export const Blue = styled(Text)`
+  color: ${(props: Props) => props.theme.colors.blue};
+`;
