@@ -120,8 +120,8 @@ const AutoComplete = (props: Props) => {
                   })}
                 />
                 {loading && <Loading />}
-                {suggestions.map((suggestion: any) => (
-                  <Underline {...getSuggestionItemProps(suggestion)}>
+                {suggestions.map((suggestion: any, i: number) => (
+                  <Underline {...getSuggestionItemProps(suggestion)} key={i}>
                     {suggestion.description}
                   </Underline>
                 ))}

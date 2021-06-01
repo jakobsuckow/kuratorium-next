@@ -38,6 +38,7 @@ const Payment: NextPage = () => {
           name={item.name}
           price={item.price}
           fixed
+          key={index}
         />
       ))}
       <Text>Personal Info</Text>
