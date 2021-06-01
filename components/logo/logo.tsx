@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
@@ -14,10 +15,19 @@ const StyledLogoWrapper = styled.div`
 `;
 
 const Logo: React.FC<Props> = (props: Props) => {
+  const router = useRouter();
   const { center } = props;
   return (
     <StyledLogoWrapper center={center}>
-      <Image src="/kuratorium-logo.png" alt="Kuratorium" width="223px" height="27px" />
+      <Image
+        src="/kuratorium-logo.png"
+        alt="Kuratorium"
+        width="223px"
+        height="27px"
+        onClick={() => {
+          router.push("/");
+        }}
+      />
     </StyledLogoWrapper>
   );
 };

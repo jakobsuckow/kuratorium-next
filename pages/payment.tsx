@@ -37,6 +37,7 @@ const Payment: NextPage = () => {
           image={item.image}
           name={item.name}
           price={item.price}
+          fixed
         />
       ))}
       <Text>Personal Info</Text>
@@ -45,7 +46,12 @@ const Payment: NextPage = () => {
         <Text>
           {userInput.firstName} {userInput.lastName}
         </Text>
-        <Blue>Change</Blue>
+        <Blue
+          onClick={() => {
+            router.push("/checkout");
+          }}>
+          Change
+        </Blue>
       </Flex>
       <Flex>
         <Text>
@@ -55,20 +61,19 @@ const Payment: NextPage = () => {
       </Flex>
       <br />
       <Text>Total</Text>
+      {cart.map((item: any, index: number) => (
+        <Flex key={index}>
+          <Blue>{item.name}</Blue>
+          <Blue>{item.price}€</Blue>
+        </Flex>
+      ))}
+      <Flex></Flex>
       <br />
       <Flex>
         <Text>Total with Shipping</Text>
         <Text>{formatedSummary}€</Text>
       </Flex>
-      <Block>
-        We are shipping out all products on a weekly basis. Should you have any questions, please
-        write an email to shop@kuratorium.net. By ordering, you declare your acceptance of our terms
-        and conditions, as well as the cancellation policy.
-      </Block>
-      <Text>
-        Address: {userInput.streetName} {userInput.streetNumber}, {userInput.city},
-        {userInput.country}
-      </Text>
+      <br />
       <Text>Payment</Text>
       <Text>All transactions are secure.</Text>
       {userInput.paymentMethod === "paypal" ? (

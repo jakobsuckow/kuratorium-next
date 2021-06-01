@@ -44,10 +44,11 @@ interface Props {
   image: string;
   quantity: number;
   price: number;
+  fixed?: boolean;
 }
 
 const CartItem: React.FC<Props> = (props: Props) => {
-  const { id, image, quantity, name, price } = props;
+  const { id, image, quantity, name, price, fixed } = props;
   const { deleteItem } = React.useContext(GlobalDataContext);
   return (
     <Wrapper>
@@ -57,9 +58,11 @@ const CartItem: React.FC<Props> = (props: Props) => {
       <AlignRight>
         <Name>{name}</Name>
         <Name>{price}€</Name>
-        <DeleteButton noBorder onClick={() => deleteItem(id)}>
-          Delete
-        </DeleteButton>
+        {!fixed && (
+          <DeleteButton noBorder onClick={() => deleteItem(id)}>
+            Delete
+          </DeleteButton>
+        )}
       </AlignRight>
     </Wrapper>
   );

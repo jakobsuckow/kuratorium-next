@@ -13,7 +13,7 @@ const Button = styled.button`
   border-radius: 0px;
   padding: 2px 8px;
   font-family: inherit;
-
+  font-size: 16px;
   &:focus {
     outline: 0;
   }

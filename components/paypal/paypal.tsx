@@ -1,10 +1,7 @@
-import React from "react";
 import { useRouter } from "next/router";
+import React from "react";
 import { CartItem } from "../../@types";
-import Text from "../text/text";
-import Divider from "../text/divider";
-import Flex from "../flex/flex";
-import Script from "next/dist/client/experimental-script.js";
+import Loading from "../loading/loading";
 
 interface Props {
   amount: number;
@@ -57,7 +54,7 @@ const Paypal: React.FC<Props> = (props: Props) => {
             onApprove: async (data: any, actions: any) => {
               setLoading(true);
               const order = await actions.order.capture();
-              router.push("thankyou");
+              router.push("/thankyou");
             },
             onError: (err: any) => {
               setErrors(err);
@@ -65,25 +62,18 @@ const Paypal: React.FC<Props> = (props: Props) => {
             },
           })
           .render(paypalRef.current),
-      4000
+      1000
     );
   }, [amount]);
 
+  if (loading) {
+    <Loading name="Paypal" />;
+  }
+
   return (
     <>
-      <Text>
-        After clicking the button, you will be redirected to PayPal to complete your purchase
-        securely.
-      </Text>
-      {errors && <Text>{errors.message}</Text>}
-      <Divider />
-      <Flex>
-        <Text>Total Amount</Text>
-        <Text>{amount}€</Text>
-      </Flex>
-      <div className={`loading ${!loading && `hidden`}`}>waiting for Paypal...</div>
       <div className="paypal_button">
-        <div ref={paypalRef} className={`${loading && `hidden`}`} />
+        <div ref={paypalRef} />
       </div>
     </>
   );

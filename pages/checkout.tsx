@@ -1,6 +1,5 @@
 import Script from "next/dist/client/experimental-script.js";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
 import AutoComplete from "../components/autocomplete/autoComplete";
 import CartItem from "../components/cart/cartItem";
@@ -16,8 +15,6 @@ const Checkout = () => {
   const [autoComp, setAutocomp] = React.useState<boolean>(false);
 
   const { cart } = React.useContext(GlobalDataContext);
-
-  const router = useRouter();
 
   const onLoad = React.useCallback(() => {
     console.log(`loaded Google Script tag`);
@@ -58,15 +55,6 @@ const Checkout = () => {
             price={item.price}
           />
         ))}
-        <Flex>
-          <Text>items in Cart: </Text>
-          <Text>{cart.length}</Text>
-        </Flex>
-        <Flex>
-          <Text>Total Price</Text>
-        </Flex>
-
-        <Divider />
         <AutoComplete autoComp={autoComp} setAutoComp={setAutocomp} />
       </Receipt>
     </>
