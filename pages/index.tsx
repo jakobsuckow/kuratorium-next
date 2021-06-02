@@ -1,19 +1,18 @@
 import { GetStaticProps, NextPage } from "next";
-import React, { LegacyRef } from "react";
-import About from "../components/about/about";
-import Intro from "../components/intro/intro";
-import Shop from "../components/shop/shop";
-import Projects from "../components/projects/projects";
-import Feed from "../components/feed/feed";
+import Head from "next/head";
+import React from "react";
 import { useMeasure } from "react-use";
-import { getAlbums, getEvents, getLinks, getProducs } from "../services/strapi";
 import { Album, Event, News, Product } from "../@types";
-import Row from "../components/row/row";
+import About from "../components/about/about";
 import Column from "../components/column/column";
 import OutsideColumn from "../components/column/outsideColumn";
-import { UseMeasureRef } from "react-use/lib/useMeasure";
+import Feed from "../components/feed/feed";
+import Intro from "../components/intro/intro";
+import Projects from "../components/projects/projects";
+import Row from "../components/row/row";
+import Shop from "../components/shop/shop";
 import Player from "../components/track/player";
-import Head from "next/head";
+import { getAlbums, getEvents, getLinks, getProducs } from "../services/strapi";
 
 interface Props {
   events: Event[];

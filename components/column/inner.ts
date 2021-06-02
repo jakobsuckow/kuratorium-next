@@ -6,7 +6,7 @@ interface Props {
 
 const Inner = styled.div<Props>`
   padding: ${(props: Props) => (props.lg ? `0 40px` : `0 4px`)};
-
+  height: 100%;
   @media screen and (max-width: 600px) {
     padding: 0 4px;
 

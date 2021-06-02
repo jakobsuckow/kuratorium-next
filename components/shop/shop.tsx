@@ -7,6 +7,13 @@ import { GlobalDataContext } from "../../services/globalDataProvider";
 import Flex from "../flex/flex";
 import { Blue } from "../text/text";
 import Filler from "../flex/filler";
+import styled from "styled-components";
+
+const FlexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+`;
 
 interface Props {
   setShifted: Dispatch<SetStateAction<boolean>>;
@@ -20,26 +27,32 @@ const Shop: React.FC<Props> = (props: Props) => {
 
   return (
     <Inner>
-      {cart?.map((cartItem: any) => (
-        <CartItem
-          id={cartItem.id}
-          quantity={cartItem.quantity}
-          image={cartItem.image}
-          name={cartItem.name}
-          price={cartItem.price}
-        />
-      ))}
-      <Filler />
-      <div>
-        <Flex>
-          <Button noBorder onClick={() => setShifted(false)}>
-            Go Back
-          </Button>
-          <Button noBorder onClick={() => router.push("/checkout")}>
-            Go to checkout
-          </Button>
-        </Flex>
-      </div>
+      <FlexWrapper>
+        {cart?.map((cartItem: any) => (
+          <CartItem
+            id={cartItem.id}
+            quantity={cartItem.quantity}
+            image={cartItem.image}
+            name={cartItem.name}
+            price={cartItem.price}
+          />
+        ))}
+        <Filler />
+        <div>
+          <Flex>
+            <Button noBorder onClick={() => setShifted(false)}>
+              Go Back
+            </Button>
+            <Button
+              noBorder
+              onClick={() => {
+                if (cart.length > 0) router.push("/checkout");
+              }}>
+              Go to checkout
+            </Button>
+          </Flex>
+        </div>
+      </FlexWrapper>
     </Inner>
   );
 };

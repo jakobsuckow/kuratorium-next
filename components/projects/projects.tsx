@@ -1,16 +1,15 @@
-import Image from "next/image"
-import React, { Dispatch, SetStateAction } from "react"
-import { Album, Product, SKU, Track } from "../../@types"
-import { GlobalDataContext } from "../../services/globalDataProvider"
-import Button from "../button/button"
-import Inner from "../column/inner"
-import Flex from "../flex/flex"
-import StyledSelect from "../forminput/styledSelect"
-import Block from "../text/block"
-import H4 from "../text/h4"
-import Text from "../text/text"
-import Underline from "../text/underline"
-import PlaySmall from "./assets/play-small"
+import Image from "next/image";
+import React, { Dispatch, SetStateAction } from "react";
+import { Album, Product, SKU, Track } from "../../@types";
+import { GlobalDataContext } from "../../services/globalDataProvider";
+import Button from "../button/button";
+import Inner from "../column/inner";
+import Flex from "../flex/flex";
+import StyledSelect from "../forminput/styledSelect";
+import Block from "../text/block";
+import Text from "../text/text";
+import Underline from "../text/underline";
+import PlaySmall from "./assets/play-small";
 
 interface Props {
   albums: Album[];
@@ -88,7 +87,7 @@ const Releases: React.FC<Props> = (props: Props) => {
           </Flex>
         </div>
       ))}
-      <H4>Merch</H4>
+      <Text>Merch</Text>
       {products.map((product: Product, index: number) => (
         <div key={index}>
           <Block>{product.title}</Block>
