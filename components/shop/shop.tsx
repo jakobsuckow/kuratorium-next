@@ -28,13 +28,14 @@ const Shop: React.FC<Props> = (props: Props) => {
   return (
     <Inner>
       <FlexWrapper>
-        {cart?.map((cartItem: any) => (
+        {cart?.map((cartItem: any, i: number) => (
           <CartItem
             id={cartItem.id}
             quantity={cartItem.quantity}
             image={cartItem.image}
             name={cartItem.name}
             price={cartItem.price}
+            key={i}
           />
         ))}
         <Filler />

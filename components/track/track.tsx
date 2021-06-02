@@ -15,6 +15,12 @@ const StyledControls = styled.div`
 `;
 
 const TrackInfo = styled(Text)`
+  margin-left: 6px;
+  padding: 12px 4px 0 1px;
+  color: ${props => props.theme.colors.pink};
+`;
+
+const TrackImage = styled(Text)`
   padding-right: 4px;
   padding-top: 4px;
   color: ${props => props.theme.colors.pink};
@@ -55,7 +61,7 @@ const Track: React.FC<Props> = (props: Props) => {
 
   return (
     <StyledControls>
-      <Button noBorder onClick={togglePlay}>
+      <Button noBorder onClick={togglePlay} style={{ padding: "8px 8px" }}>
         {isPlaying ? <Pause /> : <Play />}
       </Button>
       <audio
@@ -68,9 +74,9 @@ const Track: React.FC<Props> = (props: Props) => {
         Your browser does not support the
         <code>audio</code> element.
       </audio>
-      <TrackInfo>
+      <TrackImage>
         <img src={currentTrack?.Cover.formats.thumbnail.url} height={35} />
-      </TrackInfo>
+      </TrackImage>
       <TrackInfo>
         {transformTime(currentTime)}/{transformTime(currentTrack?.time || 0)}
       </TrackInfo>

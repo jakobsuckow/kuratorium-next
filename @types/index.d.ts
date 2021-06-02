@@ -28,7 +28,7 @@ export interface Album {
   published_at: Date;
   created_at: Date;
   updated_at: Date;
-  tracks: any;
+  tracks: Track[];
   price: number;
 }
 

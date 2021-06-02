@@ -21,7 +21,7 @@ const Wrapper = styled.div<WrapperProps & Props>`
   transform: ${props => (props.shifted ? `translateX(-${props.width}px)` : `translateX(-0px)`)};
   transition: transform 0.7s;
   margin-top: auto;
-  display: flex;
+  display: ${props => (props.hidden ? `none` : `flex`)};
   width: calc(${(props: Props) => props.width}px - 70px);
   margin-left: 40px;
   background-color: ${props => props.theme.colors.grey};
