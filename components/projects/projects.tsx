@@ -4,6 +4,7 @@ import { Album, Product, SKU, Track } from "../../@types";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 import Button from "../button/button";
 import Inner from "../column/inner";
+import Filler from "../flex/filler";
 import Flex from "../flex/flex";
 import StyledSelect from "../forminput/styledSelect";
 import Block from "../text/block";
@@ -76,6 +77,7 @@ const Releases: React.FC<Props> = (props: Props) => {
               <Text key={i} onClick={() => setCurrentTrack(track)}>
                 {track.title}
               </Text>
+              <Filler />
               <Text>{track.time}</Text>
             </Flex>
           ))}

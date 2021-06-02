@@ -1,16 +1,23 @@
 import React from "react";
+import styled from "styled-components";
 
 interface Props {}
+
+const Wrapper = styled.div`
+  padding: 4px;
+`;
 
 const PlaySmall: React.FC<Props> = (props: Props) => {
   const {} = props;
   return (
-    <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M0 1.80425C0 1.01881 0.863951 0.539969 1.53 0.956249L6.6432 4.152C7.26987 4.54367 7.26987 5.45633 6.6432 5.848L1.53 9.04375C0.86395 9.46003 0 8.98119 0 8.19575V1.80425Z"
-        fill="black"
-      />
-    </svg>
+    <Wrapper>
+      <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 1.80425C0 1.01881 0.863951 0.539969 1.53 0.956249L6.6432 4.152C7.26987 4.54367 7.26987 5.45633 6.6432 5.848L1.53 9.04375C0.86395 9.46003 0 8.98119 0 8.19575V1.80425Z"
+          fill="black"
+        />
+      </svg>
+    </Wrapper>
   );
 };
 export default PlaySmall;
