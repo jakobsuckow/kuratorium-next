@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { Dispatch, SetStateAction } from "react";
 import { Album, Product, SKU, Track } from "../../@types";
 import { GlobalDataContext } from "../../services/globalDataProvider";
+import { transformTime } from "../../services/transformTime";
 import Button from "../button/button";
 import Inner from "../column/inner";
 import Filler from "../flex/filler";
@@ -78,7 +79,7 @@ const Releases: React.FC<Props> = (props: Props) => {
                 {track.title}
               </Text>
               <Filler />
-              <Text>{track.time}</Text>
+              <Text>{transformTime(track.time)}</Text>
             </Flex>
           ))}
           <Flex>

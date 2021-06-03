@@ -6,6 +6,7 @@ import Text from "../text/text";
 import Pause from "./assets/pause";
 import Play from "./assets/play";
 import { useAudio } from "react-use";
+import { transformTime } from "../../services/transformTime";
 
 const StyledControls = styled.div`
   padding-left: 8px;
@@ -26,19 +27,12 @@ const TrackImage = styled(Text)`
   color: ${props => props.theme.colors.pink};
 `;
 
-interface Props {}
-
-const Track: React.FC<Props> = (props: Props) => {
+const Track: React.FC<{}> = () => {
   const { currentTrack } = React.useContext(GlobalDataContext);
   const [audio, state, controls, ref] = useAudio({
     src: currentTrack?.preview.url as string,
     autoPlay: false,
   });
-
-  const transformTime = (seconds: number) => {
-    if (seconds) return new Date(seconds * 1000).toISOString().substr(14, 5);
-    else return new Date(0 * 1000).toISOString().substr(14, 5);
-  };
 
   return (
     <StyledControls>
@@ -47,7 +41,7 @@ const Track: React.FC<Props> = (props: Props) => {
           <Play />
         </Button>
       ) : (
-        <Button noBorder style={{ padding: "8px 8px" }} onClick={controls.play}>
+        <Button noBorder style={{ padding: "8px 8px" }} onClick={controls.pause}>
           <Pause />
         </Button>
       )}
