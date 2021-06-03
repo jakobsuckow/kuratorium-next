@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
 import { GlobalDataContext } from "../../services/globalDataProvider";
@@ -6,6 +5,7 @@ import Button from "../button/button";
 import Text from "../text/text";
 import Pause from "./assets/pause";
 import Play from "./assets/play";
+import { useAudio } from "react-use";
 
 const StyledControls = styled.div`
   padding-left: 8px;
@@ -30,55 +30,33 @@ interface Props {}
 
 const Track: React.FC<Props> = (props: Props) => {
   const { currentTrack } = React.useContext(GlobalDataContext);
-
-  const audioref = React.useRef(new Audio(currentTrack?.preview.url));
-
-  const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
-
-  const [currentTime, setCurrentTime] = React.useState<number>(0);
+  const [audio, state, controls, ref] = useAudio({
+    src: currentTrack?.preview.url as string,
+    autoPlay: false,
+  });
 
   const transformTime = (seconds: number) => {
     if (seconds) return new Date(seconds * 1000).toISOString().substr(14, 5);
     else return new Date(0 * 1000).toISOString().substr(14, 5);
   };
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  React.useEffect(() => {
-    if (isPlaying) {
-      audioref.current.play();
-      const timer = setInterval(() => {
-        setCurrentTime(audioref?.current?.currentTime);
-      }, 1000);
-      return () => clearTimeout(timer);
-    } else {
-      console.log(`pause`);
-      audioref.current.pause();
-    }
-  }, [togglePlay]);
-
   return (
     <StyledControls>
-      <Button noBorder onClick={togglePlay} style={{ padding: "8px 8px" }}>
-        {isPlaying ? <Pause /> : <Play />}
-      </Button>
-      <audio
-        ref={audioref}
-        src={currentTrack?.preview.url}
-        autoPlay={false}
-        onEnded={() => console.log(`track has ended`)}
-        // onCanPlay={() => alert("track can play")}
-      >
-        Your browser does not support the
-        <code>audio</code> element.
-      </audio>
+      {state.paused === true ? (
+        <Button noBorder style={{ padding: "8px 8px" }} onClick={controls.play}>
+          <Play />
+        </Button>
+      ) : (
+        <Button noBorder style={{ padding: "8px 8px" }} onClick={controls.play}>
+          <Pause />
+        </Button>
+      )}
+      {audio}
       <TrackImage>
         <img src={currentTrack?.Cover.formats.thumbnail.url} height={35} />
       </TrackImage>
       <TrackInfo>
-        {transformTime(currentTime)}/{transformTime(currentTrack?.time || 0)}
+        {transformTime(state.time)}/{transformTime(state.duration || 0)}
       </TrackInfo>
       <TrackInfo>{currentTrack?.title} -- </TrackInfo>
       <TrackInfo> {currentTrack?.artist}</TrackInfo>
