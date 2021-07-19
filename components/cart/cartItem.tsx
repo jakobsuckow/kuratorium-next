@@ -4,7 +4,7 @@ import { GlobalDataContext } from "../../services/globalDataProvider";
 import Button from "../button/button";
 import Filler from "../flex/filler";
 import AlignRight from "../text/alignRight";
-import Text from "../text/text";
+import Text, { Blue } from "../text/text";
 
 const Wrapper = styled.div`
   height: 95px;
@@ -56,8 +56,12 @@ const CartItem: React.FC<Props> = (props: Props) => {
       <Name>Quantity {quantity}</Name>
       <Filler />
       <AlignRight>
-        <Name>{name}</Name>
-        <Name>{price}€</Name>
+        <Name>
+          <Blue>{name}</Blue>
+        </Name>
+        <Name>
+          <Blue>{price}€</Blue>
+        </Name>
         {!fixed && (
           <DeleteButton noBorder onClick={() => deleteItem(id)}>
             Delete
