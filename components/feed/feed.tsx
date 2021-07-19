@@ -21,7 +21,7 @@ const Dates: React.FC<Props> = (props: Props) => {
         <Link href={n.link} key={index}>
           <List key={n.id}>
             <ListItem>{n.date}</ListItem>
-            <ListItem>{n.headline}</ListItem>
+            <ListItem>{n.title}</ListItem>
           </List>
         </Link>
       ))}

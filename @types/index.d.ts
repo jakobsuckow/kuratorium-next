@@ -48,7 +48,7 @@ export interface Event {
 
 export interface News {
   date: Date;
-  headline: string;
+  title: string;
   link: string;
   id: string;
 }

@@ -1,13 +1,13 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
 import Button from "../button/button";
-import CartItem from "../cart/cartItem";
 import Inner from "../column/inner";
 import { GlobalDataContext } from "../../services/globalDataProvider";
 import Flex from "../flex/flex";
 import { Blue } from "../text/text";
 import Filler from "../flex/filler";
 import styled from "styled-components";
+import dynamic from "next/dynamic";
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -24,6 +24,8 @@ const Shop: React.FC<Props> = (props: Props) => {
   const { cart } = React.useContext(GlobalDataContext);
 
   const router = useRouter();
+
+  const CartItem = dynamic(() => import("../cart/cartItem"));
 
   return (
     <Inner>
